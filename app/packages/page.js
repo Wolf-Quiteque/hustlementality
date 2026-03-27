@@ -1,0 +1,382 @@
+export const metadata = {
+  title: "Packages & Pricing - Hustle Mentality",
+  description: "View cruise packages and pricing for The Bahamas Wave. Choose from Interior, Ocean View, or Balcony cabins with flexible payment plans.",
+};
+
+export default function PackagesPage() {
+  return (
+    <>
+      {/* Page Banner */}
+      <section
+        className="hm-page-banner bg-cover"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1920&q=80')",
+        }}
+      >
+        <div className="container">
+          <h1 className="wow fadeInUp">Packages &amp; Pricing</h1>
+          <div className="hm-breadcrumb wow fadeInUp" data-wow-delay=".2s">
+            <a href="/">Home</a>
+            <span className="separator">/</span>
+            <span>Packages</span>
+          </div>
+          <p className="subtitle wow fadeInUp" data-wow-delay=".3s">
+            Choose the package that fits your style. All packages include the full Hustle Mentality experience.
+          </p>
+        </div>
+      </section>
+
+      {/* Pricing Cards */}
+      <section className="section-padding fix">
+        <div className="container">
+          <div className="row g-4 justify-content-center mb-50">
+            <div className="col-lg-8 text-center">
+              <div className="sec-title mb-0">
+                <div className="sec-sub-title">
+                  <h6 className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">Choose Your Cabin</h6>
+                </div>
+                <h2 className="title tx-title sec_title tz-itm-title tz-itm-anim">
+                  The Bahamas Wave Packages
+                </h2>
+              </div>
+              <p className="wow fadeInUp mt-3" data-wow-delay=".2s" style={{ color: "var(--text-color)" }}>
+                Every package includes 7 nights accommodation, all meals, community events,
+                deck parties, and access to the full Hustle Mentality experience.
+              </p>
+            </div>
+          </div>
+
+          <div className="row g-4 justify-content-center">
+            {/* Interior Cabin */}
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+              <div className="hm-pricing-card">
+                <div className="plan-icon">
+                  <i className="fa-solid fa-bed"></i>
+                </div>
+                <h4 className="plan-name">Interior Cabin</h4>
+                <div className="plan-price">
+                  $1,299<span>/person</span>
+                </div>
+                <div className="plan-period">Based on double occupancy</div>
+                <ul className="plan-features">
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    7-night cruise accommodation
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    All meals included (buffet &amp; dining room)
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Community events &amp; deck parties
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Cabin buddy matching
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Hustle Mentality welcome kit
+                  </li>
+                  <li className="not-included">
+                    <i className="fa-solid fa-times"></i>
+                    Ocean view window
+                  </li>
+                  <li className="not-included">
+                    <i className="fa-solid fa-times"></i>
+                    Private balcony
+                  </li>
+                  <li className="not-included">
+                    <i className="fa-solid fa-times"></i>
+                    Priority excursion booking
+                  </li>
+                </ul>
+                <a href="/contact" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }}>
+                  <span className="theme-btn-arrow-left">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                  <span className="theme-btn">Reserve Now</span>
+                  <span className="theme-btn-arrow-right">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            {/* Ocean View - Featured */}
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+              <div className="hm-pricing-card featured">
+                <div className="plan-icon">
+                  <i className="fa-solid fa-ship"></i>
+                </div>
+                <h4 className="plan-name">Ocean View</h4>
+                <div className="plan-price">
+                  $1,799<span>/person</span>
+                </div>
+                <div className="plan-period">Based on double occupancy</div>
+                <ul className="plan-features">
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    7-night cruise accommodation
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    All meals included (buffet, dining &amp; specialty)
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Community events &amp; deck parties
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Cabin buddy matching
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Hustle Mentality welcome kit + merch
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Ocean view window
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Priority excursion booking
+                  </li>
+                  <li className="not-included">
+                    <i className="fa-solid fa-times"></i>
+                    Private balcony
+                  </li>
+                </ul>
+                <a href="/contact" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }}>
+                  <span className="theme-btn-arrow-left">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                  <span className="theme-btn">Reserve Now</span>
+                  <span className="theme-btn-arrow-right">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            {/* Balcony Suite */}
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+              <div className="hm-pricing-card">
+                <div className="plan-icon">
+                  <i className="fa-solid fa-crown"></i>
+                </div>
+                <h4 className="plan-name">Balcony Suite</h4>
+                <div className="plan-price">
+                  $2,499<span>/person</span>
+                </div>
+                <div className="plan-period">Based on double occupancy</div>
+                <ul className="plan-features">
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    7-night cruise accommodation
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    All meals + unlimited specialty dining
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    VIP community events &amp; deck parties
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Cabin buddy matching
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Premium welcome kit + exclusive merch
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Private balcony with ocean view
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Priority excursion booking
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Complimentary beverage package
+                  </li>
+                </ul>
+                <a href="/contact" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }}>
+                  <span className="theme-btn-arrow-left">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                  <span className="theme-btn">Reserve Now</span>
+                  <span className="theme-btn-arrow-right">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What's Included */}
+      <section className="section-padding fix section-bg">
+        <div className="container">
+          <div className="row g-4 justify-content-center mb-50">
+            <div className="col-lg-8 text-center">
+              <div className="sec-title mb-0">
+                <div className="sec-sub-title bg-white">
+                  <h6 className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">The Details</h6>
+                </div>
+                <h2 className="title tx-title sec_title tz-itm-title tz-itm-anim">
+                  What&apos;s Included in Every Package
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div className="row g-4">
+            <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+              <div className="hm-value-card">
+                <div className="value-icon">
+                  <i className="fa-solid fa-utensils"></i>
+                </div>
+                <h5>All Meals</h5>
+                <p>Breakfast, lunch, dinner, and snacks. Buffet and main dining room included with every package.</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+              <div className="hm-value-card">
+                <div className="value-icon">
+                  <i className="fa-solid fa-music"></i>
+                </div>
+                <h5>Deck Parties</h5>
+                <p>Exclusive Hustle Mentality themed deck parties with live DJs, entertainment, and community vibes.</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+              <div className="hm-value-card">
+                <div className="value-icon">
+                  <i className="fa-solid fa-people-group"></i>
+                </div>
+                <h5>Community Events</h5>
+                <p>Networking mixers, group dining, themed nights, and activities designed to connect you with your tribe.</p>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+              <div className="hm-value-card">
+                <div className="value-icon">
+                  <i className="fa-solid fa-gift"></i>
+                </div>
+                <h5>Welcome Kit</h5>
+                <p>Custom Hustle Mentality welcome kit with branded essentials to kick off your cruise experience.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Payment Plans */}
+      <section className="section-padding fix">
+        <div className="container">
+          <div className="row g-4 align-items-center">
+            <div className="col-lg-6 wow fadeInUp">
+              <div className="sec-title mb-0">
+                <div className="sec-sub-title">
+                  <h6 className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">Flexible Options</h6>
+                </div>
+                <h2 className="title tx-title sec_title tz-itm-title tz-itm-anim">
+                  Payment Plans Available
+                </h2>
+              </div>
+              <div className="mt-4" style={{ lineHeight: 1.7, color: "var(--text-color)" }}>
+                <p>
+                  We believe everyone deserves an incredible cruise experience. That&apos;s why
+                  we offer flexible payment plans to help you secure your spot and pay over time.
+                </p>
+              </div>
+              <ul className="choose-us-block-content1 mt-3">
+                <li className="wow fadeInUp" data-wow-delay=".2s">
+                  <div className="icon">
+                    <i className="fa-solid fa-credit-card fa-2x" style={{ color: "var(--theme-color3)" }}></i>
+                  </div>
+                  <div className="content">
+                    <h4 className="title">$250 Deposit</h4>
+                    <div className="text">
+                      Lock in your spot with a $250 refundable deposit. Your cabin is reserved
+                      the moment we receive your deposit.
+                    </div>
+                  </div>
+                </li>
+                <li className="wow fadeInUp" data-wow-delay=".3s">
+                  <div className="icon">
+                    <i className="fa-solid fa-calendar-days fa-2x" style={{ color: "var(--theme-color3)" }}></i>
+                  </div>
+                  <div className="content">
+                    <h4 className="title">Monthly Payments</h4>
+                    <div className="text">
+                      Split the remaining balance into easy monthly payments. Pay as little
+                      as $100/month leading up to the cruise date.
+                    </div>
+                  </div>
+                </li>
+                <li className="wow fadeInUp" data-wow-delay=".4s">
+                  <div className="icon">
+                    <i className="fa-solid fa-percent fa-2x" style={{ color: "var(--theme-color3)" }}></i>
+                  </div>
+                  <div className="content">
+                    <h4 className="title">Early Bird Discount</h4>
+                    <div className="text">
+                      Book before December 2026 and save 10% on any package. The earlier
+                      you book, the more you save.
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
+              <div style={{ borderRadius: "20px", overflow: "hidden" }}>
+                <img
+                  src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=800&q=80"
+                  alt="Cruise deck sunset"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section
+        className="cta-banner-section bg-cover"
+        style={{ backgroundImage: "url('images/icons/line-1-1.png')" }}
+      >
+        <div className="container">
+          <div className="cta-banner-wrapper">
+            <div className="content">
+              <h3 className="title char-animation">
+                Lock In Your Spot Today
+              </h3>
+              <div className="text wow fadeInUp" data-wow-delay=".3s">
+                Cabins are limited. Reserve yours with a $250 deposit and start your payment plan.
+              </div>
+            </div>
+            <div className="wow fadeInUp" data-wow-delay=".5s">
+              <a href="/contact" className="theme-btn-main">
+                <span className="theme-btn-arrow-left">
+                  <i className="fa-solid fa-arrow-right"></i>
+                </span>
+                <span className="theme-btn">Contact Us to Book</span>
+                <span className="theme-btn-arrow-right">
+                  <i className="fa-solid fa-arrow-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

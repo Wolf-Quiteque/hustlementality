@@ -1,0 +1,3425 @@
+/* Hustle Mentality - Custom Styles */
+
+/* Logo Image Styling */
+.dst-logo-img {
+  height: 90px !important;
+  max-height: none !important;
+  width: auto !important;
+  max-width: none !important;
+  display: block;
+}
+
+.dst-logo-img-sticky {
+  height: 81px !important;
+  max-height: none !important;
+}
+
+.dst-logo-img-footer {
+  height: 108px !important;
+  max-height: none !important;
+  margin-bottom: 15px;
+}
+
+/* Legacy text logo - keep for fallback */
+.dst-logo-text {
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.dst-logo-text:hover {
+  color: var(--theme-color1);
+}
+
+.dst-logo-dark {
+  color: var(--theme-color2);
+}
+
+.dst-logo-dark:hover {
+  color: var(--theme-color3);
+}
+
+/* Footer logo */
+.footer-logo.dst-logo-text {
+  font-size: 28px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/* Next Steps Cards */
+.dst-step-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(11, 37, 69, 0.08);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.dst-step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(11, 37, 69, 0.15);
+}
+
+.dst-step-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--theme-color1), var(--theme-color3));
+}
+
+.dst-step-number {
+  font-size: 60px;
+  font-weight: 800;
+  color: rgba(11, 37, 69, 0.06);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.dst-step-icon {
+  margin-bottom: 20px;
+  color: var(--theme-color3);
+}
+
+.dst-step-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--headings-color);
+  margin-bottom: 15px;
+}
+
+.dst-step-text {
+  color: var(--text-color);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.dst-step-card .link-btn {
+  color: var(--theme-color3);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.dst-step-card .link-btn:hover {
+  color: var(--theme-color1);
+}
+
+.dst-step-card .link-btn i {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+.dst-step-card .link-btn:hover i {
+  transform: translateX(5px);
+}
+
+/* Remove leaf/flower decorative shapes from FAQ section */
+.faq-section .leaf-shape1,
+.faq-section .leaf-shape2 {
+  display: none;
+}
+
+/* Override green SVG fills to match new theme */
+.choose-us-block-content1 .icon svg path {
+  fill: var(--theme-color3) !important;
+}
+
+/* Ensure hero section has proper overlay for text readability */
+.hero-section-2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(11, 37, 69, 0.85) 0%, rgba(27, 107, 147, 0.6) 100%);
+  z-index: 1;
+}
+
+.hero-section-2 .hero-items {
+  position: relative;
+  z-index: 2;
+}
+
+/* Testimonial/Traveler section overlay */
+.testimonial-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(11, 37, 69, 0.9) 0%, rgba(27, 107, 147, 0.7) 100%);
+  z-index: 0;
+}
+
+.testimonial-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Service section background override */
+.section-bg {
+  background-color: var(--bg-color) !important;
+}
+
+/* CTA section styling - Gold background with navy text */
+.cta-banner-section {
+  background-color: var(--theme-color1) !important;
+}
+
+.cta-banner-wrapper .content .title {
+  color: var(--theme-color2) !important;
+}
+
+.cta-banner-wrapper .content .text {
+  color: var(--theme-color2) !important;
+  opacity: 0.8;
+}
+
+.cta-banner-wrapper form {
+  background: var(--theme-color2);
+  border-radius: 50px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.cta-banner-wrapper form input {
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  padding: 12px 20px !important;
+  height: auto !important;
+  flex: 1;
+}
+
+.cta-banner-wrapper form input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.cta-banner-wrapper form .theme-btn-main {
+  flex-shrink: 0;
+}
+
+/* Footer styling */
+.footer-section {
+  background-color: var(--theme-color2);
+}
+
+.footer-area {
+  background-color: var(--theme-color2);
+}
+
+/* Experience/Stats section - navy bg with white/gold text */
+.experience-speaks-section {
+  background-color: var(--theme-color2);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  padding-top: 80px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.experience-speaks-section::before {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.experience-text {
+  color: var(--theme-color1) !important;
+  background-color: transparent !important;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.experience-speaks-card-items p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.experience-speaks-card-items .count-box {
+  color: var(--theme-color1) !important;
+}
+
+.experience-speaks-wrapper .line-shape img {
+  filter: brightness(0) invert(1);
+  opacity: 0.3;
+}
+
+/* About section - text card with proper spacing */
+.about-block-items-1 .about-text {
+  margin-top: 25px;
+  padding: 20px 24px;
+  background: rgba(240, 244, 248, 0.95);
+  border-radius: 12px;
+  color: var(--text-color) !important;
+  line-height: 1.7;
+  position: relative;
+  z-index: 2;
+  border-left: 4px solid var(--theme-color1);
+}
+
+/* Hide original flower shapes that don't fit cruise theme */
+.flower-shape {
+  display: none;
+}
+
+/* Choose us image adjustments - remove decorative shapes not relevant */
+.choose-us-block1 .choose-shape1,
+.choose-us-block1 .choose-shape2,
+.choose-us-block1 .choose-shape3 {
+  display: none;
+}
+
+/* How it works section - hide tree decorations */
+.how-it-box,
+.how-it-box2 {
+  display: none;
+}
+
+/* News card styling enhancement */
+.news-card-items-1 {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* =========================================
+   PAGE TITLE / INNER PAGE BANNER
+   ========================================= */
+.hm-page-banner {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.hm-page-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(11, 37, 69, 0.92) 0%, rgba(27, 107, 147, 0.75) 100%);
+  z-index: 1;
+}
+
+.hm-page-banner .container {
+  position: relative;
+  z-index: 2;
+  padding-top: 140px;
+  padding-bottom: 60px;
+}
+
+.hm-page-banner h1 {
+  color: #fff;
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.hm-page-banner .hm-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+}
+
+.hm-page-banner .hm-breadcrumb a {
+  color: var(--theme-color1);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.hm-page-banner .hm-breadcrumb a:hover {
+  color: #fff;
+}
+
+.hm-page-banner .hm-breadcrumb .separator {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hm-page-banner p.subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  max-width: 600px;
+  margin-top: 15px;
+}
+
+/* =========================================
+   PRICING / PACKAGES CARDS
+   ========================================= */
+.hm-pricing-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(11, 37, 69, 0.08);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.hm-pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(11, 37, 69, 0.15);
+}
+
+.hm-pricing-card.featured {
+  border: 2px solid var(--theme-color1);
+}
+
+.hm-pricing-card.featured::after {
+  content: 'Most Popular';
+  position: absolute;
+  top: 20px;
+  right: -35px;
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+  padding: 5px 40px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transform: rotate(45deg);
+  letter-spacing: 1px;
+}
+
+.hm-pricing-card .plan-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: rgba(27, 107, 147, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-color3);
+  font-size: 32px;
+}
+
+.hm-pricing-card .plan-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--headings-color);
+  margin-bottom: 10px;
+}
+
+.hm-pricing-card .plan-price {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--theme-color2);
+  margin-bottom: 5px;
+  line-height: 1;
+}
+
+.hm-pricing-card .plan-price span {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.hm-pricing-card .plan-period {
+  color: var(--text-color);
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.hm-pricing-card .plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+  text-align: left;
+}
+
+.hm-pricing-card .plan-features li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
+  font-size: 15px;
+}
+
+.hm-pricing-card .plan-features li i {
+  color: var(--theme-color3);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.hm-pricing-card .plan-features li.not-included {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.hm-pricing-card .plan-features li.not-included i {
+  color: #ccc;
+}
+
+/* =========================================
+   CONTACT FORM
+   ========================================= */
+.hm-contact-form {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(11, 37, 69, 0.08);
+}
+
+.hm-contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.hm-contact-form label {
+  font-weight: 600;
+  color: var(--headings-color);
+  margin-bottom: 8px;
+  display: block;
+  font-size: 15px;
+}
+
+.hm-contact-form input,
+.hm-contact-form textarea,
+.hm-contact-form select {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid rgba(11, 37, 69, 0.12);
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--headings-color);
+  background: #f8f9fa;
+  transition: border-color 0.3s;
+}
+
+.hm-contact-form input:focus,
+.hm-contact-form textarea:focus,
+.hm-contact-form select:focus {
+  outline: none;
+  border-color: var(--theme-color3);
+  background: #fff;
+}
+
+.hm-contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Contact info card */
+.hm-contact-info-card {
+  background: var(--theme-color2);
+  border-radius: 20px;
+  padding: 40px;
+  color: #fff;
+  height: 100%;
+}
+
+.hm-contact-info-card h3 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.hm-contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.hm-contact-info-item .icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(242, 199, 68, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-color1);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.hm-contact-info-item .info h5 {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.hm-contact-info-item .info p,
+.hm-contact-info-item .info a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.hm-contact-info-item .info a:hover {
+  color: var(--theme-color1);
+}
+
+.hm-contact-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hm-contact-social a {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.hm-contact-social a:hover {
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+}
+
+/* =========================================
+   GALLERY GRID
+   ========================================= */
+.hm-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.hm-gallery-item {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.hm-gallery-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hm-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.hm-gallery-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(11, 37, 69, 0.8) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.hm-gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+.hm-gallery-item .overlay h5 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.hm-gallery-item.tall {
+  grid-row: span 2;
+}
+
+.hm-gallery-item.tall img {
+  height: 620px;
+}
+
+.hm-gallery-item.wide {
+  grid-column: span 2;
+}
+
+/* =========================================
+   ITINERARY TIMELINE
+   ========================================= */
+.hm-itinerary-item {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  align-items: flex-start;
+}
+
+.hm-itinerary-day {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--theme-color2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.hm-itinerary-day .day-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.hm-itinerary-day .day-num {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--theme-color1);
+}
+
+.hm-itinerary-content {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow: 0 5px 20px rgba(11, 37, 69, 0.06);
+  border-left: 4px solid var(--theme-color1);
+}
+
+.hm-itinerary-content h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--headings-color);
+  margin-bottom: 8px;
+}
+
+.hm-itinerary-content .location {
+  color: var(--theme-color3);
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hm-itinerary-content p {
+  color: var(--text-color);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* =========================================
+   TEAM CARDS
+   ========================================= */
+.hm-team-card {
+  text-align: center;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(11, 37, 69, 0.08);
+  transition: all 0.4s ease;
+}
+
+.hm-team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(11, 37, 69, 0.12);
+}
+
+.hm-team-card .team-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.hm-team-card .team-info {
+  padding: 25px 20px;
+}
+
+.hm-team-card .team-info h5 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--headings-color);
+  margin-bottom: 5px;
+}
+
+.hm-team-card .team-info span {
+  color: var(--theme-color3);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =========================================
+   VALUES CARDS
+   ========================================= */
+.hm-value-card {
+  text-align: center;
+  padding: 35px 25px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(11, 37, 69, 0.06);
+  transition: all 0.4s ease;
+  height: 100%;
+}
+
+.hm-value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(11, 37, 69, 0.12);
+}
+
+.hm-value-card .value-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(27, 107, 147, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--theme-color3);
+  font-size: 28px;
+}
+
+.hm-value-card h5 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--headings-color);
+  margin-bottom: 12px;
+}
+
+.hm-value-card p {
+  color: var(--text-color);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* =========================================
+   DESTINATION CARDS
+   ========================================= */
+.hm-destination-card {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+}
+
+.hm-destination-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.hm-destination-card:hover img {
+  transform: scale(1.08);
+}
+
+.hm-destination-card .dest-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(11, 37, 69, 0.9) 0%, rgba(11, 37, 69, 0.2) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+}
+
+.hm-destination-card .dest-overlay h4 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.hm-destination-card .dest-overlay p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.hm-destination-card .dest-overlay .dest-tag {
+  display: inline-block;
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+
+/* =========================================
+   SHIP LOADER ANIMATION
+   ========================================= */
+.preloader {
+  background-color: #0B2545 !important;
+}
+
+/* Kill ALL old template preloader elements */
+.preloader::before,
+.preloader::after,
+.preloader .animation-preloader,
+.preloader .animation-preloader .spinner,
+.preloader .animation-preloader .txt-loading,
+.preloader .loader,
+.preloader-loaded .text-preloader-outer,
+.preloader-loaded .preloader-slide {
+  display: none !important;
+  background-image: none !important;
+  content: none !important;
+}
+
+.dst-ship-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+/* --- Ocean & Waves --- */
+.dst-ocean {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  overflow: hidden;
+}
+
+.dst-wave {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  left: -50%;
+  border-radius: 43% 57% 50% 50% / 30% 30% 0 0;
+}
+
+.dst-wave1 {
+  bottom: -60%;
+  background: rgba(27, 107, 147, 0.35);
+  animation: dst-wave-drift 7s ease-in-out infinite;
+}
+
+.dst-wave2 {
+  bottom: -65%;
+  background: rgba(27, 107, 147, 0.25);
+  animation: dst-wave-drift 9s ease-in-out infinite reverse;
+}
+
+.dst-wave3 {
+  bottom: -70%;
+  background: rgba(27, 107, 147, 0.15);
+  animation: dst-wave-drift 11s ease-in-out infinite 1s;
+}
+
+@keyframes dst-wave-drift {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  50%      { transform: translateX(3%) rotate(1deg); }
+}
+
+/* --- Ship --- */
+.dst-ship {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 40px;
+  animation: dst-bob 3s ease-in-out infinite;
+}
+
+@keyframes dst-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%      { transform: translateY(-8px) rotate(-1.5deg); }
+  75%      { transform: translateY(6px) rotate(1.5deg); }
+}
+
+.dst-ship-body {
+  position: relative;
+  width: 180px;
+  height: 120px;
+}
+
+/* Hull */
+.dst-hull {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 45px;
+  background: linear-gradient(180deg, #e8e8e8 0%, #ccc 100%);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+}
+
+.dst-hull::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 15%;
+  width: 70%;
+  height: 3px;
+  background: var(--theme-color1);
+  border-radius: 2px;
+}
+
+/* Cabins */
+.dst-cabin {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 30px;
+  background: #fff;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+}
+
+.dst-cabin::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(27, 107, 147, 0.5) 0px,
+    rgba(27, 107, 147, 0.5) 8px,
+    transparent 8px,
+    transparent 14px
+  );
+  border-radius: 2px;
+}
+
+.dst-cabin-top {
+  bottom: 68px !important;
+  width: 80px !important;
+  height: 24px !important;
+  background: #f5f5f5 !important;
+}
+
+.dst-cabin-top::before {
+  top: 6px !important;
+  height: 8px !important;
+}
+
+/* Funnel */
+.dst-funnel {
+  position: absolute;
+  bottom: 88px;
+  left: 50%;
+  transform: translateX(-8px);
+  width: 16px;
+  height: 28px;
+  background: linear-gradient(180deg, var(--theme-color1) 0%, #d4a83a 100%);
+  border-radius: 3px 3px 0 0;
+}
+
+.dst-funnel::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -3px;
+  width: 22px;
+  height: 6px;
+  background: #333;
+  border-radius: 2px;
+}
+
+/* Smoke */
+.dst-smoke {
+  position: absolute;
+  bottom: 116px;
+  left: 50%;
+  transform: translateX(-4px);
+}
+
+.dst-smoke span {
+  position: absolute;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  animation: dst-smoke-rise 2.5s ease-out infinite;
+}
+
+.dst-smoke span:nth-child(2) {
+  animation-delay: 0.8s;
+  width: 10px;
+  height: 10px;
+}
+
+.dst-smoke span:nth-child(3) {
+  animation-delay: 1.6s;
+  width: 8px;
+  height: 8px;
+}
+
+@keyframes dst-smoke-rise {
+  0%   { opacity: 0.6; transform: translate(0, 0) scale(1); }
+  50%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translate(20px, -50px) scale(2.5); }
+}
+
+/* Flag */
+.dst-flag {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(25px);
+  width: 0;
+  height: 0;
+}
+
+.dst-flag::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 40px;
+  background: #fff;
+}
+
+.dst-flag::after {
+  content: '';
+  position: absolute;
+  bottom: 26px;
+  left: 2px;
+  width: 18px;
+  height: 12px;
+  background: var(--theme-color1);
+  clip-path: polygon(0 0, 100% 25%, 100% 75%, 0 100%);
+  animation: dst-flag-wave 1.2s ease-in-out infinite alternate;
+  transform-origin: left center;
+}
+
+@keyframes dst-flag-wave {
+  0%   { transform: scaleX(1) skewY(0deg); }
+  100% { transform: scaleX(0.85) skewY(-3deg); }
+}
+
+/* --- Loader Text --- */
+.dst-loader-text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 2px;
+  font-family: var(--heading-font-family);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.15);
+  margin-bottom: 12px;
+}
+
+.dst-loader-text span {
+  display: inline-block;
+  animation: dst-text-glow 2.5s ease-in-out infinite;
+}
+
+/* Stagger each letter */
+.dst-loader-text span:nth-child(1)  { animation-delay: 0.00s; }
+.dst-loader-text span:nth-child(2)  { animation-delay: 0.08s; }
+.dst-loader-text span:nth-child(3)  { animation-delay: 0.16s; }
+.dst-loader-text span:nth-child(4)  { animation-delay: 0.24s; }
+.dst-loader-text span:nth-child(5)  { animation-delay: 0.32s; }
+.dst-loader-text span:nth-child(6)  { animation-delay: 0.40s; }
+.dst-loader-text span:nth-child(7)  { animation-delay: 0.48s; }
+.dst-loader-text span:nth-child(8)  { animation-delay: 0.56s; }
+.dst-loader-text span:nth-child(9)  { animation-delay: 0.64s; }
+.dst-loader-text span:nth-child(10) { animation-delay: 0.72s; }
+.dst-loader-text span:nth-child(11) { animation-delay: 0.80s; }
+.dst-loader-text span:nth-child(12) { animation-delay: 0.88s; }
+.dst-loader-text span:nth-child(13) { animation-delay: 0.96s; }
+.dst-loader-text span:nth-child(14) { animation-delay: 1.04s; }
+.dst-loader-text span:nth-child(15) { animation-delay: 1.12s; }
+.dst-loader-text span:nth-child(16) { animation-delay: 1.20s; }
+
+@keyframes dst-text-glow {
+  0%, 100% { color: rgba(255, 255, 255, 0.15); }
+  30%, 60% { color: var(--theme-color1); text-shadow: 0 0 12px rgba(242, 199, 68, 0.4); }
+}
+
+.dst-loader-sub {
+  position: relative;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  animation: dst-pulse-sub 2s ease-in-out infinite;
+}
+
+@keyframes dst-pulse-sub {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 0.9; }
+}
+
+/* --- Loader responsive --- */
+@media (max-width: 767.98px) {
+  .dst-ship-body {
+    width: 130px;
+    height: 90px;
+  }
+  .dst-hull {
+    width: 130px;
+    height: 35px;
+  }
+  .dst-cabin {
+    width: 90px;
+    height: 24px;
+    bottom: 32px;
+  }
+  .dst-cabin-top {
+    width: 60px !important;
+    height: 20px !important;
+    bottom: 54px !important;
+  }
+  .dst-funnel {
+    bottom: 70px;
+    width: 12px;
+    height: 22px;
+  }
+  .dst-funnel::after {
+    width: 18px;
+    left: -3px;
+  }
+  .dst-smoke {
+    bottom: 92px;
+  }
+  .dst-flag::before {
+    height: 32px;
+  }
+  .dst-flag {
+    bottom: 72px;
+  }
+  .dst-loader-text {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  .dst-ship {
+    margin-bottom: 30px;
+  }
+}
+
+/* Smooth scroll behavior for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================================
+   TABLET (max 991px)
+   ========================================= */
+@media (max-width: 991.98px) {
+  /* Hero full-width */
+  .hero-2 {
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .hero-2 .hero-items {
+    padding: 0 20px !important;
+  }
+
+  /* Service/Cruise section - full width, centered */
+  .service-section {
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .service-block-1 .content {
+    text-align: center;
+  }
+
+  .service-block-1 .content .icon {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .service-block-1 .content .title {
+    text-align: center;
+  }
+
+  .service-block-1 .content-2 {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .service-block-1 .content-2 .link-btn {
+    justify-content: center;
+  }
+
+  /* CTA section - full width */
+  .cta-banner-section {
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* Choose-us / How It Works image */
+  .choose-us-block1 .thumb img {
+    border-radius: 16px;
+  }
+
+  /* Page banner */
+  .hm-page-banner h1 {
+    font-size: 40px;
+  }
+
+  /* Gallery grid */
+  .hm-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hm-gallery-item.tall img {
+    height: 400px;
+  }
+}
+
+/* =========================================
+   MOBILE (max 767px)
+   ========================================= */
+@media (max-width: 767.98px) {
+  /* Hero */
+  .hero-2 {
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .hero-2 .hero-items {
+    padding: 0 16px !important;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .hero-title {
+    font-size: 36px !important;
+  }
+
+  .hero-wrap {
+    width: 100%;
+  }
+
+  .hero-thumb {
+    width: 100%;
+  }
+
+  .hero-thumb img {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  /* Logo */
+  .dst-logo-img {
+    height: 72px !important;
+    max-height: none !important;
+    max-width: none !important;
+  }
+
+  .dst-logo-img-footer {
+    height: 90px !important;
+    max-height: none !important;
+  }
+
+  .dst-logo-text {
+    font-size: 18px;
+  }
+
+  /* About section */
+  .about-block-items-1 .about-text {
+    margin-top: 15px;
+    padding: 16px 18px;
+  }
+
+  .about-icon-items .icon-items {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Service/Cruise section panels - centered */
+  .service-section {
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .service-block-1 .content {
+    text-align: center;
+  }
+
+  .service-block-1 .content .icon {
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px;
+  }
+
+  .service-block-1 .content .title {
+    text-align: center;
+  }
+
+  .service-block-1 .content-2 {
+    text-align: center;
+  }
+
+  .service-block-1 .content-2 .link-btn {
+    justify-content: center;
+  }
+
+  .service-block-1 .service-image {
+    border-radius: 12px;
+  }
+
+  /* Stats section */
+  .experience-text {
+    font-size: 20px !important;
+    max-width: 100% !important;
+  }
+
+  .experience-speaks-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  /* Choose Us / How It Works - centered steps */
+  .choose-us-block-content1 li {
+    text-align: center;
+  }
+
+  .choose-us-block-content1 li .icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .choose-us-block-content1 li .content {
+    text-align: center;
+  }
+
+  /* Platform features accordion */
+  .how-it-work-section .sec-title {
+    text-align: center;
+  }
+
+  /* Gallery section */
+  .project-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Step cards */
+  .dst-step-card {
+    padding: 30px 20px;
+  }
+
+  .dst-step-number {
+    font-size: 40px;
+  }
+
+  /* Traveler profiles section */
+  .testimonial-left-items-1 {
+    text-align: center;
+  }
+
+  .testimonial-left-items-1 .theme-btn-main {
+    margin: 0 auto;
+  }
+
+  .ratting-box-items {
+    text-align: center;
+  }
+
+  /* CTA section */
+  .cta-banner-section {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    padding: 60px 0 !important;
+  }
+
+  .cta-banner-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .cta-banner-wrapper .content {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .cta-banner-wrapper .content .title {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .cta-banner-wrapper .content .text {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .cta-banner-wrapper form {
+    width: 100%;
+    flex-direction: column;
+    border-radius: 16px;
+    gap: 0;
+  }
+
+  .cta-banner-wrapper form input {
+    width: 100% !important;
+    text-align: center;
+    border-radius: 50px !important;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.1) !important;
+  }
+
+  .cta-banner-wrapper form .theme-btn-main {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* News/Daily schedule cards */
+  .news-card-items-1 {
+    margin-bottom: 10px;
+  }
+
+  /* Section titles - centered on mobile */
+  .sec-title {
+    text-align: center;
+  }
+
+  .sec-title .title {
+    font-size: 28px;
+  }
+
+  /* Page banner */
+  .hm-page-banner {
+    min-height: 300px;
+  }
+
+  .hm-page-banner h1 {
+    font-size: 32px;
+  }
+
+  .hm-page-banner .container {
+    padding-top: 120px;
+    padding-bottom: 40px;
+  }
+
+  /* Gallery grid */
+  .hm-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hm-gallery-item.tall img {
+    height: 300px;
+  }
+
+  /* Itinerary */
+  .hm-itinerary-item {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hm-itinerary-day {
+    width: 100%;
+    flex-direction: row;
+    height: auto;
+    padding: 12px 20px;
+    gap: 10px;
+  }
+
+  /* Pricing cards */
+  .hm-pricing-card .plan-price {
+    font-size: 36px;
+  }
+
+  /* Contact form */
+  .hm-contact-form {
+    padding: 25px 20px;
+  }
+
+  /* Destination cards */
+  .hm-destination-card {
+    height: 300px;
+  }
+
+  /* Footer */
+  .footer-middle-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-middle-wrapper ul {
+    justify-content: center;
+  }
+
+  .footer-bottom-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .footer-bottom-wrapper .footer-menu {
+    justify-content: center;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE (max 480px)
+   ========================================= */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px !important;
+  }
+
+  .sec-title .title {
+    font-size: 24px;
+  }
+
+  .experience-speaks-card-items .count-box {
+    font-size: 40px !important;
+  }
+
+  .dst-step-icon i {
+    font-size: 2em !important;
+  }
+
+  .hm-page-banner h1 {
+    font-size: 26px;
+  }
+}
+
+/* =========================================
+   APP NAVIGATION BAR
+   ========================================= */
+.hm-app-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(11, 37, 69, 0.08);
+  height: 70px;
+}
+
+.hm-app-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hm-app-nav-brand {
+  display: flex;
+  align-items: center;
+}
+
+.hm-app-nav-logo {
+  height: 72px !important;
+  max-height: none !important;
+  width: auto;
+}
+
+.hm-app-nav-links {
+  display: flex;
+  gap: 5px;
+}
+
+.hm-app-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.hm-app-nav-link:hover {
+  background: rgba(27, 107, 147, 0.08);
+  color: var(--theme-color3);
+}
+
+.hm-app-nav-link.active {
+  background: var(--theme-color2);
+  color: #fff;
+}
+
+.hm-app-nav-link i {
+  font-size: 16px;
+}
+
+.hm-app-nav-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hm-app-nav-notif {
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+.hm-notif-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: #dc3545;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hm-app-nav-avatar img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--theme-color1);
+}
+
+/* =========================================
+   SOCIAL LOGIN BUTTONS
+   ========================================= */
+.hm-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--headings-color);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hm-social-btn:hover {
+  border-color: var(--theme-color3);
+  background: rgba(27, 107, 147, 0.04);
+}
+
+/* =========================================
+   OUTLINE BUTTON
+   ========================================= */
+.hm-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 2px solid var(--theme-color2);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--theme-color2);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.hm-btn-outline:hover {
+  background: var(--theme-color2);
+  color: #fff;
+}
+
+/* =========================================
+   ONBOARDING PROGRESS BAR
+   ========================================= */
+.hm-progress-bar {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.hm-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.hm-progress-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.hm-progress-step.active .hm-progress-circle {
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+}
+
+.hm-progress-step.completed .hm-progress-circle {
+  background: #28a745;
+  color: #fff;
+}
+
+.hm-progress-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hm-progress-step.active .hm-progress-label {
+  color: var(--theme-color1);
+}
+
+.hm-progress-line {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  right: 40px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+
+.hm-progress-fill {
+  height: 100%;
+  background: var(--theme-color1);
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+
+/* =========================================
+   ONBOARDING COMPONENTS
+   ========================================= */
+.hm-avatar-upload {
+  display: inline-block;
+}
+
+.hm-avatar-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(27, 107, 147, 0.08);
+  border: 3px dashed rgba(27, 107, 147, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--theme-color3);
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 0 auto;
+}
+
+.hm-avatar-placeholder:hover {
+  border-color: var(--theme-color3);
+  background: rgba(27, 107, 147, 0.12);
+}
+
+.hm-avatar-placeholder span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.hm-interest-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hm-interest-chip {
+  padding: 10px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fff;
+  color: var(--headings-color);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hm-interest-chip:hover {
+  border-color: var(--theme-color3);
+}
+
+.hm-interest-chip.selected {
+  background: var(--theme-color3);
+  color: #fff;
+  border-color: var(--theme-color3);
+}
+
+.hm-style-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 25px 20px;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.hm-style-card:hover {
+  border-color: var(--theme-color3);
+}
+
+.hm-style-card.selected {
+  border-color: var(--theme-color3);
+  background: rgba(27, 107, 147, 0.04);
+}
+
+.hm-style-card i {
+  color: var(--theme-color3);
+}
+
+.hm-style-card h5 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--headings-color);
+}
+
+.hm-style-card p {
+  font-size: 13px;
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.hm-style-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--theme-color3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* =========================================
+   DASHBOARD COMPONENTS
+   ========================================= */
+.hm-dash-avatar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--theme-color1);
+}
+
+.hm-countdown-box {
+  display: inline-block;
+  text-align: center;
+}
+
+.hm-countdown-num {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--theme-color1);
+  line-height: 1;
+}
+
+.hm-countdown-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+}
+
+.hm-dash-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 10px rgba(11, 37, 69, 0.05);
+}
+
+.hm-dash-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.hm-dash-card-label {
+  font-size: 13px;
+  color: var(--text-color);
+}
+
+.hm-dash-card-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--headings-color);
+}
+
+.hm-dash-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(11, 37, 69, 0.05);
+  margin-bottom: 20px;
+}
+
+.hm-dash-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.hm-dash-section-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--headings-color);
+}
+
+.hm-link-sm {
+  font-size: 14px;
+  color: var(--theme-color3);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.hm-link-sm:hover {
+  color: var(--theme-color1);
+}
+
+.hm-buddy-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.hm-buddy-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.hm-buddy-info {
+  flex: 1;
+}
+
+.hm-buddy-info h5 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 3px;
+}
+
+.hm-buddy-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.hm-tag {
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(27, 107, 147, 0.08);
+  color: var(--theme-color3);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.hm-match-score {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.hm-match-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--theme-color1), var(--theme-color3));
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hm-match-score span {
+  display: block;
+  font-size: 12px;
+  color: var(--text-color);
+  margin-top: 4px;
+}
+
+.hm-quick-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 25px 15px;
+  border-radius: 14px;
+  background: rgba(27, 107, 147, 0.06);
+  text-decoration: none;
+  color: var(--headings-color);
+  transition: all 0.3s;
+}
+
+.hm-quick-action:hover {
+  background: var(--theme-color2);
+  color: #fff;
+}
+
+.hm-quick-action i {
+  font-size: 24px;
+  color: var(--theme-color3);
+}
+
+.hm-quick-action:hover i {
+  color: var(--theme-color1);
+}
+
+.hm-quick-action span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hm-progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hm-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--theme-color3), var(--theme-color1));
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.hm-event-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hm-event-item:last-child {
+  border-bottom: none;
+}
+
+.hm-event-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(242, 199, 68, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-color1);
+  flex-shrink: 0;
+}
+
+.hm-match-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hm-match-mini:last-child {
+  border-bottom: none;
+}
+
+.hm-match-mini img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hm-check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--headings-color);
+}
+
+/* =========================================
+   BROWSE / SWIPE CARDS
+   ========================================= */
+.hm-browse-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(11, 37, 69, 0.1);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.hm-browse-card.hm-swipe-right {
+  transform: translateX(100px) rotate(5deg);
+  opacity: 0;
+}
+
+.hm-browse-card.hm-swipe-left {
+  transform: translateX(-100px) rotate(-5deg);
+  opacity: 0;
+}
+
+.hm-browse-img-wrap {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+}
+
+.hm-browse-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hm-browse-match-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hm-swipe-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  font-weight: 800;
+  padding: 10px 30px;
+  border-radius: 12px;
+  border: 4px solid;
+}
+
+.hm-swipe-like {
+  color: #28a745;
+  border-color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.hm-swipe-pass {
+  color: #dc3545;
+  border-color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.hm-browse-info {
+  padding: 25px;
+}
+
+.hm-browse-info h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 5px;
+}
+
+.hm-browse-location {
+  font-size: 14px;
+  color: var(--theme-color3);
+  margin: 0 0 8px;
+}
+
+.hm-browse-style {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(242, 199, 68, 0.15);
+  color: var(--theme-color2);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.hm-browse-bio {
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.hm-browse-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.hm-browse-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hm-browse-pass {
+  background: #fff;
+  color: #dc3545;
+}
+
+.hm-browse-pass:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+.hm-browse-like {
+  background: #fff;
+  color: #28a745;
+}
+
+.hm-browse-like:hover {
+  background: #28a745;
+  color: #fff;
+}
+
+.hm-browse-super {
+  background: #fff;
+  color: var(--theme-color1);
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.hm-browse-super:hover {
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+}
+
+/* =========================================
+   MATCH CARDS
+   ========================================= */
+.hm-match-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(11, 37, 69, 0.05);
+  transition: all 0.3s;
+}
+
+.hm-match-card:hover {
+  box-shadow: 0 8px 25px rgba(11, 37, 69, 0.1);
+}
+
+.hm-match-card-left {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.hm-match-card-img-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hm-match-card-img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hm-match-cabin-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  border: 2px solid #fff;
+}
+
+.hm-badge-cabin {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hm-match-card-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.hm-match-action-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(27, 107, 147, 0.08);
+  color: var(--theme-color3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.hm-match-action-btn:hover {
+  background: var(--theme-color3);
+  color: #fff;
+}
+
+.hm-unread-dot {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #dc3545;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================
+   CHAT INTERFACE
+   ========================================= */
+.hm-chat-container {
+  display: flex;
+  height: calc(100vh - 70px);
+  background: #fff;
+}
+
+.hm-chat-sidebar {
+  width: 320px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.hm-chat-sidebar-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.hm-chat-sidebar-header h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.hm-chat-convo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.hm-chat-convo:hover {
+  background: rgba(27, 107, 147, 0.04);
+}
+
+.hm-chat-convo.active {
+  background: rgba(27, 107, 147, 0.08);
+}
+
+.hm-chat-convo-img-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hm-chat-convo-img-wrap img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hm-chat-buddy-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #28a745;
+  border: 2px solid #fff;
+}
+
+.hm-chat-convo-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hm-chat-unread {
+  background: var(--theme-color3);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hm-chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hm-chat-header {
+  padding: 15px 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hm-chat-icon-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+.hm-chat-icon-btn:hover {
+  color: var(--theme-color3);
+}
+
+.hm-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hm-chat-msg {
+  display: flex;
+}
+
+.hm-chat-msg-me {
+  justify-content: flex-end;
+}
+
+.hm-chat-msg-them {
+  justify-content: flex-start;
+}
+
+.hm-chat-bubble {
+  max-width: 70%;
+  padding: 12px 18px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.hm-chat-msg-me .hm-chat-bubble {
+  background: var(--theme-color3);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.hm-chat-msg-them .hm-chat-bubble {
+  background: #f0f2f5;
+  color: var(--headings-color);
+  border-bottom-left-radius: 4px;
+}
+
+.hm-chat-time {
+  display: block;
+  font-size: 11px;
+  opacity: 0.6;
+  margin-top: 5px;
+}
+
+.hm-chat-input {
+  padding: 15px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hm-chat-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  padding: 10px;
+  background: #f0f2f5;
+  border-radius: 25px;
+  color: var(--headings-color);
+}
+
+.hm-chat-send-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--theme-color3);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.hm-chat-send-btn:hover {
+  background: var(--theme-color2);
+}
+
+/* =========================================
+   BOOKING COMPONENTS
+   ========================================= */
+.hm-booking-pkg-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 15px;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hm-booking-pkg-card:hover {
+  border-color: var(--theme-color3);
+}
+
+.hm-booking-pkg-card.selected {
+  border-color: var(--theme-color3);
+  box-shadow: 0 8px 25px rgba(27, 107, 147, 0.15);
+}
+
+.hm-booking-pkg-card h5 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 5px;
+  color: var(--headings-color);
+}
+
+.hm-pkg-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--theme-color2);
+  margin-bottom: 15px;
+}
+
+.hm-pkg-price span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.hm-pkg-popular {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: var(--theme-color1);
+  color: var(--theme-color2);
+  padding: 3px 35px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transform: rotate(45deg);
+}
+
+.hm-pkg-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.hm-pkg-features li {
+  padding: 5px 0;
+  font-size: 13px;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hm-pkg-features li i {
+  color: var(--theme-color3);
+  font-size: 12px;
+}
+
+.hm-pkg-selected-check {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: var(--theme-color3);
+  font-size: 24px;
+}
+
+.hm-plan-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 18px 15px;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  text-align: center;
+}
+
+.hm-plan-option strong {
+  font-size: 15px;
+  color: var(--headings-color);
+}
+
+.hm-plan-option span {
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+.hm-plan-option:hover {
+  border-color: var(--theme-color3);
+}
+
+.hm-plan-option.selected {
+  border-color: var(--theme-color3);
+  background: rgba(27, 107, 147, 0.04);
+}
+
+/* =========================================
+   APP RESPONSIVE — TABLET (992px)
+   ========================================= */
+@media (max-width: 991.98px) {
+  .hm-app-nav-links span {
+    display: none;
+  }
+
+  .hm-app-nav-link {
+    padding: 8px 12px;
+  }
+
+  .hm-chat-sidebar {
+    width: 250px;
+  }
+
+  .hm-buddy-card {
+    flex-direction: column;
+  }
+
+  .hm-match-score {
+    align-self: flex-start;
+  }
+}
+
+/* =========================================
+   APP RESPONSIVE — MOBILE (768px)
+   ========================================= */
+@media (max-width: 767.98px) {
+  .hm-browse-img-wrap {
+    height: 280px;
+  }
+
+  .hm-countdown-num {
+    font-size: 36px;
+  }
+
+  .hm-match-card {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hm-match-card-actions {
+    align-self: flex-start;
+    flex-direction: row;
+  }
+
+  .hm-dash-avatar img {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* Chat: mobile conversation list toggle */
+  .hm-chat-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    z-index: 10000;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hm-chat-sidebar.hm-chat-sidebar-hidden {
+    display: none;
+  }
+
+  .hm-chat-container {
+    flex-direction: column;
+  }
+
+  .hm-chat-main {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   App Shell — PWA Feel for logged-in pages
+   ============================================ */
+
+.hm-app-shell {
+  min-height: 100vh;
+  background: #f0f2f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.hm-app-shell .hm-app-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #fff;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* App pages: no custom cursor, no scroll effects */
+.hm-app-shell .mouseCursor,
+.hm-app-shell .back-to-top,
+.hm-app-shell .preloader {
+  display: none !important;
+}
+
+/* Desktop top padding for fixed nav */
+@media (min-width: 768px) {
+  .hm-app-shell {
+    padding-top: 70px;
+  }
+
+  .hm-app-shell .hm-dash-hero {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .hm-app-shell .hm-trip-hero .container {
+    padding-top: 50px;
+    padding-bottom: 40px;
+  }
+
+  .hm-app-shell .hm-chat-section {
+    padding-top: 70px;
+    height: calc(100vh - 70px);
+  }
+}
+
+/* ============================================
+   Mobile Bottom Tab Bar
+   ============================================ */
+@media (max-width: 767.98px) {
+
+  /* --- Bottom tab bar --- */
+  .hm-app-shell .hm-app-nav {
+    top: auto;
+    bottom: 0;
+    height: 60px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    background: #fff;
+  }
+
+  .hm-app-shell .hm-app-nav-inner {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .hm-app-shell .hm-app-nav-brand {
+    display: none;
+  }
+
+  .hm-app-shell .hm-app-nav-user {
+    display: none;
+  }
+
+  .hm-app-shell .hm-app-nav-links {
+    display: flex !important;
+    flex: 1;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+  }
+
+  .hm-app-shell .hm-app-nav-link {
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 0;
+    border-radius: 0;
+    min-width: 56px;
+    text-align: center;
+    background: none !important;
+    color: #999;
+  }
+
+  .hm-app-shell .hm-app-nav-link.active {
+    color: var(--theme-color3);
+    background: none !important;
+  }
+
+  .hm-app-shell .hm-app-nav-link i {
+    font-size: 20px;
+  }
+
+  .hm-app-shell .hm-app-nav-link span {
+    display: block !important;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* --- Content area: top header + bottom tab bar safe areas --- */
+  .hm-app-shell {
+    padding-top: 56px;
+    padding-bottom: 60px;
+  }
+
+  /* Override any inline paddingTop that assumes 70px desktop nav */
+  .hm-app-shell .hm-dash-hero,
+  .hm-app-shell .hm-trip-hero,
+  .hm-app-shell .hm-chat-section {
+    padding-top: 56px !important;
+  }
+
+  /* Sections that use paddingTop:80-90px for desktop nav spacing */
+  .hm-app-shell section[style*="paddingTop"] {
+    padding-top: 20px !important;
+  }
+
+  /* Hero sections need the mobile header offset */
+  .hm-app-shell .hm-dash-hero {
+    padding-top: 15px !important;
+  }
+
+  .hm-app-shell .hm-trip-hero {
+    padding-top: 10px !important;
+  }
+
+  /* --- Mobile top header bar for app pages --- */
+  .hm-app-mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    height: 56px;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  .hm-app-mobile-header .hm-mobile-logo {
+    height: 36px;
+    width: auto;
+  }
+
+  .hm-app-mobile-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hm-app-mobile-header-actions .hm-app-nav-notif {
+    font-size: 18px;
+  }
+
+  .hm-app-mobile-header-actions .hm-app-nav-avatar img {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* --- Dashboard mobile --- */
+  .hm-app-shell .hm-dash-hero {
+    padding-top: 70px !important;
+    padding-bottom: 25px !important;
+  }
+
+  .hm-app-shell .hm-dash-hero .hm-dash-greeting {
+    font-size: 20px !important;
+  }
+
+  .hm-app-shell .hm-dash-hero .hm-dash-subtitle {
+    font-size: 13px !important;
+  }
+
+  .hm-app-shell .hm-countdown-box {
+    text-align: left !important;
+    margin-top: 15px;
+  }
+
+  .hm-app-shell .hm-dash-card {
+    padding: 14px;
+  }
+
+  .hm-app-shell .hm-dash-card-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .hm-app-shell .hm-dash-card-value {
+    font-size: 14px !important;
+  }
+
+  .hm-app-shell .hm-dash-section {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .hm-app-shell .hm-quick-action {
+    padding: 16px 12px;
+  }
+
+  .hm-app-shell .hm-quick-action i {
+    font-size: 20px;
+  }
+
+  .hm-app-shell .hm-quick-action span {
+    font-size: 12px;
+  }
+
+  .hm-app-shell .section-padding {
+    padding: 20px 0 !important;
+  }
+
+  /* --- My Trip mobile --- */
+  .hm-app-shell .hm-trip-hero .container {
+    padding: 25px 15px 20px !important;
+  }
+
+  .hm-app-shell .hm-trip-hero h1 {
+    font-size: 22px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .hm-app-shell .hm-trip-hero p {
+    font-size: 13px !important;
+  }
+
+  .hm-app-shell .hm-countdown-box {
+    text-align: left !important;
+    margin-top: 12px;
+  }
+
+  .hm-app-shell .hm-countdown-num {
+    font-size: 32px !important;
+  }
+
+  .hm-app-shell .hm-countdown-label {
+    font-size: 12px !important;
+  }
+
+  .hm-app-shell .hm-buddy-img {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  .hm-app-shell .hm-buddy-info h5 {
+    font-size: 16px;
+  }
+
+  .hm-app-shell .hm-buddy-info p {
+    font-size: 13px !important;
+  }
+
+  .hm-app-shell .hm-tag {
+    font-size: 11px !important;
+    padding: 3px 10px !important;
+  }
+
+  .hm-app-shell .hm-dash-section-header h4 {
+    font-size: 16px;
+  }
+
+  .hm-app-shell .hm-check-item {
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .hm-app-shell .hm-progress-track {
+    height: 8px;
+  }
+
+  /* --- Browse mobile — full-screen card --- */
+  .hm-app-shell .hm-browse-card {
+    border-radius: 16px;
+    margin: 0 -5px;
+  }
+
+  .hm-app-shell .hm-browse-info {
+    padding: 16px;
+  }
+
+  .hm-app-shell .hm-browse-info h3 {
+    font-size: 20px;
+  }
+
+  .hm-app-shell .hm-browse-bio {
+    font-size: 13px;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hm-app-shell .hm-browse-actions {
+    margin-top: 20px;
+    gap: 20px;
+  }
+
+  .hm-app-shell .hm-browse-btn {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+  }
+
+  .hm-app-shell .hm-browse-btn.hm-browse-like,
+  .hm-app-shell .hm-browse-btn.hm-browse-pass {
+    width: 56px;
+    height: 56px;
+  }
+
+  .hm-app-shell .hm-browse-btn.hm-browse-super {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* --- Matches mobile --- */
+  .hm-app-shell .hm-match-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .hm-app-shell .hm-match-card-img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .hm-app-shell .hm-match-card-info h4 {
+    font-size: 16px !important;
+  }
+
+  .hm-app-shell .hm-match-card-actions {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  /* --- Chat mobile — full screen between top header and bottom tab --- */
+  .hm-app-shell .hm-chat-section {
+    height: calc(100vh - 56px - 60px) !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .hm-app-shell .hm-chat-container {
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .hm-app-shell .hm-chat-main {
+    height: 100%;
+  }
+
+  .hm-app-shell .hm-chat-header {
+    padding: 10px 12px;
+    border-radius: 0;
+  }
+
+  .hm-app-shell .hm-chat-messages {
+    padding: 12px;
+  }
+
+  .hm-app-shell .hm-chat-bubble {
+    max-width: 85%;
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .hm-app-shell .hm-chat-input {
+    padding: 8px 10px;
+    border-radius: 0;
+  }
+
+  .hm-app-shell .hm-chat-input input {
+    font-size: 15px;
+  }
+
+  /* Chat back button for mobile */
+  .hm-chat-back-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.05);
+    border: none;
+    cursor: pointer;
+    color: var(--headings-color);
+    font-size: 16px;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  /* Chat sidebar as fullscreen overlay on mobile */
+  .hm-app-shell .hm-chat-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    width: 100% !important;
+    z-index: 10000;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hm-app-shell .hm-chat-sidebar.hm-chat-sidebar-hidden {
+    display: none !important;
+  }
+
+  .hm-app-shell .hm-chat-sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .hm-app-shell .hm-chat-sidebar-header h4 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .hm-app-shell .hm-chat-convo {
+    padding: 14px 16px;
+  }
+
+  .hm-app-shell .hm-chat-convo-img-wrap img {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* --- My Trip mobile --- */
+  .hm-app-shell .hm-trip-hero {
+    padding-top: 70px !important;
+  }
+
+  .hm-app-shell .hm-trip-hero h1 {
+    font-size: 24px !important;
+  }
+
+  .hm-app-shell .hm-check-item {
+    padding: 10px 0;
+  }
+
+  /* --- Booking mobile --- */
+  .hm-app-shell .hm-booking-pkg-card {
+    padding: 20px 15px;
+  }
+
+  .hm-app-shell .hm-progress-bar {
+    max-width: 100%;
+  }
+
+  .hm-app-shell .hm-progress-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .hm-app-shell .hm-progress-label {
+    font-size: 11px;
+  }
+
+  /* --- Onboarding mobile --- */
+  .hm-app-shell .hm-contact-form {
+    padding: 20px 16px !important;
+    border-radius: 14px;
+  }
+
+  .hm-app-shell .hm-interest-grid {
+    gap: 8px;
+  }
+
+  .hm-app-shell .hm-interest-chip {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .hm-app-shell .hm-style-card {
+    padding: 16px;
+  }
+
+  /* --- Login / Signup mobile — remove banner, full-screen form --- */
+  .hm-app-shell .hm-page-banner {
+    display: none !important;
+  }
+
+  .hm-app-shell .hm-auth-section {
+    padding-top: 70px !important;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: flex-start;
+  }
+
+}
+
+/* Hide mobile-only elements on desktop */
+@media (min-width: 768px) {
+  .hm-app-mobile-header {
+    display: none !important;
+  }
+
+  .hm-chat-back-btn {
+    display: none !important;
+  }
+}

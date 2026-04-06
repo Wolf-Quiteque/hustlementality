@@ -3513,3 +3513,307 @@ html {
     display: none !important;
   }
 }
+
+/* =========================================
+   DARK APP THEME
+   ========================================= */
+.hm-app-shell.hm-app-shell-dark {
+  --theme-color1: #e9c46a;
+  --theme-color2: #08111f;
+  --theme-color3: #69b7ff;
+  --headings-color: #f5f8ff;
+  --text-color: #9ca8c3;
+  --link-color: #8fd0ff;
+  --link-hover-color: #e9c46a;
+  --hm-app-bg: #08111f;
+  --hm-app-bg-alt: #0c1628;
+  --hm-app-page-bg: transparent;
+  --hm-app-surface: rgba(16, 27, 44, 0.88);
+  --hm-app-surface-strong: #12203a;
+  --hm-app-surface-soft: rgba(30, 45, 70, 0.82);
+  --hm-app-border: rgba(149, 173, 208, 0.14);
+  --hm-app-border-strong: rgba(149, 173, 208, 0.22);
+  --hm-app-chip-bg: rgba(255, 255, 255, 0.08);
+  --hm-app-card-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+  --hm-app-hero-bg:
+    radial-gradient(circle at top left, rgba(105, 183, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 85% 10%, rgba(233, 196, 106, 0.14), transparent 24%),
+    linear-gradient(135deg, #08111f 0%, #10213b 52%, #0a1423 100%);
+  --hm-app-trip-overlay: linear-gradient(135deg, rgba(8, 17, 31, 0.9) 0%, rgba(17, 32, 58, 0.76) 52%, rgba(35, 63, 109, 0.6) 100%);
+  color-scheme: dark;
+  background:
+    radial-gradient(circle at top left, rgba(105, 183, 255, 0.12), transparent 26%),
+    radial-gradient(circle at top right, rgba(233, 196, 106, 0.08), transparent 22%),
+    linear-gradient(180deg, #08111f 0%, #0b1525 52%, #08111f 100%);
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-app-nav,
+.hm-app-shell.hm-app-shell-dark .hm-app-mobile-header {
+  background: rgba(8, 17, 31, 0.82);
+  border-bottom: 1px solid var(--hm-app-border);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-app-nav-link,
+.hm-app-shell.hm-app-shell-dark .hm-app-nav-notif {
+  color: var(--text-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-app-nav-link:hover {
+  background: rgba(105, 183, 255, 0.1);
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-app-nav-link.active {
+  background: linear-gradient(135deg, rgba(105, 183, 255, 0.18), rgba(233, 196, 106, 0.12));
+  color: var(--headings-color);
+  border: 1px solid rgba(105, 183, 255, 0.14);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-dash-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--hm-app-hero-bg) !important;
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-dash-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(105, 183, 255, 0.28), transparent);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-countdown-box {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hm-app-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-dash-card,
+.hm-app-shell.hm-app-shell-dark .hm-dash-section,
+.hm-app-shell.hm-app-shell-dark .hm-browse-card,
+.hm-app-shell.hm-app-shell-dark .hm-match-card,
+.hm-app-shell.hm-app-shell-dark .hm-chat-container,
+.hm-app-shell.hm-app-shell-dark .hm-chat-sidebar,
+.hm-app-shell.hm-app-shell-dark .hm-chat-main {
+  background: var(--hm-app-surface);
+  border: 1px solid var(--hm-app-border);
+  box-shadow: var(--hm-app-card-shadow);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-dash-card,
+.hm-app-shell.hm-app-shell-dark .hm-dash-section,
+.hm-app-shell.hm-app-shell-dark .hm-browse-card,
+.hm-app-shell.hm-app-shell-dark .hm-match-card,
+.hm-app-shell.hm-app-shell-dark .hm-chat-main,
+.hm-app-shell.hm-app-shell-dark .hm-chat-sidebar {
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-dash-card-label,
+.hm-app-shell.hm-app-shell-dark .hm-match-score span,
+.hm-app-shell.hm-app-shell-dark .hm-browse-bio,
+.hm-app-shell.hm-app-shell-dark .hm-check-item,
+.hm-app-shell.hm-app-shell-dark .hm-chat-icon-btn,
+.hm-app-shell.hm-app-shell-dark .hm-chat-convo-info span,
+.hm-app-shell.hm-app-shell-dark .hm-chat-time {
+  color: var(--text-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-dash-card-value,
+.hm-app-shell.hm-app-shell-dark .hm-dash-section-header h4,
+.hm-app-shell.hm-app-shell-dark .hm-browse-info h3,
+.hm-app-shell.hm-app-shell-dark .hm-match-card-info h4,
+.hm-app-shell.hm-app-shell-dark .hm-buddy-info h5,
+.hm-app-shell.hm-app-shell-dark .hm-chat-sidebar-header h4 {
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-dash-section,
+.hm-app-shell.hm-app-shell-dark .hm-match-card,
+.hm-app-shell.hm-app-shell-dark .hm-browse-card {
+  border-radius: 22px;
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-buddy-card {
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+  border: 1px solid var(--hm-app-border);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-tag,
+.hm-app-shell.hm-app-shell-dark .hm-browse-style,
+.hm-app-shell.hm-app-shell-dark .hm-quick-action,
+.hm-app-shell.hm-app-shell-dark .hm-match-action-btn,
+.hm-app-shell.hm-app-shell-dark .hm-chat-icon-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--hm-app-border);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-tag {
+  color: #9ed3ff;
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-browse-style,
+.hm-app-shell.hm-app-shell-dark .hm-badge-cabin,
+.hm-app-shell.hm-app-shell-dark .hm-match-cabin-badge {
+  background: rgba(233, 196, 106, 0.16);
+  color: var(--theme-color1);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-match-cabin-badge,
+.hm-app-shell.hm-app-shell-dark .hm-chat-buddy-dot {
+  border-color: var(--hm-app-surface);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-quick-action {
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-quick-action:hover,
+.hm-app-shell.hm-app-shell-dark .hm-match-action-btn:hover,
+.hm-app-shell.hm-app-shell-dark .hm-chat-icon-btn:hover {
+  background: rgba(105, 183, 255, 0.12);
+  border-color: rgba(105, 183, 255, 0.22);
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-quick-action i,
+.hm-app-shell.hm-app-shell-dark .hm-match-action-btn,
+.hm-app-shell.hm-app-shell-dark .hm-link-sm,
+.hm-app-shell.hm-app-shell-dark .hm-browse-location,
+.hm-app-shell.hm-app-shell-dark .hm-chat-header span[style*="theme-color3"] {
+  color: var(--theme-color3);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-progress-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-event-item,
+.hm-app-shell.hm-app-shell-dark .hm-match-mini,
+.hm-app-shell.hm-app-shell-dark .hm-chat-sidebar-header,
+.hm-app-shell.hm-app-shell-dark .hm-chat-header,
+.hm-app-shell.hm-app-shell-dark .hm-chat-input,
+.hm-app-shell.hm-app-shell-dark .hm-chat-convo {
+  border-color: var(--hm-app-border);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-container {
+  overflow: hidden;
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-sidebar,
+.hm-app-shell.hm-app-shell-dark .hm-chat-main {
+  background: rgba(12, 22, 40, 0.86);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-convo:hover {
+  background: rgba(105, 183, 255, 0.08);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-convo.active {
+  background: linear-gradient(135deg, rgba(105, 183, 255, 0.14), rgba(105, 183, 255, 0.06));
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-msg-them .hm-chat-bubble {
+  background: var(--hm-app-surface-soft);
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-msg-me .hm-chat-bubble {
+  background: linear-gradient(135deg, #58a9f4, #377cc8);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-input input {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--hm-app-border);
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-input input::placeholder {
+  color: rgba(156, 168, 195, 0.7);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-send-btn {
+  background: linear-gradient(135deg, #58a9f4, #3f82d9);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-browse-pass,
+.hm-app-shell.hm-app-shell-dark .hm-browse-like,
+.hm-app-shell.hm-app-shell-dark .hm-browse-super {
+  background: var(--hm-app-surface-strong);
+  border: 1px solid var(--hm-app-border);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-browse-pass {
+  color: #ff7e8d;
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-browse-like {
+  color: #64d49c;
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-browse-super {
+  color: var(--theme-color1);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-browse-pass:hover {
+  background: rgba(220, 53, 69, 0.16);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-browse-like:hover {
+  background: rgba(40, 167, 69, 0.18);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-browse-super:hover {
+  background: rgba(233, 196, 106, 0.16);
+  color: var(--theme-color1);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-btn-outline {
+  color: var(--headings-color);
+  border-color: var(--hm-app-border-strong);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-btn-outline:hover {
+  background: rgba(105, 183, 255, 0.12);
+  border-color: rgba(105, 183, 255, 0.22);
+  color: var(--headings-color);
+}
+
+.hm-app-shell.hm-app-shell-dark .hm-chat-back-btn {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--headings-color);
+  border: 1px solid var(--hm-app-border);
+}
+
+@media (max-width: 767.98px) {
+  .hm-app-shell.hm-app-shell-dark .hm-app-nav,
+  .hm-app-shell.hm-app-shell-dark .hm-app-mobile-header,
+  .hm-app-shell.hm-app-shell-dark .hm-chat-sidebar {
+    background: rgba(8, 17, 31, 0.94);
+  }
+
+  .hm-app-shell.hm-app-shell-dark .hm-app-nav {
+    border-top: 1px solid var(--hm-app-border);
+    border-bottom: none;
+  }
+
+  .hm-app-shell.hm-app-shell-dark .hm-app-nav-link {
+    color: rgba(156, 168, 195, 0.72);
+  }
+
+  .hm-app-shell.hm-app-shell-dark .hm-app-nav-link.active {
+    color: var(--headings-color);
+  }
+}

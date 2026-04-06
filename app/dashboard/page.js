@@ -15,7 +15,7 @@ export default function DashboardPage() {
     <>
       <AppNav />
 
-      <section className="hm-dash-hero" style={{ background: "var(--theme-color2)" }}>
+      <section className="hm-dash-hero" style={{ background: "var(--hm-app-hero-bg, var(--theme-color2))" }}>
         <div className="container" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
           <div className="row align-items-center">
             <div className="col-md-8">
@@ -46,7 +46,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="section-padding fix" style={{ background: "#f5f7fa" }}>
+      <section className="section-padding fix" style={{ background: "var(--hm-app-page-bg, #f5f7fa)" }}>
         <div className="container">
           {/* Status Cards */}
           <div className="row g-3 mb-4">
@@ -54,7 +54,7 @@ export default function DashboardPage() {
               { icon: "fa-solid fa-ship", label: "Booking", value: "Confirmed", bg: "rgba(27, 107, 147, 0.1)", color: "var(--theme-color3)" },
               { icon: "fa-solid fa-bed", label: "Cabin", value: "Ocean View", bg: "rgba(242, 199, 68, 0.15)", color: "var(--theme-color1)" },
               { icon: "fa-solid fa-heart", label: "Buddy", value: "Matched!", bg: "rgba(40, 167, 69, 0.1)", color: "#28a745" },
-              { icon: "fa-solid fa-credit-card", label: "Paid", value: "$600 / $1,799", bg: "rgba(11, 37, 69, 0.08)", color: "var(--theme-color2)" },
+              { icon: "fa-solid fa-credit-card", label: "Paid", value: "$600 / $1,799", bg: "rgba(105, 183, 255, 0.14)", color: "var(--theme-color3)" },
             ].map((card, i) => (
               <div key={i} className="col-6 col-lg-3">
                 <div className="hm-dash-card">

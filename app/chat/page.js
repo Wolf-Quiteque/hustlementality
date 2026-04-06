@@ -52,7 +52,7 @@ export default function ChatPage() {
     <>
       <AppNav />
 
-      <section className="hm-chat-section" style={{ background: "#f5f7fa", height: "100vh", overflow: "hidden" }}>
+      <section className="hm-chat-section" style={{ background: "var(--hm-app-page-bg, #f5f7fa)", height: "100vh", overflow: "hidden" }}>
         <div className="hm-chat-container">
           {/* Sidebar */}
           <div className={`hm-chat-sidebar ${isMobile && !showSidebar ? "hm-chat-sidebar-hidden" : ""}`}>
@@ -124,7 +124,7 @@ export default function ChatPage() {
 
             <div className="hm-chat-messages">
               <div style={{ textAlign: "center", margin: "20px 0" }}>
-                <span style={{ background: "rgba(0,0,0,0.06)", padding: "4px 16px", borderRadius: "20px", fontSize: "13px", color: "var(--text-color)" }}>
+                <span style={{ background: "var(--hm-app-chip-bg, rgba(0,0,0,0.06))", padding: "4px 16px", borderRadius: "20px", fontSize: "13px", color: "var(--text-color)" }}>
                   Today
                 </span>
               </div>

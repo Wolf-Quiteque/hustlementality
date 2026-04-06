@@ -18,6 +18,8 @@ export default function LayoutShell({ children }) {
   const pathname = usePathname();
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const isApp = appRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
+  const darkAppRoutes = ["/dashboard", "/browse", "/matches", "/chat", "/my-trip"];
+  const isDarkApp = darkAppRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
 
   if (isAdmin) {
     return <>{children}</>;
@@ -33,7 +35,7 @@ export default function LayoutShell({ children }) {
   );
 
   if (isApp) {
-    return <>{themeStyles}<div className="hm-app-shell">{children}</div></>;
+    return <>{themeStyles}<div className={`hm-app-shell${isDarkApp ? " hm-app-shell-dark" : ""}`}>{children}</div></>;
   }
 
   return (

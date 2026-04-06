@@ -41,7 +41,7 @@ export default function MyTripPage() {
       >
         <div style={{
           position: "absolute", top: 0, left: 0, right: 0, bottom: 0,
-          background: "linear-gradient(135deg, rgba(11, 37, 69, 0.92) 0%, rgba(27, 107, 147, 0.75) 100%)",
+          background: "var(--hm-app-trip-overlay, linear-gradient(135deg, rgba(11, 37, 69, 0.92) 0%, rgba(27, 107, 147, 0.75) 100%))",
         }}></div>
         <div className="container" style={{ position: "relative", zIndex: 2, padding: "50px 0 40px" }}>
           <div className="row align-items-center">
@@ -61,7 +61,7 @@ export default function MyTripPage() {
         </div>
       </section>
 
-      <section className="section-padding fix" style={{ background: "#f5f7fa" }}>
+      <section className="section-padding fix" style={{ background: "var(--hm-app-page-bg, #f5f7fa)" }}>
         <div className="container">
           <div className="row g-4">
             {/* Left: Itinerary */}
@@ -94,13 +94,13 @@ export default function MyTripPage() {
                     display: "flex",
                     gap: "12px",
                     padding: "14px 0",
-                    borderBottom: i < itinerary.length - 1 ? "1px solid rgba(0,0,0,0.06)" : "none",
+                    borderBottom: i < itinerary.length - 1 ? "1px solid var(--hm-app-border, rgba(0,0,0,0.06))" : "none",
                     alignItems: "flex-start",
                   }}>
                     <div style={{
                       width: "44px",
                       height: "44px",
-                      background: "var(--theme-color2)",
+                      background: "var(--hm-app-surface-strong, var(--theme-color2))",
                       borderRadius: "10px",
                       display: "flex",
                       flexDirection: "column",
@@ -206,7 +206,7 @@ export default function MyTripPage() {
                     alignItems: "center",
                     gap: "12px",
                     padding: "12px 0",
-                    borderBottom: i < 3 ? "1px solid rgba(0,0,0,0.06)" : "none",
+                    borderBottom: i < 3 ? "1px solid var(--hm-app-border, rgba(0,0,0,0.06))" : "none",
                   }}>
                     <i className={doc.icon} style={{ color: "var(--theme-color3)", fontSize: "18px", width: "24px", textAlign: "center" }}></i>
                     <div style={{ flex: 1 }}>

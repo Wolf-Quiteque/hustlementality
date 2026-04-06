@@ -70,7 +70,7 @@ export default function MatchesPage() {
     <>
       <AppNav />
 
-      <section className="section-padding" style={{ background: "#f5f7fa", minHeight: "100vh" }}>
+      <section className="section-padding" style={{ background: "var(--hm-app-page-bg, #f5f7fa)", minHeight: "100vh" }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8 col-12">

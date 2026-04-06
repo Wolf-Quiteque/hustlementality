@@ -28,7 +28,7 @@ export default function SignupPage() {
       <section
         className="hm-page-banner bg-cover"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=1920&q=80')",
+          backgroundImage: "url('/images/turnups/04.jpeg')",
           minHeight: "260px",
         }}
       >

@@ -10,7 +10,7 @@ export default function PackagesPage() {
       <section
         className="hm-page-banner bg-cover"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1920&q=80')",
+          backgroundImage: "url('/images/turnups/02.jpeg')",
         }}
       >
         <div className="container">
@@ -338,8 +338,8 @@ export default function PackagesPage() {
             <div className="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
               <div style={{ borderRadius: "20px", overflow: "hidden" }}>
                 <img
-                  src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=800&q=80"
-                  alt="Cruise deck sunset"
+                  src="/images/turnups/03.jpeg"
+                  alt="Festive crowd energy"
                   style={{ width: "100%", height: "auto" }}
                 />
               </div>

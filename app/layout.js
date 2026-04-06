@@ -1,3 +1,4 @@
+import "./globals.css";
 import Script from "next/script";
 import LayoutShell from "./components/LayoutShell";
 
@@ -15,7 +16,7 @@ export const metadata = {
       "Join the Bahamas Wave — a 7-night community cruise from Miami to Nassau, CocoCay & Cozumel. Match with cabin partners, connect with travelers, and create unforgettable memories. March 2027.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=1200&q=80",
+        url: "/images/turnups/04.jpeg",
         width: 1200,
         height: 630,
       },
@@ -29,7 +30,7 @@ export const metadata = {
     description:
       "Join the Bahamas Wave — a 7-night community cruise from Miami. Match with cabin partners and set sail with your tribe. March 2027.",
     images: [
-      "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=1200&q=80",
+      "/images/turnups/04.jpeg",
     ],
   },
 };
@@ -37,11 +38,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link href="/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="/css/style.css" rel="stylesheet" />
-        <link href="/css/dst-custom.css?v=11" rel="stylesheet" />
-      </head>
+      <head></head>
       <body suppressHydrationWarning>
         <LayoutShell>{children}</LayoutShell>
 

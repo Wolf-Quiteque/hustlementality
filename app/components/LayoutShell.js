@@ -16,16 +16,31 @@ const appRoutes = [
 
 export default function LayoutShell({ children }) {
   const pathname = usePathname();
+  const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const isApp = appRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
 
+  if (isAdmin) {
+    return <>{children}</>;
+  }
+
+  // Load theme CSS only for non-admin pages (React 19 hoists <link> to <head>)
+  const themeStyles = (
+    <>
+      <link href="/css/bootstrap.min.css" rel="stylesheet" precedence="theme" />
+      <link href="/css/style.css" rel="stylesheet" precedence="theme" />
+      <link href="/css/dst-custom.css?v=11" rel="stylesheet" precedence="theme" />
+    </>
+  );
+
   if (isApp) {
-    return <div className="hm-app-shell">{children}</div>;
+    return <>{themeStyles}<div className="hm-app-shell">{children}</div></>;
   }
 
   return (
     <div className="page-wrapper">
+      {themeStyles}
       {/* Preloader */}
-      <div className="preloader" style={{ backgroundColor: "#0B2545" }}>
+      <div className="preloader" style={{ backgroundColor: "#0A0B14" }}>
         <div className="dst-ship-loader">
           <div className="dst-ocean">
             <div className="dst-wave dst-wave1"></div>

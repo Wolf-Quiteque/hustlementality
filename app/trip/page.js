@@ -10,7 +10,7 @@ export default function TripPage() {
       <section
         className="hm-page-banner bg-cover"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1599640842225-85d111c60e6b?w=1920&q=80')",
+          backgroundImage: "url('/images/turnups/04.jpeg')",
         }}
       >
         <div className="container">
@@ -55,7 +55,7 @@ export default function TripPage() {
               <div className="row g-3 mt-3">
                 <div className="col-6 wow fadeInUp" data-wow-delay=".3s">
                   <div style={{
-                    background: "rgba(240, 244, 248, 0.95)",
+                    background: "rgba(26, 27, 46, 0.95)",
                     borderRadius: "12px",
                     padding: "20px",
                     textAlign: "center",
@@ -67,7 +67,7 @@ export default function TripPage() {
                 </div>
                 <div className="col-6 wow fadeInUp" data-wow-delay=".4s">
                   <div style={{
-                    background: "rgba(240, 244, 248, 0.95)",
+                    background: "rgba(26, 27, 46, 0.95)",
                     borderRadius: "12px",
                     padding: "20px",
                     textAlign: "center",
@@ -79,7 +79,7 @@ export default function TripPage() {
                 </div>
                 <div className="col-6 wow fadeInUp" data-wow-delay=".5s">
                   <div style={{
-                    background: "rgba(240, 244, 248, 0.95)",
+                    background: "rgba(26, 27, 46, 0.95)",
                     borderRadius: "12px",
                     padding: "20px",
                     textAlign: "center",
@@ -91,7 +91,7 @@ export default function TripPage() {
                 </div>
                 <div className="col-6 wow fadeInUp" data-wow-delay=".6s">
                   <div style={{
-                    background: "rgba(240, 244, 248, 0.95)",
+                    background: "rgba(26, 27, 46, 0.95)",
                     borderRadius: "12px",
                     padding: "20px",
                     textAlign: "center",
@@ -420,7 +420,7 @@ export default function TripPage() {
               <div className="news-card-items-1">
                 <div className="news-image">
                   <img
-                    src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80"
+                    src="/images/turnups/07.jpeg"
                     alt="Evening entertainment and nightlife"
                   />
                 </div>

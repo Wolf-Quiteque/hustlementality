@@ -20,7 +20,7 @@ export default function LoginPage() {
       <section
         className="hm-page-banner bg-cover"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80')",
+          backgroundImage: "url('/images/turnups/05.jpeg')",
           minHeight: "260px",
         }}
       >

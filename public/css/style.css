@@ -54,19 +54,19 @@ License: copyright commercial
 @import url("tm-utility-classes.css");
 :root {
   --theme-color1: #F2C744;
-  --theme-color2: #0B2545;
-  --theme-color3: #1B6B93;
+  --theme-color2: #0D0F1A;
+  --theme-color3: #8B5CF6;
   --theme-color1-rgb: 242, 199, 68;
-  --theme-color2-rgb: 11, 37, 69;
-  --theme-color3-rgb: 27, 107, 147;
-  --theme-color1-text-color: #0B2545;
+  --theme-color2-rgb: 13, 15, 26;
+  --theme-color3-rgb: 139, 92, 246;
+  --theme-color1-text-color: #0D0F1A;
   --theme-color2-text-color: #fff;
   --theme-color3-text-color: #fff;
-  --body-bg: #fff;
+  --body-bg: #0A0B14;
   --theme-color-white: #ffffff;
-  --bg-color: #F0F4F8;
+  --bg-color: #13141F;
   --theme-color-white-rgb: 255, 255, 255;
-  --theme-color-silver: #eee;
+  --theme-color-silver: #1A1B2E;
   --theme-color-black: #000000;
   --theme-color-black-rgb: 0, 0, 0;
   --bg-theme-color1: var(--theme-color1);
@@ -74,8 +74,8 @@ License: copyright commercial
   --bg-theme-color3: var(--theme-color3);
   --border-color1-rgba: rgba(255, 255, 255, 0.2);
   --border-color2-rgba: rgba(255, 255, 255, 0.13);
-  --text-color: #4A5568;
-  --headings-color: #0B2545;
+  --text-color: #B8BCC8;
+  --headings-color: #FFFFFF;
   --link-color: var(--theme-color3);
   --link-hover-color: var(--theme-color1);
   --body-font-family: "Bricolage Grotesque";
@@ -98,7 +98,7 @@ License: copyright commercial
   --h4-font-weight: 400;
   --h5-font-weight: 600;
   --h6-font-weight: 700;
-  --sec-title-subtitle-color: #5A7184;
+  --sec-title-subtitle-color: #9B9FB5;
   --sec-title-subtitle-font-size: 16px;
   --sec-title-subtitle-font-weight: 500;
   --sec-title-subtitle-line-height: 1;
@@ -110,7 +110,7 @@ License: copyright commercial
   --large-container-width: 1550px;
   --container-pt: 120px;
   --container-pb: 120px;
-  --gradient-1: linear-gradient(90deg, #F2C744 0%, #1B6B93 100%);
+  --gradient-1: linear-gradient(90deg, #F2C744 0%, #8B5CF6 100%);
 }
 
 /*

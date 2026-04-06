@@ -27,7 +27,7 @@ export default function PackagesPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="section-padding fix">
+      <section className="section-padding fix hm-packages-pricing">
         <div className="container">
           <div className="row g-4 justify-content-center mb-50">
             <div className="col-lg-8 text-center">
@@ -278,7 +278,7 @@ export default function PackagesPage() {
       </section>
 
       {/* Payment Plans */}
-      <section className="section-padding fix">
+      <section className="section-padding fix hm-packages-payment">
         <div className="container">
           <div className="row g-4 align-items-center">
             <div className="col-lg-6 wow fadeInUp">

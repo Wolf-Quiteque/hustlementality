@@ -509,6 +509,14 @@
   color: #ccc;
 }
 
+.hm-packages-pricing .hm-pricing-card .plan-name,
+.hm-packages-pricing .hm-pricing-card .plan-price,
+.hm-packages-pricing .hm-pricing-card .plan-price span,
+.hm-packages-pricing .hm-pricing-card .plan-period,
+.hm-packages-pricing .hm-pricing-card .plan-features li {
+  color: #ffffff;
+}
+
 /* =========================================
    CONTACT FORM
    ========================================= */
@@ -1489,6 +1497,13 @@ html {
 
   .choose-us-block-content1 li .content {
     text-align: center;
+  }
+
+  .hm-packages-payment .choose-us-block-content1 li .icon {
+    width: 100%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Platform features accordion */

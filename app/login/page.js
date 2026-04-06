@@ -36,11 +36,13 @@ export default function LoginPage() {
             <div className="col-lg-5 col-md-7">
               <div className="hm-contact-form">
                 <div style={{ textAlign: "center", marginBottom: "25px" }}>
-                  <img
-                    src="/images/newlogo.png"
-                    alt="Hustle Mentality"
-                    style={{ height: "60px", marginBottom: "15px" }}
-                  />
+                  <div className="hm-auth-logo-badge">
+                    <img
+                      src="/images/newlogo.png"
+                      alt="Hustle Mentality"
+                      className="hm-auth-logo-img"
+                    />
+                  </div>
                   <h3 style={{ fontSize: "24px", fontWeight: 700, color: "var(--headings-color)" }}>
                     Log In
                   </h3>
@@ -110,13 +112,13 @@ export default function LoginPage() {
                     Or log in with
                   </p>
                   <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
-                    <button className="hm-social-btn">
+                    <button type="button" className="hm-social-btn">
                       <i className="fab fa-google"></i> Google
                     </button>
-                    <button className="hm-social-btn">
+                    <button type="button" className="hm-social-btn">
                       <i className="fab fa-facebook-f"></i> Facebook
                     </button>
-                    <button className="hm-social-btn">
+                    <button type="button" className="hm-social-btn">
                       <i className="fab fa-apple"></i> Apple
                     </button>
                   </div>

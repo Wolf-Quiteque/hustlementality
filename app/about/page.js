@@ -133,6 +133,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Meet the Team */}
+      {/*
       <section className="section-padding fix section-bg">
         <div className="container">
           <div className="row g-4 justify-content-center mb-50">
@@ -158,6 +159,7 @@ export default async function AboutPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Why Choose Us */}
       <section className="section-padding fix">

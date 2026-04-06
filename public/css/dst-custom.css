@@ -223,6 +223,43 @@
   background-color: var(--theme-color2);
 }
 
+/* Mobile menu: use a light off-canvas drawer with dark text */
+.mobile-menu .menu-box {
+  background: #ffffff;
+}
+
+.mobile-menu .navigation {
+  border-top-color: rgba(0, 0, 0, 0.12);
+}
+
+.mobile-menu .navigation li,
+.mobile-menu .navigation li > ul > li:first-child,
+.mobile-menu .social-links {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.mobile-menu .close-btn,
+.mobile-menu .navigation li > a,
+.mobile-menu .navigation li.dropdown .dropdown-btn,
+.mobile-menu .contact-list-one li .contact-info-box,
+.mobile-menu .contact-list-one li .contact-info-box a,
+.mobile-menu .contact-list-one li .contact-info-box .icon,
+.mobile-menu .social-links li a {
+  color: #000000;
+}
+
+.mobile-menu .navigation li.dropdown .dropdown-btn:after {
+  border-left-color: rgba(0, 0, 0, 0.12);
+}
+
+.mobile-menu .contact-list-one li .contact-info-box .title {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.mobile-menu .social-links {
+  background: #ffffff;
+}
+
 /* Experience/Stats section - navy bg with white/gold text */
 .experience-speaks-section {
   background-color: var(--theme-color2);
@@ -1754,26 +1791,54 @@ html {
 }
 
 /* =========================================
+   AUTH LOGO
+   ========================================= */
+.hm-auth-logo-badge {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.hm-auth-logo-img {
+  height: 64px;
+  width: auto;
+  display: block;
+}
+
+/* =========================================
    SOCIAL LOGIN BUTTONS
    ========================================= */
 .hm-social-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 10px 20px;
+  min-width: 132px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 10px;
   background: #fff;
-  color: var(--headings-color);
+  color: var(--theme-color2);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
 }
 
+.hm-social-btn i {
+  color: var(--theme-color2);
+}
+
 .hm-social-btn:hover {
   border-color: var(--theme-color3);
   background: rgba(139, 92, 246, 0.06);
+  color: var(--theme-color2);
 }
 
 /* =========================================

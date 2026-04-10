@@ -13,7 +13,7 @@ export default async function AboutPage() {
 
   const storyTitle = text(c, "about_story_title", "Born From a Love of Travel & Community");
   const storyP1 = text(c, "about_story_p1", "Hustle Mentality started with a simple idea: what if we could bring together like-minded travelers who work hard and deserve an incredible vacation experience? Founded in Miami, we're building a movement that combines the energy of entrepreneurial spirits with the relaxation of the open sea.");
-  const storyP2 = text(c, "about_story_p2", "Our first cruise — The Bahamas Wave — sets sail in March 2027, and we're already building a community of 500+ travelers who are ready to embark on this journey together. We believe that the best vacations are the ones shared with people who match your vibe.");
+  const storyP2 = text(c, "about_story_p2", "Our first cruise — The Bahamas Wave — sets sail in May 2027 aboard the Norwegian Getaway, and we're already building a community of 500+ travelers who are ready to embark on this journey together. We believe that the best vacations are the ones shared with people who match your vibe.");
   const storyImage = text(c, "about_story_image", "/images/turnups/06.jpeg");
 
   const mission = text(c, "about_mission", "To create unforgettable community-driven travel experiences that connect ambitious, fun-loving travelers. We match cabin partners, curate onboard events, and build a tribe of people who share a passion for adventure and good vibes.");
@@ -197,7 +197,7 @@ export default async function AboutPage() {
           <div className="cta-banner-wrapper">
             <div className="content">
               <h3 className="title char-animation">Ready to Join the Movement?</h3>
-              <div className="text wow fadeInUp" data-wow-delay=".3s">Be part of the Hustle Mentality community. The Bahamas Wave sets sail March 2027.</div>
+              <div className="text wow fadeInUp" data-wow-delay=".3s">Be part of the Hustle Mentality community. The Bahamas Wave sets sail May 2027.</div>
             </div>
             <form action="#" className="wow fadeInUp" data-wow-delay=".5s">
               <input type="email" placeholder="Enter your email" />

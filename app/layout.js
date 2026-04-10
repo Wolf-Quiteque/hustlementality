@@ -5,7 +5,7 @@ import LayoutShell from "./components/LayoutShell";
 export const metadata = {
   title: "Hustle Mentality - Set Sail With Your Tribe",
   description:
-    "Hustle Mentality - Community-driven cruise experiences. Join the Bahamas Wave 7-night cruise from Miami to the Bahamas, March 2027. Match with cabin partners and set sail with your tribe.",
+    "Hustle Mentality - Community-driven cruise experiences. Join the Bahamas Wave 3-night cruise from Miami to the Bahamas, May 2027. Match with cabin partners and set sail with your tribe.",
   icons: {
     shortcut: "/images/favicon.png",
   },
@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
     title: "Hustle Mentality - Set Sail With Your Tribe",
     description:
-      "Join the Bahamas Wave — a 7-night community cruise from Miami to Nassau, CocoCay & Cozumel. Match with cabin partners, connect with travelers, and create unforgettable memories. March 2027.",
+      "Join the Bahamas Wave — a 3-night community cruise from Miami to Great Stirrup Cay & Nassau. Match with cabin partners, connect with travelers, and create unforgettable memories. May 2027.",
     images: [
       {
         url: "/images/turnups/04.jpeg",
@@ -28,7 +28,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Hustle Mentality - Set Sail With Your Tribe",
     description:
-      "Join the Bahamas Wave — a 7-night community cruise from Miami. Match with cabin partners and set sail with your tribe. March 2027.",
+      "Join the Bahamas Wave — a 3-night community cruise from Miami. Match with cabin partners and set sail with your tribe. May 2027.",
     images: [
       "/images/turnups/04.jpeg",
     ],

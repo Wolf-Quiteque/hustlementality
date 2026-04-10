@@ -6,22 +6,24 @@ import AppNav from "../components/AppNav";
 const fmt = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 const packages = [
-  { id: "interior", name: "Interior Cabin", price: 1299, icon: "fa-solid fa-bed", features: ["All meals", "Community events", "Welcome kit"] },
-  { id: "ocean", name: "Ocean View", price: 1799, icon: "fa-solid fa-ship", features: ["All meals + specialty", "Community events", "Ocean view", "Priority excursions"], popular: true },
-  { id: "balcony", name: "Balcony Suite", price: 2499, icon: "fa-solid fa-crown", features: ["Unlimited dining", "VIP events", "Private balcony", "Beverage package"] },
+  { id: "inside", name: "Inside", price: 577, icon: "fa-solid fa-bed", features: ["All meals", "Community events", "Welcome kit"] },
+  { id: "oceanview", name: "Oceanview", price: 636, icon: "fa-solid fa-window-maximize", features: ["All meals", "Community events", "Picture window ocean view"] },
+  { id: "balcony", name: "Balcony", price: 725, icon: "fa-solid fa-ship", features: ["All meals + specialty", "Private balcony", "Priority excursions"], popular: true },
+  { id: "club-suite", name: "Club Balcony Suite", price: 855, icon: "fa-solid fa-star", features: ["Specialty dining", "Private balcony", "Concierge service"] },
+  { id: "haven", name: "Haven Suite", price: 1559, icon: "fa-solid fa-crown", features: ["Unlimited dining", "Haven access", "Butler service", "Beverage package"] },
 ];
 
 export default function BookingPage() {
   const [step, setStep] = useState(1);
-  const [selectedPkg, setSelectedPkg] = useState("ocean");
+  const [selectedPkg, setSelectedPkg] = useState("balcony");
   const [paymentPlan, setPaymentPlan] = useState("monthly");
   const [form, setForm] = useState({
     cardName: "", cardNumber: "", expiry: "", cvv: "",
   });
 
   const pkg = packages.find((p) => p.id === selectedPkg);
-  const deposit = 250;
   const total = pkg?.price || 0;
+  const deposit = Math.round(total * 0.1);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +43,7 @@ export default function BookingPage() {
         <div className="container" style={{ paddingTop: "30px", paddingBottom: "30px" }}>
           <div style={{ textAlign: "center" }}>
             <h2 style={{ color: "#fff", fontSize: "28px", marginBottom: "5px" }}>Book Your Cruise</h2>
-            <p style={{ color: "rgba(255,255,255,0.7)" }}>The Bahamas Wave &bull; March 2027</p>
+            <p style={{ color: "rgba(255,255,255,0.7)" }}>The Bahamas Wave &bull; May 2027</p>
           </div>
 
           {/* Steps indicator */}
@@ -112,7 +114,7 @@ export default function BookingPage() {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "15px 20px", background: "rgba(27, 107, 147, 0.08)", borderRadius: "12px" }}>
                       <div>
                         <strong>{pkg.name}</strong>
-                        <span style={{ display: "block", fontSize: "14px", color: "var(--text-color)" }}>7 Nights &bull; The Bahamas Wave</span>
+                        <span style={{ display: "block", fontSize: "14px", color: "var(--text-color)" }}>3 Nights &bull; The Bahamas Wave</span>
                       </div>
                       <div style={{ fontSize: "24px", fontWeight: 700, color: "var(--theme-color2)" }}>
                         ${fmt(total)}
@@ -122,7 +124,7 @@ export default function BookingPage() {
 
                   <h5 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "15px" }}>Payment Plan</h5>
                   <div className="row g-3 mb-4">
-                    <div className="col-md-4">
+                    <div className="col-md-6">
                       <button
                         type="button"
                         className={`hm-plan-option ${paymentPlan === "full" ? "selected" : ""}`}
@@ -132,24 +134,14 @@ export default function BookingPage() {
                         <span>${fmt(total)} today</span>
                       </button>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-6">
                       <button
                         type="button"
                         className={`hm-plan-option ${paymentPlan === "monthly" ? "selected" : ""}`}
                         onClick={() => setPaymentPlan("monthly")}
                       >
-                        <strong>Monthly Plan</strong>
-                        <span>$250 deposit + installments</span>
-                      </button>
-                    </div>
-                    <div className="col-md-4">
-                      <button
-                        type="button"
-                        className={`hm-plan-option ${paymentPlan === "biweekly" ? "selected" : ""}`}
-                        onClick={() => setPaymentPlan("biweekly")}
-                      >
-                        <strong>Bi-Weekly</strong>
-                        <span>$250 deposit + bi-weekly</span>
+                        <strong>Payment Plan</strong>
+                        <span>10% deposit + scheduled payments</span>
                       </button>
                     </div>
                   </div>
@@ -157,7 +149,7 @@ export default function BookingPage() {
                   <h5 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "15px" }}>Add-Ons</h5>
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px" }}>
                     {[
-                      { label: "Shore Excursion Bundle (3 excursions)", price: "$299" },
+                      { label: "Shore Excursion Bundle (2 stops)", price: "$199" },
                       { label: "Premium Beverage Package", price: "$199" },
                       { label: "Travel Insurance", price: "$89" },
                       { label: "Professional Photo Package", price: "$149" },

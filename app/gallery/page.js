@@ -25,9 +25,8 @@ export default async function GalleryPage() {
   ]);
 
   const destinations = parseJson(c, "gallery_destinations", [
-    { name: "Nassau", title: "Bahamas Capital", text: "Vibrant culture, colorful architecture, and stunning beaches.", image: "https://images.unsplash.com/photo-1580541631950-7282082b53ce?w=600&q=80" },
-    { name: "CocoCay", title: "Private Island Paradise", text: "Pristine beaches, water sports, and exclusive amenities.", image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80" },
-    { name: "Cozumel", title: "Mexican Caribbean", text: "Snorkeling, Mayan ruins, and authentic cuisine.", image: "https://images.unsplash.com/photo-1559599238-308793637427?w=600&q=80" },
+    { name: "Great Stirrup Cay", title: "Private Island Paradise", text: "NCL's exclusive private island with pristine beaches, water sports, and cabana vibes.", image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&q=80" },
+    { name: "Nassau", title: "Bahamas Capital", text: "Vibrant culture, colorful architecture, Junkanoo Beach, and legendary nightlife.", image: "https://images.unsplash.com/photo-1580541631950-7282082b53ce?w=600&q=80" },
   ]);
 
   return (
@@ -79,9 +78,9 @@ export default async function GalleryPage() {
               </div>
             </div>
           </div>
-          <div className="row g-4">
+          <div className="row g-4 justify-content-center">
             {destinations.map((dest, i) => (
-              <div className="col-lg-4 wow fadeInUp" data-wow-delay={`${0.2 + i * 0.1}s`} key={i}>
+              <div className="col-lg-6 wow fadeInUp" data-wow-delay={`${0.2 + i * 0.1}s`} key={i}>
                 <div className="hm-destination-card">
                   <img src={dest.image} alt={dest.name} />
                   <div className="dest-overlay">

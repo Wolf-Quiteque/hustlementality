@@ -157,7 +157,7 @@ export default async function ContactPage() {
                 <div className="dst-step-number">02</div>
                 <div className="dst-step-icon"><i className="fa-solid fa-credit-card fa-3x"></i></div>
                 <h4 className="dst-step-title">Secure Your Spot</h4>
-                <p className="dst-step-text">Lock in your cabin with a $250 deposit and choose your payment plan. It&apos;s that simple.</p>
+                <p className="dst-step-text">Lock in your cabin with a 10% deposit and choose your payment plan. It&apos;s that simple.</p>
               </div>
             </div>
             <div className="col-lg-4 wow fadeInUp" data-wow-delay=".4s">
@@ -165,7 +165,7 @@ export default async function ContactPage() {
                 <div className="dst-step-number">03</div>
                 <div className="dst-step-icon"><i className="fa-solid fa-ship fa-3x"></i></div>
                 <h4 className="dst-step-title">Set Sail</h4>
-                <p className="dst-step-text">Complete your profile, match with a cabin buddy, and get ready for March 2027!</p>
+                <p className="dst-step-text">Complete your profile, match with a cabin buddy, and get ready for May 2027!</p>
               </div>
             </div>
           </div>

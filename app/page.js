@@ -8,7 +8,7 @@ export default async function Home() {
   const heroSubtitle = text(c, "home_hero_subtitle", "Join the Hustle Mentality community for an unforgettable cruise experience. Connect with fellow travelers, match with your perfect cabin partner, and embark on the voyage of a lifetime.");
   const heroBg = text(c, "home_hero_bg_image", "/images/turnups/04.jpeg");
   const heroThumb = text(c, "home_hero_thumb_image", "/images/turnups/01.jpeg");
-  const heroThumbText = text(c, "home_hero_thumb_text", "The Bahamas Wave - March 2027");
+  const heroThumbText = text(c, "home_hero_thumb_text", "The Bahamas Wave - May 2027");
   const heroCta = text(c, "home_hero_cta", "Reserve Your Spot");
 
   const aboutSubtitle = text(c, "home_about_subtitle", "Who We Are");
@@ -21,19 +21,19 @@ export default async function Home() {
   ]);
 
   const cruiseSubtitle = text(c, "home_cruise_subtitle", "The Bahamas Wave");
-  const cruiseTitle = text(c, "home_cruise_title", "7-Night Cruise Experience Awaits You");
+  const cruiseTitle = text(c, "home_cruise_title", "3-Night Cruise Experience Awaits You");
   const cruiseBlocks = parseJson(c, "home_cruise_blocks", [
-    { icon: "fa-solid fa-anchor", title: "The Voyage", titleLine2: "Miami to Bahamas", text: "Set sail from the Port of Miami for an incredible 7-night journey through the Caribbean. March 2027 marks the beginning of something extraordinary.", image: "https://images.unsplash.com/photo-1599640842225-85d111c60e6b?w=600&q=80", link: "/packages", linkText: "Reserve Now" },
-    { icon: "fa-solid fa-umbrella-beach", title: "Destinations", titleLine2: "Island Paradise", text: "Explore Nassau's vibrant culture and nightlife, relax on CocoCay's pristine private beaches, and discover the adventure of Cozumel, Mexico.", image: "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=80", link: "/trip", linkText: "View Itinerary" },
+    { icon: "fa-solid fa-anchor", title: "The Voyage", titleLine2: "Miami to Bahamas", text: "Set sail from the Port of Miami aboard the Norwegian Getaway for an incredible 3-night journey to the Bahamas. May 2027 marks the beginning of something extraordinary.", image: "https://images.unsplash.com/photo-1599640842225-85d111c60e6b?w=600&q=80", link: "/packages", linkText: "Reserve Now" },
+    { icon: "fa-solid fa-umbrella-beach", title: "Destinations", titleLine2: "Island Paradise", text: "Explore NCL's private island Great Stirrup Cay and the vibrant capital of Nassau. Two stunning Bahamas stops packed with beach parties, culture, and adventure.", image: "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=80", link: "/trip", linkText: "View Itinerary" },
     { icon: "fa-solid fa-music", title: "Onboard", titleLine2: "Experience", text: "Deck parties with live DJs, group dining experiences, networking mixers, themed nights, and exclusive community events that keep the vibe alive all cruise long.", image: "/images/turnups/02.jpeg", link: "/trip", linkText: "See Activities" },
-    { icon: "fa-solid fa-water", title: "Shore", titleLine2: "Excursions", text: "Snorkeling in crystal-clear waters, island tours, zip-lining through tropical canopy, cultural experiences, and guided group adventures at every stop.", image: "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600&q=80", link: "/trip", linkText: "Explore More" },
+    { icon: "fa-solid fa-water", title: "Shore", titleLine2: "Excursions", text: "Snorkeling in crystal-clear waters, island tours, beach parties on a private island, cultural experiences, and guided group adventures at every stop.", image: "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600&q=80", link: "/trip", linkText: "Explore More" },
   ]);
 
   const stats = parseJson(c, "home_stats", [
     { label: "Travelers\nSigned Up", value: "500", suffix: "+" },
     { label: "Guest\nSatisfaction", value: "98", suffix: "%" },
-    { label: "Destinations\nTo Explore", value: "3", suffix: " Stops" },
-    { label: "Of Nonstop\nAdventure", value: "7", suffix: " Nights" },
+    { label: "Destinations\nTo Explore", value: "2", suffix: " Stops" },
+    { label: "Of Nonstop\nAdventure", value: "3", suffix: " Nights" },
   ]);
 
   const testimonials = parseJson(c, "home_testimonials", [
@@ -45,10 +45,10 @@ export default async function Home() {
   const steps = parseJson(c, "home_steps", [
     { icon: "fa-solid fa-user-plus", title: "Create Your Account", text: "Sign up on the platform and get access to the full Hustle Mentality experience. It only takes a minute." },
     { icon: "fa-solid fa-id-card", title: "Build Your Profile", text: "Tell us about yourself, your travel style, interests, and what you're looking for in a cabin partner." },
-    { icon: "fa-solid fa-ship", title: "Connect & Set Sail", text: "Match with travelers, confirm your cabin partner, complete your booking, and get ready for March 2027!" },
+    { icon: "fa-solid fa-ship", title: "Connect & Set Sail", text: "Match with travelers, confirm your cabin partner, complete your booking, and get ready for May 2027!" },
   ]);
 
-  const ctaTitleRaw = text(c, "home_cta_title", "Don't Miss the Voyage\nMarch 2027");
+  const ctaTitleRaw = text(c, "home_cta_title", "Don't Miss the Voyage\nMay 2027");
   const ctaLines = ctaTitleRaw.split("\n");
   const ctaText = text(c, "home_cta_text", "Join the Hustle Mentality community and be the first to know about cruise updates, early bird pricing, and exclusive events.");
 
@@ -101,7 +101,7 @@ export default async function Home() {
               <div className="about-wrap">
                 <div className="about-counter wow fadeInUp" data-wow-delay=".3s">
                   <h3 className="count-box">
-                    <span className="count-text" data-speed="3000" data-stop="7">0</span>{" "}Nights
+                    <span className="count-text" data-speed="3000" data-stop="3">0</span>{" "}Nights
                   </h3>
                   <p>Of Pure <br /> Adventure</p>
                   <a className="theme-btn-main" href="/trip">

@@ -3,13 +3,10 @@
 import AppNav from "../components/AppNav";
 
 const itinerary = [
-  { day: 1, title: "Departure from Miami", loc: "Port of Miami, FL", desc: "Board the ship, welcome mixer, set sail at sunset.", icon: "fa-solid fa-anchor" },
-  { day: 2, title: "Day at Sea", loc: "Open Ocean", desc: "Pool party, networking brunch, themed deck party.", icon: "fa-solid fa-water" },
-  { day: 3, title: "Nassau, Bahamas", loc: "Nassau", desc: "Cultural tour, Junkanoo Beach, snorkeling.", icon: "fa-solid fa-umbrella-beach" },
-  { day: 4, title: "CocoCay", loc: "CocoCay, Bahamas", desc: "Private island, water sports, beach bonfire.", icon: "fa-solid fa-sun" },
-  { day: 5, title: "Day at Sea", loc: "Open Ocean", desc: "Spa day, cooking class, formal community dinner.", icon: "fa-solid fa-water" },
-  { day: 6, title: "Cozumel, Mexico", loc: "Cozumel", desc: "Snorkeling, zip-lining, taco tour.", icon: "fa-solid fa-location-dot" },
-  { day: 7, title: "Final Day at Sea", loc: "Heading Home", desc: "Fitness challenge, all-white farewell party.", icon: "fa-solid fa-ship" },
+  { day: 1, title: "Departure from Miami", loc: "Port of Miami, FL", desc: "Board the Norwegian Getaway, welcome mixer, set sail at 4:00 PM.", icon: "fa-solid fa-anchor" },
+  { day: 2, title: "Great Stirrup Cay", loc: "Great Stirrup Cay, Bahamas", desc: "NCL's private island! Beach parties, water sports, snorkeling. 7 AM–5 PM.", icon: "fa-solid fa-umbrella-beach" },
+  { day: 3, title: "Nassau, Bahamas", loc: "Nassau", desc: "Junkanoo Beach, cultural tours, Bay Street shopping, nightlife. 7 AM–5 PM.", icon: "fa-solid fa-location-dot" },
+  { day: 4, title: "Return to Miami", loc: "Port of Miami, FL", desc: "Arrive 7:00 AM. Exchange contacts, share memories!", icon: "fa-solid fa-ship" },
 ];
 
 const packingList = [
@@ -48,7 +45,7 @@ export default function MyTripPage() {
             <div className="col-md-8">
               <h1 style={{ color: "#fff", fontSize: "30px", marginBottom: "6px" }}>The Bahamas Wave</h1>
               <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "15px", margin: 0 }}>
-                7-Night Cruise &bull; Miami &rarr; Nassau &rarr; CocoCay &rarr; Cozumel
+                3-Night Cruise &bull; Miami &rarr; Great Stirrup Cay &rarr; Nassau &rarr; Miami
               </p>
             </div>
             <div className="col-md-4">
@@ -69,8 +66,8 @@ export default function MyTripPage() {
               {/* Trip details cards */}
               <div className="row g-3 mb-4">
                 {[
-                  { icon: "fa-solid fa-calendar", label: "Departure", value: "Mar 15, 2027" },
-                  { icon: "fa-solid fa-bed", label: "Cabin", value: "Ocean View" },
+                  { icon: "fa-solid fa-calendar", label: "Departure", value: "May 14, 2027" },
+                  { icon: "fa-solid fa-bed", label: "Cabin", value: "Balcony" },
                   { icon: "fa-solid fa-user-group", label: "Buddy", value: "Tyler Brooks" },
                   { icon: "fa-solid fa-hashtag", label: "Booking", value: "HM-04821" },
                 ].map((d, i) => (
@@ -158,7 +155,7 @@ export default function MyTripPage() {
                 </div>
                 <div style={{ marginBottom: "15px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-                    <span style={{ fontWeight: 600 }}>$600 of $1,799</span>
+                    <span style={{ fontWeight: 600 }}>$290 of $725</span>
                     <span style={{ color: "var(--theme-color3)", fontWeight: 500 }}>33%</span>
                   </div>
                   <div className="hm-progress-track">

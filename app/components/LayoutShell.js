@@ -42,34 +42,25 @@ export default function LayoutShell({ children }) {
     <div className="page-wrapper">
       {themeStyles}
       {/* Preloader */}
-      <div className="preloader" style={{ backgroundColor: "#0A0B14" }}>
-        <div className="dst-ship-loader">
-          <div className="dst-ocean">
-            <div className="dst-wave dst-wave1"></div>
-            <div className="dst-wave dst-wave2"></div>
-            <div className="dst-wave dst-wave3"></div>
-          </div>
-          <div className="dst-ship">
-            <div className="dst-ship-body">
-              <div className="dst-hull"></div>
-              <div className="dst-cabin"></div>
-              <div className="dst-cabin dst-cabin-top"></div>
-              <div className="dst-funnel"></div>
-              <div className="dst-smoke">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div className="dst-flag"></div>
-            </div>
-          </div>
-          <div className="dst-loader-text">
-            <span>H</span><span>U</span><span>S</span><span>T</span>
-            <span>L</span><span>E</span><span>&nbsp;</span><span>M</span>
-            <span>E</span><span>N</span><span>T</span><span>A</span>
-            <span>L</span><span>I</span><span>T</span><span>Y</span>
-          </div>
-          <p className="dst-loader-sub">Setting Sail...</p>
+      <div className="preloader" style={{ backgroundColor: "#ffffff" }}>
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          height: "100%",
+        }}>
+          <img
+            src="/images/newlogo.png"
+            alt="Hustle Mentality"
+            className="dst-preloader-logo"
+            style={{
+              maxWidth: "80vw",
+              maxHeight: "80vh",
+              objectFit: "contain",
+              animation: "dst-float 2s ease-in-out infinite",
+            }}
+          />
         </div>
       </div>
 
@@ -262,8 +253,8 @@ export default function LayoutShell({ children }) {
                 </div>
                 <div className="footer-middle-wrapper wow fadeInUp" data-wow-delay=".3s">
                   <ul>
-                    <li><span className="week-text">Cruise Date: </span><span className="time-text">March 2027</span></li>
-                    <li><span className="week-text">Duration:</span><span className="time-text">7 Nights</span></li>
+                    <li><span className="week-text">Cruise Date: </span><span className="time-text">May 14–17, 2027</span></li>
+                    <li><span className="week-text">Duration:</span><span className="time-text">3 Nights</span></li>
                   </ul>
                   <ul className="social-icon-list1">
                     <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>

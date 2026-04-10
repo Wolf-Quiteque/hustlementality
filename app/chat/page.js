@@ -13,7 +13,7 @@ const conversations = [
 const initialMessages = [
   { from: "them", text: "Hey Marcus! Super excited we're cabin buddies for the cruise! 🚢", time: "10:30 AM" },
   { from: "me", text: "Yooo Tyler! Same here man, this is gonna be legendary!", time: "10:32 AM" },
-  { from: "them", text: "For real! I've been looking at the itinerary. Day 6 in Cozumel looks insane — snorkeling and zip-lining", time: "10:33 AM" },
+  { from: "them", text: "For real! I've been looking at the itinerary. Day 2 at Great Stirrup Cay looks insane — private island beach party and snorkeling", time: "10:33 AM" },
   { from: "me", text: "100%. I'm def doing the snorkeling. You down for the deck party on Day 2?", time: "10:35 AM" },
   { from: "them", text: "Bro obviously 😂 I heard they got a DJ from Miami spinning. It's about to be a movie", time: "10:36 AM" },
   { from: "me", text: "Facts. What about the welcome mixer on Day 1? Good way to meet the whole crew", time: "10:38 AM" },

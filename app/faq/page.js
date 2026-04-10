@@ -48,15 +48,15 @@ export default async function FaqPage() {
 
   const general = parseJson(c, "faq_general", [
     { q: "What is Hustle Mentality?", a: "Hustle Mentality is a community-driven cruise experience platform. We organize group cruise trips where travelers can connect before boarding, match with compatible cabin partners, and enjoy curated social activities throughout the voyage." },
-    { q: "When does the first cruise depart?", a: "The Bahamas Wave, our inaugural cruise, sets sail in March 2027. The 7-night voyage departs from the Port of Miami and visits Nassau, CocoCay, and Cozumel." },
+    { q: "When does the first cruise depart?", a: "The Bahamas Wave, our inaugural cruise, sets sail May 14, 2027 aboard the Norwegian Getaway. The 3-night voyage departs from the Port of Miami and visits Great Stirrup Cay and Nassau, Bahamas." },
     { q: "Who is Hustle Mentality for?", a: "Hustle Mentality is for anyone who loves travel and community. Whether you're a solo traveler looking for cabin partners, a group of friends wanting a curated experience, or someone who just wants to meet new people on a cruise." },
   ]);
 
   const booking = parseJson(c, "faq_booking", [
-    { q: "How do I book my spot?", a: "You can reserve your spot by visiting our Packages page and selecting your preferred cabin type. A $250 deposit secures your cabin." },
-    { q: "What payment plans are available?", a: "We offer flexible monthly payment plans. After your $250 deposit, the remaining balance can be split into monthly payments as low as $100/month." },
-    { q: "What's included in the cruise package?", a: "All packages include 7-night cabin accommodation, all meals, community events and deck parties, cabin buddy matching, and a Hustle Mentality welcome kit." },
-    { q: "Is the deposit refundable?", a: "Yes, the $250 deposit is fully refundable up to 90 days before departure." },
+    { q: "How do I book my spot?", a: "You can reserve your spot by visiting our Packages page and selecting your preferred cabin type. A 10% deposit of your total fare secures your cabin." },
+    { q: "What payment plans are available?", a: "We offer a structured payment plan: 10% deposit to reserve, then 25% due 6 months before sailing, another 25% at 4 months, and the final balance due 2 months before departure. Full payment up front is also accepted." },
+    { q: "What's included in the cruise package?", a: "All packages include 3-night cabin accommodation on the Norwegian Getaway, all meals, community events and deck parties, cabin buddy matching, and a Hustle Mentality welcome kit." },
+    { q: "What is the cancellation policy?", a: "Cancellations 120+ days before sailing receive a full refund minus a $50/person admin fee. 119–91 days: 25% penalty. 90–61 days: 50% penalty. 60–31 days: 75% penalty. 30 days or less: no refund. Travel insurance is available for added protection." },
   ]);
 
   const matching = parseJson(c, "faq_matching", [
@@ -69,7 +69,7 @@ export default async function FaqPage() {
   const onboard = parseJson(c, "faq_onboard", [
     { q: "What events are planned onboard?", a: "We plan a full schedule including welcome mixers, themed deck parties with live DJs, networking brunches, group fitness, karaoke nights, and a grand farewell all-white party." },
     { q: "Do I have to participate in group activities?", a: "Not at all! All community events are optional. You're free to enjoy the cruise at your own pace." },
-    { q: "What about shore excursions?", a: "We organize group excursions at each port — snorkeling, cultural tours, zip-lining, beach days, and more. These are optional add-ons." },
+    { q: "What about shore excursions?", a: "We organize group excursions at each port — snorkeling, cultural tours, beach parties, and more at Great Stirrup Cay and Nassau. These are optional add-ons." },
   ]);
 
   return (

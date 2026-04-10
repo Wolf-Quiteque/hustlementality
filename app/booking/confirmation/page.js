@@ -30,7 +30,7 @@ export default function ConfirmationPage() {
                 </h2>
                 <p style={{ color: "var(--text-color)", fontSize: "16px", marginBottom: "30px", lineHeight: 1.7 }}>
                   Welcome aboard, Marcus! Your spot on The Bahamas Wave is officially reserved.
-                  We can&apos;t wait to set sail with you in March 2027.
+                  We can&apos;t wait to set sail with you in May 2027.
                 </p>
 
                 <div style={{
@@ -44,13 +44,13 @@ export default function ConfirmationPage() {
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                     {[
                       { label: "Confirmation #", value: "HM-2027-04821" },
-                      { label: "Package", value: "Ocean View Cabin" },
-                      { label: "Duration", value: "7 Nights" },
-                      { label: "Departure", value: "March 15, 2027" },
-                      { label: "Port", value: "Miami, FL" },
-                      { label: "Deposit Paid", value: "$250.00" },
-                      { label: "Remaining Balance", value: "$1,549.00" },
-                      { label: "Next Payment", value: "Apr 15, 2026" },
+                      { label: "Package", value: "Balcony Cabin" },
+                      { label: "Duration", value: "3 Nights" },
+                      { label: "Departure", value: "May 14, 2027" },
+                      { label: "Ship", value: "Norwegian Getaway" },
+                      { label: "Deposit Paid (10%)", value: "$72.55" },
+                      { label: "Remaining Balance", value: "$652.91" },
+                      { label: "Next Payment (25%)", value: "Nov 14, 2026" },
                     ].map((item, i) => (
                       <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderBottom: i < 7 ? "1px solid rgba(0,0,0,0.05)" : "none" }}>
                         <span style={{ color: "var(--text-color)", fontSize: "14px" }}>{item.label}</span>

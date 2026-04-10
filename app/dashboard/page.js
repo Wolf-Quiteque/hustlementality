@@ -3,9 +3,9 @@
 import AppNav from "../components/AppNav";
 
 const upcomingEvents = [
-  { time: "Mar 15", title: "Welcome Mixer", icon: "fa-solid fa-champagne-glasses" },
-  { time: "Mar 16", title: "Deck Party #1", icon: "fa-solid fa-music" },
-  { time: "Mar 17", title: "Nassau Excursion", icon: "fa-solid fa-umbrella-beach" },
+  { time: "May 14", title: "Welcome Mixer", icon: "fa-solid fa-champagne-glasses" },
+  { time: "May 15", title: "Great Stirrup Cay", icon: "fa-solid fa-umbrella-beach" },
+  { time: "May 16", title: "Nassau Excursion", icon: "fa-solid fa-location-dot" },
 ];
 
 export default function DashboardPage() {
@@ -31,7 +31,7 @@ export default function DashboardPage() {
                     Welcome back, Marcus!
                   </h2>
                   <p className="hm-dash-subtitle" style={{ color: "rgba(255,255,255,0.7)", margin: 0, fontSize: "15px" }}>
-                    The Bahamas Wave &bull; March 2027
+                    The Bahamas Wave &bull; May 2027
                   </p>
                 </div>
               </div>
@@ -52,9 +52,9 @@ export default function DashboardPage() {
           <div className="row g-3 mb-4">
             {[
               { icon: "fa-solid fa-ship", label: "Booking", value: "Confirmed", bg: "rgba(27, 107, 147, 0.1)", color: "var(--theme-color3)" },
-              { icon: "fa-solid fa-bed", label: "Cabin", value: "Ocean View", bg: "rgba(242, 199, 68, 0.15)", color: "var(--theme-color1)" },
+              { icon: "fa-solid fa-bed", label: "Cabin", value: "Balcony", bg: "rgba(242, 199, 68, 0.15)", color: "var(--theme-color1)" },
               { icon: "fa-solid fa-heart", label: "Buddy", value: "Matched!", bg: "rgba(40, 167, 69, 0.1)", color: "#28a745" },
-              { icon: "fa-solid fa-credit-card", label: "Paid", value: "$600 / $1,799", bg: "rgba(105, 183, 255, 0.14)", color: "var(--theme-color3)" },
+              { icon: "fa-solid fa-credit-card", label: "Paid", value: "$290 / $725", bg: "rgba(105, 183, 255, 0.14)", color: "var(--theme-color3)" },
             ].map((card, i) => (
               <div key={i} className="col-6 col-lg-3">
                 <div className="hm-dash-card">
@@ -92,7 +92,7 @@ export default function DashboardPage() {
                     </span>
                     <p style={{ margin: "10px 0 0", color: "var(--text-color)", lineHeight: 1.6 }}>
                       Adventure seeker, love the ocean and live music. Looking forward to the
-                      deck parties and snorkeling in Cozumel. Let&apos;s make this cruise legendary!
+                      deck parties and snorkeling at Great Stirrup Cay. Let&apos;s make this cruise legendary!
                     </p>
                     <div className="hm-buddy-tags">
                       <span className="hm-tag">Adventure</span>
@@ -137,19 +137,19 @@ export default function DashboardPage() {
                 </div>
                 <div style={{ marginBottom: "15px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-                    <span style={{ fontWeight: 600, color: "var(--headings-color)" }}>$600 paid</span>
-                    <span style={{ color: "var(--text-color)" }}>$1,799 total</span>
+                    <span style={{ fontWeight: 600, color: "var(--headings-color)" }}>$290 paid</span>
+                    <span style={{ color: "var(--text-color)" }}>$725 total</span>
                   </div>
                   <div className="hm-progress-track">
-                    <div className="hm-progress-bar-fill" style={{ width: "33%" }}></div>
+                    <div className="hm-progress-bar-fill" style={{ width: "40%" }}></div>
                   </div>
                 </div>
                 <div className="hm-payment-list">
                   {[
-                    { label: "Deposit: $250", done: true },
-                    { label: "Payment 1: $350", done: true },
-                    { label: "Payment 2: $350 (Apr 15)", done: false },
-                    { label: "Final: $849 (Jan 2027)", done: false },
+                    { label: "Deposit (10%): $72.55", done: true },
+                    { label: "Payment 2 (25%): $181.37", done: true },
+                    { label: "Payment 3 (25%): $181.37 (Jan 2027)", done: false },
+                    { label: "Final balance: $289.71 (Mar 2027)", done: false },
                   ].map((p, i) => (
                     <div key={i} style={{ fontSize: "14px", color: "var(--text-color)", padding: "4px 0" }}>
                       <i className={p.done ? "fa-solid fa-check-circle" : "fa-regular fa-circle"}

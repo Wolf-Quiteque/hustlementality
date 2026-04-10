@@ -1,6 +1,6 @@
 export const metadata = {
   title: "The Trip - The Bahamas Wave | Hustle Mentality",
-  description: "Explore The Bahamas Wave - a 7-night cruise from Miami to Nassau, CocoCay & Cozumel. View the full itinerary, destinations, and onboard experiences.",
+  description: "Explore The Bahamas Wave - a 3-night cruise aboard the Norwegian Getaway from Miami to Great Stirrup Cay & Nassau. View the full itinerary, destinations, and onboard experiences.",
 };
 
 export default function TripPage() {
@@ -21,7 +21,7 @@ export default function TripPage() {
             <span>The Trip</span>
           </div>
           <p className="subtitle wow fadeInUp" data-wow-delay=".3s">
-            7 nights. 3 destinations. 1 unforgettable community cruise. March 2027.
+            3 nights. 2 destinations. 1 unforgettable community cruise. May 14–17, 2027.
           </p>
         </div>
       </section>
@@ -36,14 +36,14 @@ export default function TripPage() {
                   <h6 className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">Trip Overview</h6>
                 </div>
                 <h2 className="title tx-title sec_title tz-itm-title tz-itm-anim">
-                  Your 7-Night Caribbean Adventure
+                  Your 3-Night Bahamas Adventure
                 </h2>
               </div>
               <div className="mt-4" style={{ lineHeight: 1.7, color: "var(--text-color)" }}>
                 <p className="wow fadeInUp" data-wow-delay=".2s">
-                  The Bahamas Wave is Hustle Mentality&apos;s inaugural cruise — a 7-night
-                  voyage departing from the Port of Miami, sailing through the crystal-clear
-                  waters of the Caribbean to Nassau, CocoCay, and Cozumel.
+                  The Bahamas Wave is Hustle Mentality&apos;s inaugural cruise — a 3-night
+                  voyage aboard the Norwegian Getaway, departing from the Port of Miami
+                  to Great Stirrup Cay and Nassau, Bahamas.
                 </p>
                 <p className="wow fadeInUp" data-wow-delay=".3s">
                   This isn&apos;t just a cruise — it&apos;s a curated experience designed for
@@ -62,7 +62,7 @@ export default function TripPage() {
                   }}>
                     <i className="fa-solid fa-calendar fa-2x mb-2" style={{ color: "var(--theme-color3)" }}></i>
                     <h5 style={{ fontSize: "16px", marginBottom: "5px" }}>Departure</h5>
-                    <p style={{ margin: 0, fontWeight: 600 }}>March 2027</p>
+                    <p style={{ margin: 0, fontWeight: 600 }}>May 14, 2027</p>
                   </div>
                 </div>
                 <div className="col-6 wow fadeInUp" data-wow-delay=".4s">
@@ -74,7 +74,7 @@ export default function TripPage() {
                   }}>
                     <i className="fa-solid fa-moon fa-2x mb-2" style={{ color: "var(--theme-color3)" }}></i>
                     <h5 style={{ fontSize: "16px", marginBottom: "5px" }}>Duration</h5>
-                    <p style={{ margin: 0, fontWeight: 600 }}>7 Nights</p>
+                    <p style={{ margin: 0, fontWeight: 600 }}>3 Nights</p>
                   </div>
                 </div>
                 <div className="col-6 wow fadeInUp" data-wow-delay=".5s">
@@ -84,9 +84,9 @@ export default function TripPage() {
                     padding: "20px",
                     textAlign: "center",
                   }}>
-                    <i className="fa-solid fa-anchor fa-2x mb-2" style={{ color: "var(--theme-color3)" }}></i>
-                    <h5 style={{ fontSize: "16px", marginBottom: "5px" }}>Departure Port</h5>
-                    <p style={{ margin: 0, fontWeight: 600 }}>Miami, FL</p>
+                    <i className="fa-solid fa-ship fa-2x mb-2" style={{ color: "var(--theme-color3)" }}></i>
+                    <h5 style={{ fontSize: "16px", marginBottom: "5px" }}>Ship</h5>
+                    <p style={{ margin: 0, fontWeight: 600 }}>Norwegian Getaway</p>
                   </div>
                 </div>
                 <div className="col-6 wow fadeInUp" data-wow-delay=".6s">
@@ -98,7 +98,7 @@ export default function TripPage() {
                   }}>
                     <i className="fa-solid fa-map-marker-alt fa-2x mb-2" style={{ color: "var(--theme-color3)" }}></i>
                     <h5 style={{ fontSize: "16px", marginBottom: "5px" }}>Destinations</h5>
-                    <p style={{ margin: 0, fontWeight: 600 }}>3 Stops</p>
+                    <p style={{ margin: 0, fontWeight: 600 }}>2 Stops</p>
                   </div>
                 </div>
               </div>
@@ -131,8 +131,25 @@ export default function TripPage() {
               </div>
             </div>
           </div>
-          <div className="row g-4">
-            <div className="col-lg-4 wow fadeInUp" data-wow-delay=".2s">
+          <div className="row g-4 justify-content-center">
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay=".2s">
+              <div className="hm-destination-card">
+                <img
+                  src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&q=80"
+                  alt="Great Stirrup Cay"
+                />
+                <div className="dest-overlay">
+                  <span className="dest-tag">Day 2</span>
+                  <h4>Great Stirrup Cay</h4>
+                  <p>
+                    NCL&apos;s private island paradise! Pristine beaches, water sports,
+                    snorkeling, cabana vibes, and beach parties. A full day in paradise
+                    from 7:00 AM to 5:00 PM.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
               <div className="hm-destination-card">
                 <img
                   src="https://images.unsplash.com/photo-1580541631950-7282082b53ce?w=600&q=80"
@@ -142,41 +159,9 @@ export default function TripPage() {
                   <span className="dest-tag">Day 3</span>
                   <h4>Nassau, Bahamas</h4>
                   <p>
-                    Explore the vibrant culture, colorful colonial architecture, and
-                    stunning beaches of the Bahamas capital. Don&apos;t miss the famous
-                    Junkanoo Beach and the Queen&apos;s Staircase.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 wow fadeInUp" data-wow-delay=".3s">
-              <div className="hm-destination-card">
-                <img
-                  src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&q=80"
-                  alt="CocoCay"
-                />
-                <div className="dest-overlay">
-                  <span className="dest-tag">Day 4</span>
-                  <h4>CocoCay, Bahamas</h4>
-                  <p>
-                    A private island paradise with pristine white sand beaches, crystal-clear
-                    waters, and exclusive amenities. Perfect for relaxation and water sports.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 wow fadeInUp" data-wow-delay=".4s">
-              <div className="hm-destination-card">
-                <img
-                  src="https://images.unsplash.com/photo-1559599238-308793637427?w=600&q=80"
-                  alt="Cozumel, Mexico"
-                />
-                <div className="dest-overlay">
-                  <span className="dest-tag">Day 6</span>
-                  <h4>Cozumel, Mexico</h4>
-                  <p>
-                    Discover world-class snorkeling, ancient Mayan ruins, and authentic
-                    Mexican cuisine on this stunning Caribbean island off the Yucatan coast.
+                    Explore the vibrant capital — colorful colonial architecture,
+                    stunning Junkanoo Beach, shopping on Bay Street, cultural tours,
+                    and legendary Nassau nightlife. 7:00 AM to 5:00 PM.
                   </p>
                 </div>
               </div>
@@ -195,7 +180,7 @@ export default function TripPage() {
                   <h6 className="sub-title tz-sub-tilte tz-sub-anim tx-subTitle">Day by Day</h6>
                 </div>
                 <h2 className="title tx-title sec_title tz-itm-title tz-itm-anim">
-                  Your 7-Night Itinerary
+                  Your 3-Night Itinerary
                 </h2>
               </div>
             </div>
@@ -213,9 +198,9 @@ export default function TripPage() {
                     <i className="fa-solid fa-location-dot"></i> Port of Miami, Florida
                   </div>
                   <p>
-                    Board the ship, settle into your cabin, and meet your cabin buddy.
+                    Board the Norwegian Getaway, settle into your cabin, and meet your cabin buddy.
                     Welcome aboard mixer on the main deck with drinks and music as we
-                    set sail into the sunset. Community introductions and icebreakers follow.
+                    set sail at 4:00 PM. Community introductions and icebreakers follow.
                   </p>
                 </div>
               </div>
@@ -226,14 +211,15 @@ export default function TripPage() {
                   <span className="day-num">2</span>
                 </div>
                 <div className="hm-itinerary-content">
-                  <h4>Day at Sea</h4>
+                  <h4>Great Stirrup Cay</h4>
                   <div className="location">
-                    <i className="fa-solid fa-water"></i> Open Ocean
+                    <i className="fa-solid fa-location-dot"></i> Great Stirrup Cay, Bahamas &bull; 7:00 AM – 5:00 PM
                   </div>
                   <p>
-                    Morning yoga on the deck, pool party, networking brunch, and afternoon
-                    activities. Evening features a themed dinner and the first official
-                    Hustle Mentality deck party with a live DJ.
+                    A full day on NCL&apos;s private island paradise! Beach parties, water
+                    sports, snorkeling in crystal-clear waters, cabana vibes, and group
+                    beach activities. Evening deck party back on the ship to cap off
+                    an incredible day.
                   </p>
                 </div>
               </div>
@@ -246,97 +232,26 @@ export default function TripPage() {
                 <div className="hm-itinerary-content">
                   <h4>Nassau, Bahamas</h4>
                   <div className="location">
-                    <i className="fa-solid fa-location-dot"></i> Nassau, Bahamas
+                    <i className="fa-solid fa-location-dot"></i> Nassau, Bahamas &bull; 7:00 AM – 5:00 PM
                   </div>
                   <p>
-                    Explore the colorful streets and rich culture of Nassau. Group excursion
+                    Explore the vibrant capital of the Bahamas. Group excursion
                     options include snorkeling at the reef, a cultural walking tour of
-                    downtown, or a beach day at Junkanoo Beach.
+                    downtown, shopping on Bay Street, or a beach day at Junkanoo Beach.
+                    Farewell party on deck that evening.
                   </p>
                 </div>
               </div>
 
               <div className="hm-itinerary-item wow fadeInUp" data-wow-delay=".25s">
-                <div className="hm-itinerary-day">
-                  <span className="day-label">Day</span>
-                  <span className="day-num">4</span>
-                </div>
-                <div className="hm-itinerary-content">
-                  <h4>CocoCay Private Island</h4>
-                  <div className="location">
-                    <i className="fa-solid fa-location-dot"></i> CocoCay, Bahamas
-                  </div>
-                  <p>
-                    A full day on a private island paradise. Water sports, beach volleyball,
-                    floating bar, and island exploration. Group cabana experience and
-                    sunset beach bonfire to close out the day.
-                  </p>
-                </div>
-              </div>
-
-              <div className="hm-itinerary-item wow fadeInUp" data-wow-delay=".3s">
-                <div className="hm-itinerary-day">
-                  <span className="day-label">Day</span>
-                  <span className="day-num">5</span>
-                </div>
-                <div className="hm-itinerary-content">
-                  <h4>Day at Sea</h4>
-                  <div className="location">
-                    <i className="fa-solid fa-water"></i> Open Ocean
-                  </div>
-                  <p>
-                    Spa and wellness day, cooking class with the ship&apos;s chef,
-                    afternoon karaoke competition, and trivia. Evening features
-                    a formal community dinner and awards night.
-                  </p>
-                </div>
-              </div>
-
-              <div className="hm-itinerary-item wow fadeInUp" data-wow-delay=".35s">
-                <div className="hm-itinerary-day">
-                  <span className="day-label">Day</span>
-                  <span className="day-num">6</span>
-                </div>
-                <div className="hm-itinerary-content">
-                  <h4>Cozumel, Mexico</h4>
-                  <div className="location">
-                    <i className="fa-solid fa-location-dot"></i> Cozumel, Mexico
-                  </div>
-                  <p>
-                    World-class snorkeling and diving, zip-line adventures through the
-                    jungle, or explore ancient Mayan ruins. Group taco tour and tequila
-                    tasting in the evening before returning to the ship.
-                  </p>
-                </div>
-              </div>
-
-              <div className="hm-itinerary-item wow fadeInUp" data-wow-delay=".4s">
-                <div className="hm-itinerary-day">
-                  <span className="day-label">Day</span>
-                  <span className="day-num">7</span>
-                </div>
-                <div className="hm-itinerary-content">
-                  <h4>Final Day at Sea</h4>
-                  <div className="location">
-                    <i className="fa-solid fa-water"></i> Open Ocean — Heading Home
-                  </div>
-                  <p>
-                    Last full day onboard. Morning fitness challenge, afternoon pool
-                    party, farewell community dinner, and the grand finale — an all-white
-                    deck party to close out an unforgettable week.
-                  </p>
-                </div>
-              </div>
-
-              <div className="hm-itinerary-item wow fadeInUp" data-wow-delay=".45s">
                 <div className="hm-itinerary-day" style={{ background: "var(--theme-color1)" }}>
                   <span className="day-label" style={{ color: "var(--theme-color2)" }}>Day</span>
-                  <span className="day-num" style={{ color: "var(--theme-color2)" }}>8</span>
+                  <span className="day-num" style={{ color: "var(--theme-color2)" }}>4</span>
                 </div>
                 <div className="hm-itinerary-content" style={{ borderLeftColor: "var(--theme-color3)" }}>
                   <h4>Return to Miami</h4>
                   <div className="location">
-                    <i className="fa-solid fa-location-dot"></i> Port of Miami, Florida
+                    <i className="fa-solid fa-location-dot"></i> Port of Miami, Florida &bull; Arrive 7:00 AM
                   </div>
                   <p>
                     Disembarkation morning. Say goodbye to your new tribe — but not
@@ -455,7 +370,7 @@ export default function TripPage() {
               <h3 className="title char-animation">
                 Ready to Set Sail?
                 <br />
-                March 2027
+                May 2027
               </h3>
               <div className="text wow fadeInUp" data-wow-delay=".3s">
                 Secure your spot on The Bahamas Wave before cabins sell out.

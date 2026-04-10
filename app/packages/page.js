@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Packages & Pricing - Hustle Mentality",
-  description: "View cruise packages and pricing for The Bahamas Wave. Choose from Interior, Ocean View, or Balcony cabins with flexible payment plans.",
+  description: "View cabin packages and pricing for The Bahamas Wave aboard the Norwegian Getaway. Choose from Inside, Oceanview, Balcony, Club Suite, or Haven cabins.",
 };
 
 export default function PackagesPage() {
@@ -21,7 +21,7 @@ export default function PackagesPage() {
             <span>Packages</span>
           </div>
           <p className="subtitle wow fadeInUp" data-wow-delay=".3s">
-            Choose the package that fits your style. All packages include the full Hustle Mentality experience.
+            Choose the cabin that fits your style. All packages include the full Hustle Mentality experience aboard the Norwegian Getaway.
           </p>
         </div>
       </section>
@@ -40,28 +40,29 @@ export default function PackagesPage() {
                 </h2>
               </div>
               <p className="wow fadeInUp mt-3" data-wow-delay=".2s" style={{ color: "var(--text-color)" }}>
-                Every package includes 7 nights accommodation, all meals, community events,
+                Every package includes 3 nights accommodation on the Norwegian Getaway, all meals, community events,
                 deck parties, and access to the full Hustle Mentality experience.
               </p>
             </div>
           </div>
 
+          {/* Row 1: Standard Cabins */}
           <div className="row g-4 justify-content-center">
-            {/* Interior Cabin */}
+            {/* Inside */}
             <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
               <div className="hm-pricing-card">
                 <div className="plan-icon">
                   <i className="fa-solid fa-bed"></i>
                 </div>
-                <h4 className="plan-name">Interior Cabin</h4>
+                <h4 className="plan-name">Inside</h4>
                 <div className="plan-price">
-                  $1,299<span>/person</span>
+                  $577<span>/person</span>
                 </div>
-                <div className="plan-period">Based on double occupancy</div>
+                <div className="plan-period">47 cabins &bull; 2–3 guests</div>
                 <ul className="plan-features">
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    7-night cruise accommodation
+                    3-night cruise accommodation
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
@@ -81,11 +82,7 @@ export default function PackagesPage() {
                   </li>
                   <li className="not-included">
                     <i className="fa-solid fa-times"></i>
-                    Ocean view window
-                  </li>
-                  <li className="not-included">
-                    <i className="fa-solid fa-times"></i>
-                    Private balcony
+                    Ocean view / balcony
                   </li>
                   <li className="not-included">
                     <i className="fa-solid fa-times"></i>
@@ -104,21 +101,74 @@ export default function PackagesPage() {
               </div>
             </div>
 
-            {/* Ocean View - Featured */}
+            {/* Oceanview */}
             <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+              <div className="hm-pricing-card">
+                <div className="plan-icon">
+                  <i className="fa-solid fa-window-maximize"></i>
+                </div>
+                <h4 className="plan-name">Oceanview</h4>
+                <div className="plan-price">
+                  $636<span>/person</span>
+                </div>
+                <div className="plan-period">12 cabins &bull; 2–3 guests</div>
+                <ul className="plan-features">
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    3-night cruise accommodation
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    All meals included (buffet &amp; dining room)
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Community events &amp; deck parties
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Cabin buddy matching
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Hustle Mentality welcome kit
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Picture window ocean view
+                  </li>
+                  <li className="not-included">
+                    <i className="fa-solid fa-times"></i>
+                    Private balcony
+                  </li>
+                </ul>
+                <a href="/contact" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }}>
+                  <span className="theme-btn-arrow-left">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                  <span className="theme-btn">Reserve Now</span>
+                  <span className="theme-btn-arrow-right">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            {/* Balcony - Featured */}
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
               <div className="hm-pricing-card featured">
                 <div className="plan-icon">
                   <i className="fa-solid fa-ship"></i>
                 </div>
-                <h4 className="plan-name">Ocean View</h4>
+                <h4 className="plan-name">Balcony</h4>
                 <div className="plan-price">
-                  $1,799<span>/person</span>
+                  $725<span>/person</span>
                 </div>
-                <div className="plan-period">Based on double occupancy</div>
+                <div className="plan-period">57 cabins &bull; 2–3 guests</div>
                 <ul className="plan-features">
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    7-night cruise accommodation
+                    3-night cruise accommodation
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
@@ -138,15 +188,67 @@ export default function PackagesPage() {
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    Ocean view window
+                    Private balcony with ocean view
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
                     Priority excursion booking
                   </li>
-                  <li className="not-included">
-                    <i className="fa-solid fa-times"></i>
-                    Private balcony
+                </ul>
+                <a href="/contact" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }}>
+                  <span className="theme-btn-arrow-left">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                  <span className="theme-btn">Reserve Now</span>
+                  <span className="theme-btn-arrow-right">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 2: Premium Cabins */}
+          <div className="row g-4 justify-content-center mt-2">
+            {/* Club Balcony Suite */}
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+              <div className="hm-pricing-card">
+                <div className="plan-icon">
+                  <i className="fa-solid fa-star"></i>
+                </div>
+                <h4 className="plan-name">Club Balcony Suite</h4>
+                <div className="plan-price">
+                  $855<span>/person</span>
+                </div>
+                <div className="plan-period">4 cabins &bull; 2 guests</div>
+                <ul className="plan-features">
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    3-night suite accommodation
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    All meals + specialty dining
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    VIP community events &amp; deck parties
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Premium welcome kit + exclusive merch
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Private balcony &amp; premium location
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Concierge service
+                  </li>
+                  <li>
+                    <i className="fa-solid fa-check"></i>
+                    Priority excursion booking
                   </li>
                 </ul>
                 <a href="/contact" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }}>
@@ -161,21 +263,21 @@ export default function PackagesPage() {
               </div>
             </div>
 
-            {/* Balcony Suite */}
-            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+            {/* Haven Suite */}
+            <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
               <div className="hm-pricing-card">
                 <div className="plan-icon">
                   <i className="fa-solid fa-crown"></i>
                 </div>
-                <h4 className="plan-name">Balcony Suite</h4>
+                <h4 className="plan-name">Haven Suite</h4>
                 <div className="plan-price">
-                  $2,499<span>/person</span>
+                  From $1,559<span>/person</span>
                 </div>
-                <div className="plan-period">Based on double occupancy</div>
+                <div className="plan-period">5 cabins &bull; 2–3 guests</div>
                 <ul className="plan-features">
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    7-night cruise accommodation
+                    3-night Haven suite accommodation
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
@@ -187,25 +289,28 @@ export default function PackagesPage() {
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    Cabin buddy matching
+                    Haven exclusive area access
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    Premium welcome kit + exclusive merch
+                    Butler &amp; concierge service
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    Private balcony with ocean view
+                    Private balcony &amp; priority embarkation
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    Priority excursion booking
+                    Premium beverage package
                   </li>
                   <li>
                     <i className="fa-solid fa-check"></i>
-                    Complimentary beverage package
+                    Private Haven restaurant &amp; lounge
                   </li>
                 </ul>
+                <p style={{ fontSize: "13px", color: "var(--text-color)", marginTop: "10px", marginBottom: "15px" }}>
+                  Penthouse $1,559/pp &bull; Family Villa $2,080/pp
+                </p>
                 <a href="/contact" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }}>
                   <span className="theme-btn-arrow-left">
                     <i className="fa-solid fa-arrow-right"></i>
@@ -293,7 +398,7 @@ export default function PackagesPage() {
               <div className="mt-4" style={{ lineHeight: 1.7, color: "var(--text-color)" }}>
                 <p>
                   We believe everyone deserves an incredible cruise experience. That&apos;s why
-                  we offer flexible payment plans to help you secure your spot and pay over time.
+                  we offer a structured payment plan to help you secure your spot and pay over time.
                 </p>
               </div>
               <ul className="choose-us-block-content1 mt-3">
@@ -302,9 +407,9 @@ export default function PackagesPage() {
                     <i className="fa-solid fa-credit-card fa-2x" style={{ color: "var(--theme-color3)" }}></i>
                   </div>
                   <div className="content">
-                    <h4 className="title">$250 Deposit</h4>
+                    <h4 className="title">10% Deposit</h4>
                     <div className="text">
-                      Lock in your spot with a $250 refundable deposit. Your cabin is reserved
+                      Lock in your spot with a 10% deposit of your total fare. Your cabin is reserved
                       the moment we receive your deposit.
                     </div>
                   </div>
@@ -314,10 +419,10 @@ export default function PackagesPage() {
                     <i className="fa-solid fa-calendar-days fa-2x" style={{ color: "var(--theme-color3)" }}></i>
                   </div>
                   <div className="content">
-                    <h4 className="title">Monthly Payments</h4>
+                    <h4 className="title">Scheduled Payments</h4>
                     <div className="text">
-                      Split the remaining balance into easy monthly payments. Pay as little
-                      as $100/month leading up to the cruise date.
+                      25% due 6 months before sailing, another 25% at 4 months, and the
+                      remaining balance due 2 months before departure.
                     </div>
                   </div>
                 </li>
@@ -326,10 +431,10 @@ export default function PackagesPage() {
                     <i className="fa-solid fa-percent fa-2x" style={{ color: "var(--theme-color3)" }}></i>
                   </div>
                   <div className="content">
-                    <h4 className="title">Early Bird Discount</h4>
+                    <h4 className="title">Pay in Full &amp; Save</h4>
                     <div className="text">
-                      Book before December 2026 and save 10% on any package. The earlier
-                      you book, the more you save.
+                      Prefer to pay up front? Full payment is always accepted and
+                      locks in your rate immediately. No surprises, no deadlines.
                     </div>
                   </div>
                 </li>
@@ -360,7 +465,7 @@ export default function PackagesPage() {
                 Lock In Your Spot Today
               </h3>
               <div className="text wow fadeInUp" data-wow-delay=".3s">
-                Cabins are limited. Reserve yours with a $250 deposit and start your payment plan.
+                125 cabins. 294 guests. Reserve yours with a 10% deposit and start your payment plan.
               </div>
             </div>
             <div className="wow fadeInUp" data-wow-delay=".5s">

@@ -7,6 +7,11 @@ import { useAuth } from "../context/AuthContext";
 import api from "../lib/client-api";
 
 const DEFAULT_AVATAR = "/images/default-avatar.png";
+const POLL_INTERVAL_MS = 8000;
+const SIDEBAR_REFRESH_EVERY_N_TICKS = 4; // ~32s
+const NEAR_BOTTOM_PX = 100;
+const NEAR_TOP_PX = 100;
+const PAGE_SIZE = 50;
 
 function ChatContent() {
   const { user } = useAuth();
@@ -19,8 +24,25 @@ function ChatContent() {
   const [sending, setSending] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [loadingOlder, setLoadingOlder] = useState(false);
+  const [hasMoreOlder, setHasMoreOlder] = useState(true);
+  const [sendError, setSendError] = useState("");
+
   const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
   const pollRef = useRef(null);
+  const lastMessageIdRef = useRef(null);
+  const oldestMessageIdRef = useRef(null);
+  const wasAtBottomRef = useRef(true);
+  const justSentRef = useRef(false);
+  const sendErrorTimeoutRef = useRef(null);
+  const pollTickRef = useRef(0);
+
+  const isNearBottom = () => {
+    const el = messagesContainerRef.current;
+    if (!el) return true;
+    return el.scrollHeight - el.scrollTop - el.clientHeight < NEAR_BOTTOM_PX;
+  };
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -29,7 +51,7 @@ function ChatContent() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Load conversations
+  // Initial load of conversations sidebar
   useEffect(() => {
     api.get("/chat/conversations")
       .then((data) => {
@@ -43,16 +65,20 @@ function ChatContent() {
       .finally(() => setLoadingConvos(false));
   }, []);
 
-  // Load messages when active conversation changes
+  // Load message history when active conversation changes
   const loadMessages = useCallback(async (convoId) => {
     if (!convoId) return;
     setLoadingMsgs(true);
+    setHasMoreOlder(true);
     try {
       const data = await api.get(`/chat/conversations/${convoId}/messages`);
-      setMessages(Array.isArray(data) ? data : []);
-      // Mark as read
+      const list = Array.isArray(data) ? data : [];
+      setMessages(list);
+      lastMessageIdRef.current = list.length ? list[list.length - 1].id : null;
+      oldestMessageIdRef.current = list.length ? list[0].id : null;
+      if (list.length < PAGE_SIZE) setHasMoreOlder(false);
+      justSentRef.current = true;
       api.post(`/chat/conversations/${convoId}/read`).catch(() => {});
-      // Update unread count in sidebar
       setConversations((prev) =>
         prev.map((c) =>
           (c.conversationId || c.id) === convoId ? { ...c, unreadCount: 0 } : c
@@ -60,6 +86,8 @@ function ChatContent() {
       );
     } catch {
       setMessages([]);
+      lastMessageIdRef.current = null;
+      oldestMessageIdRef.current = null;
     } finally {
       setLoadingMsgs(false);
     }
@@ -69,34 +97,131 @@ function ChatContent() {
     if (activeConvoId) loadMessages(activeConvoId);
   }, [activeConvoId, loadMessages]);
 
-  // Poll for new messages every 8 seconds
+  // Incremental polling: only fetch messages newer than what we've seen.
+  // Pauses when the tab is hidden, resumes (with an immediate catch-up fetch) on return.
   useEffect(() => {
     if (!activeConvoId) return;
-    pollRef.current = setInterval(async () => {
+
+    const fetchIncremental = async () => {
       try {
-        const data = await api.get(`/chat/conversations/${activeConvoId}/messages`);
-        if (Array.isArray(data)) setMessages(data);
-        // Also refresh conversations for unread counts
-        const convos = await api.get("/chat/conversations");
-        if (Array.isArray(convos)) setConversations(convos);
+        const lastId = lastMessageIdRef.current;
+        const url = lastId
+          ? `/chat/conversations/${activeConvoId}/messages?after=${lastId}`
+          : `/chat/conversations/${activeConvoId}/messages`;
+        const data = await api.get(url);
+        const newMsgs = Array.isArray(data) ? data : [];
+
+        if (newMsgs.length > 0) {
+          wasAtBottomRef.current = isNearBottom();
+          setMessages((prev) => {
+            const existingIds = new Set(prev.map((m) => m.id));
+            return [...prev, ...newMsgs.filter((m) => !existingIds.has(m.id))];
+          });
+          lastMessageIdRef.current = newMsgs[newMsgs.length - 1].id;
+          api.post(`/chat/conversations/${activeConvoId}/read`).catch(() => {});
+        }
+
+        // Refresh sidebar every Nth tick so unread counts and last-messages
+        // from OTHER conversations update without flooding the network
+        pollTickRef.current = (pollTickRef.current + 1) % SIDEBAR_REFRESH_EVERY_N_TICKS;
+        if (pollTickRef.current === 0) {
+          api.get("/chat/conversations").then((convos) => {
+            if (Array.isArray(convos)) setConversations(convos);
+          }).catch(() => {});
+        }
       } catch {}
-    }, 8000);
-    return () => clearInterval(pollRef.current);
+    };
+
+    const startPolling = () => {
+      if (pollRef.current) return;
+      pollRef.current = setInterval(fetchIncremental, POLL_INTERVAL_MS);
+    };
+
+    const stopPolling = () => {
+      if (pollRef.current) {
+        clearInterval(pollRef.current);
+        pollRef.current = null;
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopPolling();
+      } else {
+        fetchIncremental();
+        startPolling();
+      }
+    };
+
+    if (typeof document === "undefined" || !document.hidden) startPolling();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      stopPolling();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
   }, [activeConvoId]);
 
-  // Scroll to bottom on new messages
+  // Smart scroll: only auto-scroll if user was already near the bottom or just sent a message.
+  // Prevents poll updates from yanking the user away while reading older history.
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (justSentRef.current || wasAtBottomRef.current) {
+      messagesEndRef.current?.scrollIntoView({
+        behavior: justSentRef.current ? "auto" : "smooth",
+      });
+      justSentRef.current = false;
+    }
   }, [messages]);
 
+  // Load older messages when scrolled near the top, preserving scroll position.
+  const loadOlder = useCallback(async () => {
+    if (loadingOlder || !hasMoreOlder || !activeConvoId || !oldestMessageIdRef.current) return;
+    setLoadingOlder(true);
+    const container = messagesContainerRef.current;
+    const prevScrollHeight = container?.scrollHeight ?? 0;
+    const prevScrollTop = container?.scrollTop ?? 0;
+    try {
+      const data = await api.get(
+        `/chat/conversations/${activeConvoId}/messages?before=${oldestMessageIdRef.current}&limit=${PAGE_SIZE}`
+      );
+      const olderMsgs = Array.isArray(data) ? data : [];
+      if (olderMsgs.length === 0) {
+        setHasMoreOlder(false);
+      } else {
+        setMessages((prev) => [...olderMsgs, ...prev]);
+        oldestMessageIdRef.current = olderMsgs[0].id;
+        if (olderMsgs.length < PAGE_SIZE) setHasMoreOlder(false);
+        // Restore relative scroll position so the user keeps reading the same message
+        requestAnimationFrame(() => {
+          if (container) {
+            container.scrollTop =
+              container.scrollHeight - prevScrollHeight + prevScrollTop;
+          }
+        });
+      }
+    } catch {} finally {
+      setLoadingOlder(false);
+    }
+  }, [activeConvoId, loadingOlder, hasMoreOlder]);
+
+  const handleScroll = (e) => {
+    if (e.currentTarget.scrollTop < NEAR_TOP_PX) {
+      loadOlder();
+    }
+  };
+
   const handleSend = async (e) => {
-    e.preventDefault();
+    if (e?.preventDefault) e.preventDefault();
     if (!newMsg.trim() || !activeConvoId || sending) return;
     const text = newMsg.trim();
     setNewMsg("");
     setSending(true);
+    setSendError("");
+    if (sendErrorTimeoutRef.current) {
+      clearTimeout(sendErrorTimeoutRef.current);
+      sendErrorTimeoutRef.current = null;
+    }
 
-    // Optimistic add
     const tempMsg = {
       id: `temp-${Date.now()}`,
       senderId: user?.id,
@@ -104,14 +229,19 @@ function ChatContent() {
       createdAt: new Date().toISOString(),
       _sending: true,
     };
+    justSentRef.current = true;
     setMessages((prev) => [...prev, tempMsg]);
 
     try {
-      const sent = await api.post(`/chat/conversations/${activeConvoId}/messages`, { content: text });
+      const sent = await api.post(
+        `/chat/conversations/${activeConvoId}/messages`,
+        { content: text }
+      );
       setMessages((prev) =>
         prev.map((m) => (m.id === tempMsg.id ? { ...sent, _sending: false } : m))
       );
-      // Update last message in sidebar
+      // Advance the polling cursor so we don't re-fetch our own message
+      if (sent?.id) lastMessageIdRef.current = sent.id;
       setConversations((prev) =>
         prev.map((c) =>
           (c.conversationId || c.id) === activeConvoId
@@ -119,21 +249,38 @@ function ChatContent() {
             : c
         )
       );
-    } catch {
-      // Remove optimistic message on failure
+    } catch (err) {
       setMessages((prev) => prev.filter((m) => m.id !== tempMsg.id));
-      setNewMsg(text); // Restore the message
+      setNewMsg(text);
+      setSendError(err?.message || "Could not send message");
+      sendErrorTimeoutRef.current = setTimeout(() => setSendError(""), 3000);
     } finally {
       setSending(false);
     }
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend(e);
+    }
+  };
+
+  // Cleanup error timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (sendErrorTimeoutRef.current) clearTimeout(sendErrorTimeoutRef.current);
+    };
+  }, []);
 
   const selectConvo = (convoId) => {
     setActiveConvoId(convoId);
     if (isMobile) setShowSidebar(false);
   };
 
-  const activeConvo = conversations.find((c) => (c.conversationId || c.id) === activeConvoId);
+  const activeConvo = conversations.find(
+    (c) => (c.conversationId || c.id) === activeConvoId
+  );
 
   const getPartner = (convo) => {
     if (!convo) return null;
@@ -167,7 +314,6 @@ function ChatContent() {
     }
   };
 
-  // Group messages by date
   const groupedMessages = messages.reduce((groups, msg) => {
     const date = msg.createdAt ? new Date(msg.createdAt).toLocaleDateString() : "Today";
     if (!groups[date]) groups[date] = [];
@@ -272,7 +418,17 @@ function ChatContent() {
                 </div>
               </div>
 
-              <div className="hm-chat-messages">
+              <div
+                className="hm-chat-messages"
+                ref={messagesContainerRef}
+                onScroll={handleScroll}
+              >
+                {loadingOlder && (
+                  <div style={{ textAlign: "center", padding: "10px", color: "var(--text-color)" }}>
+                    <i className="fa-solid fa-spinner fa-spin"></i>
+                    <span style={{ fontSize: "12px", marginLeft: "8px" }}>Loading older messages…</span>
+                  </div>
+                )}
                 {loadingMsgs ? (
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "40px" }}>
                     <i className="fa-solid fa-spinner fa-spin fa-2x" style={{ color: "var(--theme-color3)" }}></i>
@@ -306,6 +462,19 @@ function ChatContent() {
                 )}
               </div>
 
+              {sendError && (
+                <div style={{
+                  background: "rgba(220,53,69,0.1)",
+                  color: "#dc3545",
+                  padding: "8px 16px",
+                  fontSize: "13px",
+                  borderTop: "1px solid rgba(220,53,69,0.2)",
+                }}>
+                  <i className="fa-solid fa-circle-exclamation" style={{ marginRight: "6px" }}></i>
+                  Failed to send: {sendError}
+                </div>
+              )}
+
               <form className="hm-chat-input" onSubmit={handleSend}>
                 <button type="button" className="hm-chat-icon-btn">
                   <i className="fa-solid fa-face-smile"></i>
@@ -315,6 +484,7 @@ function ChatContent() {
                   placeholder="Type a message..."
                   value={newMsg}
                   onChange={(e) => setNewMsg(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   disabled={sending}
                 />
                 <button type="button" className="hm-chat-icon-btn">

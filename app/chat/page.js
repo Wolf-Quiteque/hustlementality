@@ -1,33 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import AppNav from "../components/AppNav";
+import ProtectedRoute from "../components/ProtectedRoute";
+import { useAuth } from "../context/AuthContext";
+import api from "../lib/client-api";
 
-const conversations = [
-  { name: "Tyler Brooks", img: "photo-1519085360753-af0119f7cbe7", unread: 2, last: "Can't wait for the deck party!", time: "2m", isBuddy: true },
-  { name: "Olivia Thompson", img: "photo-1531746020798-e6953c6e8e04", unread: 1, last: "Hey! So excited 🚢", time: "1h", isBuddy: false },
-  { name: "Jasmine Chen", img: "photo-1573497019940-1c28c88b4f3e", unread: 0, last: "Sunrise yoga?", time: "3h", isBuddy: false },
-  { name: "Darius Mitchell", img: "photo-1560250097-0b93528c311a", unread: 0, last: "Let's link up on the ship!", time: "5h", isBuddy: false },
-];
+const DEFAULT_AVATAR = "/images/default-avatar.png";
 
-const initialMessages = [
-  { from: "them", text: "Hey Marcus! Super excited we're cabin buddies for the cruise! 🚢", time: "10:30 AM" },
-  { from: "me", text: "Yooo Tyler! Same here man, this is gonna be legendary!", time: "10:32 AM" },
-  { from: "them", text: "For real! I've been looking at the itinerary. Day 2 at Great Stirrup Cay looks insane — private island beach party and snorkeling", time: "10:33 AM" },
-  { from: "me", text: "100%. I'm def doing the snorkeling. You down for the deck party on Day 2?", time: "10:35 AM" },
-  { from: "them", text: "Bro obviously 😂 I heard they got a DJ from Miami spinning. It's about to be a movie", time: "10:36 AM" },
-  { from: "me", text: "Facts. What about the welcome mixer on Day 1? Good way to meet the whole crew", time: "10:38 AM" },
-  { from: "them", text: "I'm there. Also thinking about the fitness challenge on Day 7. You work out?", time: "10:40 AM" },
-  { from: "me", text: "Every day bro 💪 Let's hit the ship gym together", time: "10:41 AM" },
-  { from: "them", text: "Say less! Can't wait for the deck party! This cruise is gonna be one for the books", time: "10:42 AM" },
-];
-
-export default function ChatPage() {
-  const [activeConvo, setActiveConvo] = useState(0);
-  const [messages, setMessages] = useState(initialMessages);
+function ChatContent() {
+  const { user } = useAuth();
+  const [conversations, setConversations] = useState([]);
+  const [activeConvoId, setActiveConvoId] = useState(null);
+  const [messages, setMessages] = useState([]);
   const [newMsg, setNewMsg] = useState("");
+  const [loadingConvos, setLoadingConvos] = useState(true);
+  const [loadingMsgs, setLoadingMsgs] = useState(false);
+  const [sending, setSending] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const messagesEndRef = useRef(null);
+  const pollRef = useRef(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -36,128 +29,322 @@ export default function ChatPage() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const handleSend = (e) => {
+  // Load conversations
+  useEffect(() => {
+    api.get("/chat/conversations")
+      .then((data) => {
+        const list = Array.isArray(data) ? data : [];
+        setConversations(list);
+        if (list.length > 0 && !activeConvoId) {
+          setActiveConvoId(list[0].conversationId || list[0].id);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoadingConvos(false));
+  }, []);
+
+  // Load messages when active conversation changes
+  const loadMessages = useCallback(async (convoId) => {
+    if (!convoId) return;
+    setLoadingMsgs(true);
+    try {
+      const data = await api.get(`/chat/conversations/${convoId}/messages`);
+      setMessages(Array.isArray(data) ? data : []);
+      // Mark as read
+      api.post(`/chat/conversations/${convoId}/read`).catch(() => {});
+      // Update unread count in sidebar
+      setConversations((prev) =>
+        prev.map((c) =>
+          (c.conversationId || c.id) === convoId ? { ...c, unreadCount: 0 } : c
+        )
+      );
+    } catch {
+      setMessages([]);
+    } finally {
+      setLoadingMsgs(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (activeConvoId) loadMessages(activeConvoId);
+  }, [activeConvoId, loadMessages]);
+
+  // Poll for new messages every 8 seconds
+  useEffect(() => {
+    if (!activeConvoId) return;
+    pollRef.current = setInterval(async () => {
+      try {
+        const data = await api.get(`/chat/conversations/${activeConvoId}/messages`);
+        if (Array.isArray(data)) setMessages(data);
+        // Also refresh conversations for unread counts
+        const convos = await api.get("/chat/conversations");
+        if (Array.isArray(convos)) setConversations(convos);
+      } catch {}
+    }, 8000);
+    return () => clearInterval(pollRef.current);
+  }, [activeConvoId]);
+
+  // Scroll to bottom on new messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const handleSend = async (e) => {
     e.preventDefault();
-    if (!newMsg.trim()) return;
-    setMessages((prev) => [...prev, { from: "me", text: newMsg, time: "Now" }]);
+    if (!newMsg.trim() || !activeConvoId || sending) return;
+    const text = newMsg.trim();
     setNewMsg("");
+    setSending(true);
+
+    // Optimistic add
+    const tempMsg = {
+      id: `temp-${Date.now()}`,
+      senderId: user?.id,
+      content: text,
+      createdAt: new Date().toISOString(),
+      _sending: true,
+    };
+    setMessages((prev) => [...prev, tempMsg]);
+
+    try {
+      const sent = await api.post(`/chat/conversations/${activeConvoId}/messages`, { content: text });
+      setMessages((prev) =>
+        prev.map((m) => (m.id === tempMsg.id ? { ...sent, _sending: false } : m))
+      );
+      // Update last message in sidebar
+      setConversations((prev) =>
+        prev.map((c) =>
+          (c.conversationId || c.id) === activeConvoId
+            ? { ...c, lastMessage: text, lastMessageAt: new Date().toISOString() }
+            : c
+        )
+      );
+    } catch {
+      // Remove optimistic message on failure
+      setMessages((prev) => prev.filter((m) => m.id !== tempMsg.id));
+      setNewMsg(text); // Restore the message
+    } finally {
+      setSending(false);
+    }
   };
 
-  const selectConvo = (i) => {
-    setActiveConvo(i);
+  const selectConvo = (convoId) => {
+    setActiveConvoId(convoId);
     if (isMobile) setShowSidebar(false);
   };
 
+  const activeConvo = conversations.find((c) => (c.conversationId || c.id) === activeConvoId);
+
+  const getPartner = (convo) => {
+    if (!convo) return null;
+    if (convo.partner) return convo.partner;
+    if (convo.userA && convo.userB) {
+      return convo.userAId === user?.id ? convo.userB : convo.userA;
+    }
+    return null;
+  };
+
+  const partner = getPartner(activeConvo);
+
+  const timeAgo = (dateStr) => {
+    if (!dateStr) return "";
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return "Now";
+    if (mins < 60) return `${mins}m`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h`;
+    const days = Math.floor(hrs / 24);
+    return `${days}d`;
+  };
+
+  const formatTime = (dateStr) => {
+    if (!dateStr) return "";
+    try {
+      return new Date(dateStr).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    } catch {
+      return "";
+    }
+  };
+
+  // Group messages by date
+  const groupedMessages = messages.reduce((groups, msg) => {
+    const date = msg.createdAt ? new Date(msg.createdAt).toLocaleDateString() : "Today";
+    if (!groups[date]) groups[date] = [];
+    groups[date].push(msg);
+    return groups;
+  }, {});
+
+  const totalUnread = conversations.reduce((a, c) => a + (c.unreadCount || 0), 0);
+
+  if (loadingConvos) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "40vh" }}>
+        <i className="fa-solid fa-spinner fa-spin fa-2x" style={{ color: "var(--theme-color3)" }}></i>
+      </div>
+    );
+  }
+
   return (
-    <>
-      <AppNav />
-
-      <section className="hm-chat-section" style={{ background: "var(--hm-app-page-bg, #f5f7fa)", height: "100vh", overflow: "hidden" }}>
-        <div className="hm-chat-container">
-          {/* Sidebar */}
-          <div className={`hm-chat-sidebar ${isMobile && !showSidebar ? "hm-chat-sidebar-hidden" : ""}`}>
-            <div className="hm-chat-sidebar-header">
-              <h4>Messages</h4>
-              <span style={{ fontSize: "14px", color: "var(--theme-color3)" }}>
-                {conversations.reduce((a, c) => a + c.unread, 0)} new
-              </span>
-            </div>
-            {conversations.map((convo, i) => (
-              <div
-                key={i}
-                className={`hm-chat-convo ${i === activeConvo ? "active" : ""}`}
-                onClick={() => selectConvo(i)}
-              >
-                <div className="hm-chat-convo-img-wrap">
-                  <img
-                    src={`https://images.unsplash.com/${convo.img}?w=100&q=80`}
-                    alt={convo.name}
-                  />
-                  {convo.isBuddy && <div className="hm-chat-buddy-dot"></div>}
-                </div>
-                <div className="hm-chat-convo-info">
-                  <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <span style={{ fontWeight: 600, fontSize: "15px" }}>{convo.name}</span>
-                    <span style={{ fontSize: "12px", color: "var(--text-color)" }}>{convo.time}</span>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "13px", color: "var(--text-color)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: "180px" }}>
-                      {convo.last}
-                    </span>
-                    {convo.unread > 0 && <span className="hm-chat-unread">{convo.unread}</span>}
-                  </div>
-                </div>
-              </div>
-            ))}
+    <section className="hm-chat-section" style={{ background: "var(--hm-app-page-bg, #f5f7fa)", height: "100vh", overflow: "hidden" }}>
+      <div className="hm-chat-container">
+        {/* Sidebar */}
+        <div className={`hm-chat-sidebar ${isMobile && !showSidebar ? "hm-chat-sidebar-hidden" : ""}`}>
+          <div className="hm-chat-sidebar-header">
+            <h4>Messages</h4>
+            <span style={{ fontSize: "14px", color: "var(--theme-color3)" }}>
+              {totalUnread > 0 ? `${totalUnread} new` : ""}
+            </span>
           </div>
-
-          {/* Chat area */}
-          <div className="hm-chat-main">
-            <div className="hm-chat-header">
-              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                <button
-                  type="button"
-                  className="hm-chat-back-btn"
-                  onClick={() => setShowSidebar(true)}
+          {conversations.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "40px 20px", color: "var(--text-color)" }}>
+              <i className="fa-solid fa-comments fa-3x" style={{ color: "#ccc", marginBottom: "15px" }}></i>
+              <p>No conversations yet</p>
+              <p style={{ fontSize: "13px" }}>Match with travelers to start chatting!</p>
+            </div>
+          ) : (
+            conversations.map((convo) => {
+              const convoId = convo.conversationId || convo.id;
+              const convoPartner = getPartner(convo);
+              return (
+                <div
+                  key={convoId}
+                  className={`hm-chat-convo ${convoId === activeConvoId ? "active" : ""}`}
+                  onClick={() => selectConvo(convoId)}
                 >
-                  <i className="fa-solid fa-arrow-left"></i>
-                </button>
-                <img
-                  src={`https://images.unsplash.com/${conversations[activeConvo].img}?w=80&q=80`}
-                  alt=""
-                  style={{ width: "38px", height: "38px", borderRadius: "50%", objectFit: "cover" }}
-                />
-                <div>
-                  <h5 style={{ margin: 0, fontSize: "15px", fontWeight: 600 }}>
-                    {conversations[activeConvo].name}
-                  </h5>
-                  <span style={{ fontSize: "12px", color: "var(--theme-color3)" }}>
-                    {conversations[activeConvo].isBuddy ? "Cabin Buddy" : "Matched"}
-                  </span>
-                </div>
-              </div>
-              <div style={{ display: "flex", gap: "12px" }}>
-                <button className="hm-chat-icon-btn"><i className="fa-solid fa-phone"></i></button>
-                <button className="hm-chat-icon-btn"><i className="fa-solid fa-video"></i></button>
-              </div>
-            </div>
-
-            <div className="hm-chat-messages">
-              <div style={{ textAlign: "center", margin: "20px 0" }}>
-                <span style={{ background: "var(--hm-app-chip-bg, rgba(0,0,0,0.06))", padding: "4px 16px", borderRadius: "20px", fontSize: "13px", color: "var(--text-color)" }}>
-                  Today
-                </span>
-              </div>
-              {messages.map((msg, i) => (
-                <div key={i} className={`hm-chat-msg ${msg.from === "me" ? "hm-chat-msg-me" : "hm-chat-msg-them"}`}>
-                  <div className="hm-chat-bubble">
-                    {msg.text}
-                    <span className="hm-chat-time">{msg.time}</span>
+                  <div className="hm-chat-convo-img-wrap">
+                    <img
+                      src={convoPartner?.profile?.avatarUrl || convoPartner?.avatarUrl || DEFAULT_AVATAR}
+                      alt={convoPartner?.firstName || "User"}
+                      onError={(e) => { e.target.src = DEFAULT_AVATAR; }}
+                    />
+                    {convo.matchStatus === "cabin_buddy" && <div className="hm-chat-buddy-dot"></div>}
+                  </div>
+                  <div className="hm-chat-convo-info">
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span style={{ fontWeight: 600, fontSize: "15px" }}>
+                        {convoPartner?.firstName || "User"} {convoPartner?.lastName || ""}
+                      </span>
+                      <span style={{ fontSize: "12px", color: "var(--text-color)" }}>
+                        {timeAgo(convo.lastMessageAt)}
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: "13px", color: "var(--text-color)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: "180px" }}>
+                        {convo.lastMessage || "Start a conversation!"}
+                      </span>
+                      {(convo.unreadCount || 0) > 0 && <span className="hm-chat-unread">{convo.unreadCount}</span>}
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            <form className="hm-chat-input" onSubmit={handleSend}>
-              <button type="button" className="hm-chat-icon-btn">
-                <i className="fa-solid fa-face-smile"></i>
-              </button>
-              <input
-                type="text"
-                placeholder="Type a message..."
-                value={newMsg}
-                onChange={(e) => setNewMsg(e.target.value)}
-              />
-              <button type="button" className="hm-chat-icon-btn">
-                <i className="fa-solid fa-paperclip"></i>
-              </button>
-              <button type="submit" className="hm-chat-send-btn">
-                <i className="fa-solid fa-paper-plane"></i>
-              </button>
-            </form>
-          </div>
+              );
+            })
+          )}
         </div>
-      </section>
-    </>
+
+        {/* Chat area */}
+        <div className="hm-chat-main">
+          {activeConvo && partner ? (
+            <>
+              <div className="hm-chat-header">
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <button
+                    type="button"
+                    className="hm-chat-back-btn"
+                    onClick={() => setShowSidebar(true)}
+                  >
+                    <i className="fa-solid fa-arrow-left"></i>
+                  </button>
+                  <img
+                    src={partner?.profile?.avatarUrl || partner?.avatarUrl || DEFAULT_AVATAR}
+                    alt={partner?.firstName}
+                    style={{ width: "38px", height: "38px", borderRadius: "50%", objectFit: "cover" }}
+                    onError={(e) => { e.target.src = DEFAULT_AVATAR; }}
+                  />
+                  <div>
+                    <h5 style={{ margin: 0, fontSize: "15px", fontWeight: 600 }}>
+                      {partner.firstName} {partner.lastName}
+                    </h5>
+                    <span style={{ fontSize: "12px", color: "var(--theme-color3)" }}>
+                      {activeConvo.matchStatus === "cabin_buddy" ? "Cabin Buddy" : "Matched"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="hm-chat-messages">
+                {loadingMsgs ? (
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "40px" }}>
+                    <i className="fa-solid fa-spinner fa-spin fa-2x" style={{ color: "var(--theme-color3)" }}></i>
+                  </div>
+                ) : messages.length === 0 ? (
+                  <div style={{ textAlign: "center", padding: "60px 20px", color: "var(--text-color)" }}>
+                    <i className="fa-solid fa-hand-wave fa-3x" style={{ color: "#ccc", marginBottom: "15px" }}></i>
+                    <p>Say hello to {partner.firstName}!</p>
+                  </div>
+                ) : (
+                  <>
+                    {Object.entries(groupedMessages).map(([date, msgs]) => (
+                      <div key={date}>
+                        <div style={{ textAlign: "center", margin: "20px 0" }}>
+                          <span style={{ background: "var(--hm-app-chip-bg, rgba(0,0,0,0.06))", padding: "4px 16px", borderRadius: "20px", fontSize: "13px", color: "var(--text-color)" }}>
+                            {date === new Date().toLocaleDateString() ? "Today" : date}
+                          </span>
+                        </div>
+                        {msgs.map((msg) => (
+                          <div key={msg.id} className={`hm-chat-msg ${msg.senderId === user?.id ? "hm-chat-msg-me" : "hm-chat-msg-them"}`}>
+                            <div className="hm-chat-bubble" style={{ opacity: msg._sending ? 0.6 : 1 }}>
+                              {msg.content}
+                              <span className="hm-chat-time">{formatTime(msg.createdAt)}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                    <div ref={messagesEndRef} />
+                  </>
+                )}
+              </div>
+
+              <form className="hm-chat-input" onSubmit={handleSend}>
+                <button type="button" className="hm-chat-icon-btn">
+                  <i className="fa-solid fa-face-smile"></i>
+                </button>
+                <input
+                  type="text"
+                  placeholder="Type a message..."
+                  value={newMsg}
+                  onChange={(e) => setNewMsg(e.target.value)}
+                  disabled={sending}
+                />
+                <button type="button" className="hm-chat-icon-btn">
+                  <i className="fa-solid fa-paperclip"></i>
+                </button>
+                <button type="submit" className="hm-chat-send-btn" disabled={sending || !newMsg.trim()}>
+                  <i className={sending ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-paper-plane"}></i>
+                </button>
+              </form>
+            </>
+          ) : (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--text-color)" }}>
+              <div style={{ textAlign: "center" }}>
+                <i className="fa-solid fa-comments fa-4x" style={{ color: "#ccc", marginBottom: "20px" }}></i>
+                <h3>Select a Conversation</h3>
+                <p>Choose a match to start chatting</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function ChatPage() {
+  return (
+    <ProtectedRoute>
+      <AppNav />
+      <ChatContent />
+    </ProtectedRoute>
   );
 }

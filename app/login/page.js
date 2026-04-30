@@ -1,19 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 
 export default function LoginPage() {
+  const { user, loading: authLoading, login, loginWithGoogle } = useAuth();
+  const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "", remember: false });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+
+  const handleGoogle = async () => {
+    setError("");
+    setGoogleLoading(true);
+    try {
+      await loginWithGoogle();
+      // The browser will redirect to Google — no further action needed here
+    } catch (err) {
+      setError(err?.message || "Could not start Google sign-in.");
+      setGoogleLoading(false);
+    }
+  };
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.replace(user.profile?.onboardingComplete ? "/dashboard" : "/onboarding");
+    }
+  }, [user, authLoading, router]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    window.location.href = "/dashboard";
+    setError("");
+    setLoading(true);
+    try {
+      await login(form.email, form.password, form.remember);
+    } catch (err) {
+      setError(err.message || "Invalid email or password. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (authLoading || user) return null;
 
   return (
     <>
@@ -54,6 +90,13 @@ export default function LoginPage() {
                   </p>
                 </div>
 
+                {error && (
+                  <div style={{ background: "rgba(220,53,69,0.1)", color: "#dc3545", padding: "12px 16px", borderRadius: "10px", marginBottom: "20px", fontSize: "14px" }}>
+                    <i className="fa-solid fa-circle-exclamation" style={{ marginRight: "8px" }}></i>
+                    {error}
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label>Email Address</label>
@@ -64,6 +107,7 @@ export default function LoginPage() {
                       value={form.email}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                     />
                   </div>
                   <div className="form-group">
@@ -75,6 +119,7 @@ export default function LoginPage() {
                       value={form.password}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                     />
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", flexWrap: "wrap", gap: "10px" }}>
@@ -96,32 +141,32 @@ export default function LoginPage() {
                     type="submit"
                     className="theme-btn-main"
                     style={{ width: "100%", justifyContent: "center" }}
+                    disabled={loading}
                   >
                     <span className="theme-btn-arrow-left">
-                      <i className="fa-solid fa-arrow-right"></i>
+                      <i className={loading ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-arrow-right"}></i>
                     </span>
-                    <span className="theme-btn">Log In</span>
+                    <span className="theme-btn">{loading ? "Logging In..." : "Log In"}</span>
                     <span className="theme-btn-arrow-right">
-                      <i className="fa-solid fa-arrow-right"></i>
+                      <i className={loading ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-arrow-right"}></i>
                     </span>
                   </button>
                 </form>
 
                 <div style={{ textAlign: "center", marginTop: "25px", paddingTop: "20px", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
                   <p style={{ color: "var(--text-color)", fontSize: "14px", marginBottom: "15px" }}>
-                    Or log in with
+                    Or continue with
                   </p>
-                  <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
-                    <button type="button" className="hm-social-btn">
-                      <i className="fab fa-google"></i> Google
-                    </button>
-                    <button type="button" className="hm-social-btn">
-                      <i className="fab fa-facebook-f"></i> Facebook
-                    </button>
-                    <button type="button" className="hm-social-btn">
-                      <i className="fab fa-apple"></i> Apple
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="hm-social-btn"
+                    onClick={handleGoogle}
+                    disabled={loading || googleLoading}
+                    style={{ width: "100%", justifyContent: "center" }}
+                  >
+                    <i className={googleLoading ? "fa-solid fa-spinner fa-spin" : "fab fa-google"}></i>
+                    {googleLoading ? " Connecting..." : " Continue with Google"}
+                  </button>
                 </div>
               </div>
             </div>

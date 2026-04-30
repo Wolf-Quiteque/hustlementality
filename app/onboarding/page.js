@@ -1,10 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
+import api from "../lib/client-api";
+import ProtectedRoute from "../components/ProtectedRoute";
+
+const allowedAvatarTypes = ["image/jpeg", "image/png", "image/webp"];
+const maxAvatarSize = 10 * 1024 * 1024;
 
 const interests = [
   "Dancing", "Nightlife", "Fitness", "Yoga", "Photography",
-  "Foodie", "Adventure", "Water Sports", "Music", "Networking",
+  "Foodie", "Advent8ure", "Water Sports", "Music", "Networking",
   "Relaxation", "Culture", "Shopping", "Gaming", "Reading",
   "Hiking", "Art", "Entrepreneurship",
 ];
@@ -17,21 +24,186 @@ const travelStyles = [
 ];
 
 const ageRanges = ["21-25", "26-30", "31-35", "36-40", "40+"];
-const cabinPrefs = ["Early riser", "Night owl", "Quiet sleeper", "Light sleeper", "Flexible"];
+const cabinPrefOptions = ["Early riser", "Night owl", "Quiet sleeper", "Light sleeper", "Flexible"];
+const cityStateOptions = [
+  "Albuquerque, NM",
+  "Anchorage, AK",
+  "Atlanta, GA",
+  "Austin, TX",
+  "Baltimore, MD",
+  "Baton Rouge, LA",
+  "Billings, MT",
+  "Birmingham, AL",
+  "Boise, ID",
+  "Boston, MA",
+  "Buffalo, NY",
+  "Burlington, VT",
+  "Charleston, SC",
+  "Charleston, WV",
+  "Charlotte, NC",
+  "Cheyenne, WY",
+  "Chicago, IL",
+  "Cincinnati, OH",
+  "Cleveland, OH",
+  "Columbia, SC",
+  "Columbus, OH",
+  "Dallas, TX",
+  "Denver, CO",
+  "Des Moines, IA",
+  "Detroit, MI",
+  "Fargo, ND",
+  "Fort Lauderdale, FL",
+  "Fort Worth, TX",
+  "Greensboro, NC",
+  "Hartford, CT",
+  "Honolulu, HI",
+  "Houston, TX",
+  "Indianapolis, IN",
+  "Jackson, MS",
+  "Jacksonville, FL",
+  "Kansas City, MO",
+  "Las Vegas, NV",
+  "Lexington, KY",
+  "Little Rock, AR",
+  "Los Angeles, CA",
+  "Louisville, KY",
+  "Manchester, NH",
+  "Memphis, TN",
+  "Miami, FL",
+  "Milwaukee, WI",
+  "Minneapolis, MN",
+  "Nashville, TN",
+  "New Orleans, LA",
+  "New York, NY",
+  "Newark, NJ",
+  "Norfolk, VA",
+  "Oklahoma City, OK",
+  "Omaha, NE",
+  "Orlando, FL",
+  "Philadelphia, PA",
+  "Phoenix, AZ",
+  "Pittsburgh, PA",
+  "Portland, ME",
+  "Portland, OR",
+  "Providence, RI",
+  "Raleigh, NC",
+  "Richmond, VA",
+  "Sacramento, CA",
+  "Salt Lake City, UT",
+  "San Antonio, TX",
+  "San Diego, CA",
+  "San Francisco, CA",
+  "San Jose, CA",
+  "Seattle, WA",
+  "Sioux Falls, SD",
+  "St. Louis, MO",
+  "Tallahassee, FL",
+  "Tampa, FL",
+  "Virginia Beach, VA",
+  "Washington, DC",
+  "Wichita, KS",
+  "Wilmington, DE",
+];
 
-export default function OnboardingPage() {
+function OnboardingContent() {
+  const { refreshUser } = useAuth();
+  const router = useRouter();
   const [step, setStep] = useState(1);
+  const [saving, setSaving] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [error, setError] = useState("");
+  const [loadingProfile, setLoadingProfile] = useState(true);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState("");
   const [profile, setProfile] = useState({
     age: "",
     city: "",
     bio: "",
+    avatarUrl: "",
     interests: [],
     travelStyle: "",
     cabinPrefs: [],
     ageRange: "",
     genderPref: "",
-    photo: null,
   });
+
+  // Load existing profile to resume progress
+  useEffect(() => {
+    api.get("/profiles/me")
+      .then((data) => {
+        setProfile((prev) => ({
+          ...prev,
+          age: data.age || "",
+          city: data.city || "",
+          bio: data.bio || "",
+          avatarUrl: data.avatarUrl || "",
+          interests: data.interests || [],
+          travelStyle: data.travelStyle || "",
+          cabinPrefs: data.cabinPrefs || [],
+          ageRange: data.preferredAgeRange || "",
+          genderPref: data.genderPref === "no_preference" ? "" : (data.genderPref || ""),
+        }));
+        setAvatarPreview(data.avatarUrl || "");
+        // Resume from saved step
+        if (data.onboardingStep > 0 && data.onboardingStep < 4) {
+          setStep(data.onboardingStep + 1);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoadingProfile(false));
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (avatarPreview.startsWith("blob:")) {
+        URL.revokeObjectURL(avatarPreview);
+      }
+    };
+  }, [avatarPreview]);
+
+  const handleAvatarChange = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!allowedAvatarTypes.includes(file.type)) {
+      setError("Please upload a JPG, PNG, or WebP image.");
+      event.target.value = "";
+      return;
+    }
+
+    if (file.size > maxAvatarSize) {
+      setError("Profile photos must be 10MB or smaller.");
+      event.target.value = "";
+      return;
+    }
+
+    setError("");
+    setAvatarFile(file);
+    setAvatarPreview(URL.createObjectURL(file));
+    event.target.value = "";
+  };
+
+  const uploadAvatarIfNeeded = async () => {
+    if (!avatarFile) return true;
+
+    setUploadingAvatar(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", avatarFile);
+
+      const uploaded = await api.postForm("/uploads/avatar", formData);
+      const publicUrl = uploaded.publicUrl || "";
+      setProfile((prev) => ({ ...prev, avatarUrl: publicUrl }));
+      if (publicUrl) setAvatarPreview(publicUrl);
+      setAvatarFile(null);
+      return true;
+    } catch (err) {
+      setError(err.message || "Photo upload failed. Please try again.");
+      return false;
+    } finally {
+      setUploadingAvatar(false);
+    }
+  };
 
   const toggleInterest = (interest) => {
     setProfile((prev) => ({
@@ -51,16 +223,85 @@ export default function OnboardingPage() {
     }));
   };
 
-  const nextStep = () => setStep((s) => Math.min(s + 1, 4));
-  const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+  const saveStep = async (stepNum) => {
+    setSaving(true);
+    setError("");
+    try {
+      if (stepNum === 1) {
+        const uploaded = await uploadAvatarIfNeeded();
+        if (!uploaded) return false;
 
-  const handleFinish = () => {
-    window.location.href = "/dashboard";
+        await api.patch("/profiles/me/onboarding/1", {
+          age: profile.age ? Number(profile.age) : null,
+          city: profile.city || null,
+          bio: profile.bio || null,
+        });
+      } else if (stepNum === 2) {
+        await api.patch("/profiles/me/onboarding/2", {
+          interests: profile.interests,
+        });
+      } else if (stepNum === 3) {
+        await api.patch("/profiles/me/onboarding/3", {
+          travelStyle: profile.travelStyle || null,
+        });
+      } else if (stepNum === 4) {
+        await api.patch("/profiles/me/onboarding/4", {
+          preferredAgeRange: profile.ageRange || null,
+          genderPref: profile.genderPref || "no_preference",
+          cabinPrefs: profile.cabinPrefs,
+        });
+      }
+      return true;
+    } catch (err) {
+      setError(err.message || "Failed to save. Please try again.");
+      return false;
+    } finally {
+      setSaving(false);
+    }
   };
+
+  const nextStep = async () => {
+    const saved = await saveStep(step);
+    if (saved) setStep((s) => Math.min(s + 1, 4));
+  };
+
+  const prevStep = () => {
+    setError("");
+    setStep((s) => Math.max(s - 1, 1));
+  };
+
+  const handleFinish = async () => {
+    const saved = await saveStep(4);
+    if (!saved) return;
+    setSaving(true);
+    try {
+      await api.post("/profiles/me/onboarding/complete");
+      await refreshUser();
+      router.push("/dashboard");
+    } catch (err) {
+      setError(err.message || "Failed to complete onboarding.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (loadingProfile) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "40vh" }}>
+        <i className="fa-solid fa-spinner fa-spin fa-2x" style={{ color: "var(--theme-color3)" }}></i>
+      </div>
+    );
+  }
+
+  const isBusy = saving || uploadingAvatar;
+  const busyLabel = uploadingAvatar ? "Uploading..." : "Saving...";
+  const cityOptions = profile.city && !cityStateOptions.includes(profile.city)
+    ? [profile.city, ...cityStateOptions]
+    : cityStateOptions;
 
   return (
     <>
-      <section style={{ background: "var(--theme-color2)", padding: "100px 0 40px" }}>
+      <section style={{ background: "var(--hm-app-hero-bg, var(--theme-color2))", padding: "100px 0 40px" }}>
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: "30px" }}>
             <img src="/images/newlogo.png" alt="HM" style={{ height: "50px", marginBottom: "15px" }} />
@@ -70,7 +311,6 @@ export default function OnboardingPage() {
             </p>
           </div>
 
-          {/* Progress bar */}
           <div className="hm-progress-bar">
             {[1, 2, 3, 4].map((s) => (
               <div key={s} className={`hm-progress-step ${s <= step ? "active" : ""} ${s < step ? "completed" : ""}`}>
@@ -89,11 +329,18 @@ export default function OnboardingPage() {
         </div>
       </section>
 
-      <section className="section-padding fix">
+      <section className="section-padding fix" style={{ background: "var(--hm-app-page-bg, transparent)" }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="hm-contact-form" style={{ padding: "40px" }}>
+
+                {error && (
+                  <div style={{ background: "rgba(220,53,69,0.1)", color: "#dc3545", padding: "12px 16px", borderRadius: "10px", marginBottom: "20px", fontSize: "14px" }}>
+                    <i className="fa-solid fa-circle-exclamation" style={{ marginRight: "8px" }}></i>
+                    {error}
+                  </div>
+                )}
 
                 {/* Step 1: About You */}
                 {step === 1 && (
@@ -104,10 +351,29 @@ export default function OnboardingPage() {
                     <div className="row g-3">
                       <div className="col-12" style={{ textAlign: "center", marginBottom: "10px" }}>
                         <div className="hm-avatar-upload">
-                          <div className="hm-avatar-placeholder">
-                            <i className="fa-solid fa-camera fa-2x"></i>
-                            <span>Upload Photo</span>
-                          </div>
+                          <label className={`hm-avatar-placeholder ${avatarPreview ? "has-image" : ""}`}>
+                            <input
+                              type="file"
+                              accept="image/jpeg,image/png,image/webp"
+                              onChange={handleAvatarChange}
+                              disabled={isBusy}
+                              style={{ display: "none" }}
+                            />
+                            {avatarPreview ? (
+                              <>
+                                <img src={avatarPreview} alt="Profile preview" />
+                                <span>Change Photo</span>
+                              </>
+                            ) : (
+                              <>
+                                <i className="fa-solid fa-camera fa-2x"></i>
+                                <span>Upload Photo</span>
+                              </>
+                            )}
+                          </label>
+                          <p style={{ marginTop: "10px", fontSize: "12px", color: "var(--text-color)" }}>
+                            JPG, PNG, or WebP. Max 10MB.
+                          </p>
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -124,12 +390,15 @@ export default function OnboardingPage() {
                       <div className="col-md-6">
                         <div className="form-group">
                           <label>City, State</label>
-                          <input
-                            type="text"
-                            placeholder="e.g. Miami, FL"
+                          <select
                             value={profile.city}
                             onChange={(e) => setProfile((p) => ({ ...p, city: e.target.value }))}
-                          />
+                          >
+                            <option value="">Select your city</option>
+                            {cityOptions.map((city) => (
+                              <option key={city} value={city}>{city}</option>
+                            ))}
+                          </select>
                         </div>
                       </div>
                       <div className="col-12">
@@ -252,7 +521,7 @@ export default function OnboardingPage() {
                           I am a... (select all that apply)
                         </label>
                         <div className="hm-interest-grid">
-                          {cabinPrefs.map((pref) => (
+                          {cabinPrefOptions.map((pref) => (
                             <button
                               key={pref}
                               type="button"
@@ -272,44 +541,32 @@ export default function OnboardingPage() {
                 )}
 
                 {/* Navigation buttons */}
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px", paddingTop: "20px", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px", paddingTop: "20px", borderTop: "1px solid var(--hm-app-border, rgba(0,0,0,0.08))" }}>
                   {step > 1 ? (
-                    <button
-                      type="button"
-                      onClick={prevStep}
-                      className="hm-btn-outline"
-                    >
+                    <button type="button" onClick={prevStep} className="hm-btn-outline" disabled={isBusy}>
                       <i className="fa-solid fa-arrow-left"></i> Back
                     </button>
                   ) : (
                     <div></div>
                   )}
                   {step < 4 ? (
-                    <button
-                      type="button"
-                      onClick={nextStep}
-                      className="theme-btn-main"
-                    >
+                    <button type="button" onClick={nextStep} className="theme-btn-main" disabled={isBusy}>
                       <span className="theme-btn-arrow-left">
-                        <i className="fa-solid fa-arrow-right"></i>
+                        <i className={isBusy ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-arrow-right"}></i>
                       </span>
-                      <span className="theme-btn">Continue</span>
+                      <span className="theme-btn">{isBusy ? busyLabel : "Continue"}</span>
                       <span className="theme-btn-arrow-right">
-                        <i className="fa-solid fa-arrow-right"></i>
+                        <i className={isBusy ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-arrow-right"}></i>
                       </span>
                     </button>
                   ) : (
-                    <button
-                      type="button"
-                      onClick={handleFinish}
-                      className="theme-btn-main"
-                    >
+                    <button type="button" onClick={handleFinish} className="theme-btn-main" disabled={isBusy}>
                       <span className="theme-btn-arrow-left">
-                        <i className="fa-solid fa-arrow-right"></i>
+                        <i className={isBusy ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-arrow-right"}></i>
                       </span>
-                      <span className="theme-btn">Complete Profile</span>
+                      <span className="theme-btn">{isBusy ? (uploadingAvatar ? "Uploading..." : "Completing...") : "Complete Profile"}</span>
                       <span className="theme-btn-arrow-right">
-                        <i className="fa-solid fa-arrow-right"></i>
+                        <i className={isBusy ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-arrow-right"}></i>
                       </span>
                     </button>
                   )}
@@ -321,5 +578,13 @@ export default function OnboardingPage() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function OnboardingPage() {
+  return (
+    <ProtectedRoute requireOnboarding={false}>
+      <OnboardingContent />
+    </ProtectedRoute>
   );
 }

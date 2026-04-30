@@ -18,7 +18,7 @@ export default function LayoutShell({ children }) {
   const pathname = usePathname();
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const isApp = appRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
-  const darkAppRoutes = ["/dashboard", "/browse", "/matches", "/chat", "/my-trip"];
+  const darkAppRoutes = ["/dashboard", "/browse", "/matches", "/chat", "/my-trip", "/booking", "/onboarding"];
   const isDarkApp = darkAppRoutes.some((r) => pathname === r || pathname.startsWith(r + "/"));
 
   if (isAdmin) {
@@ -30,7 +30,7 @@ export default function LayoutShell({ children }) {
     <>
       <link href="/css/bootstrap.min.css" rel="stylesheet" precedence="theme" />
       <link href="/css/style.css" rel="stylesheet" precedence="theme" />
-      <link href="/css/dst-custom.css?v=11" rel="stylesheet" precedence="theme" />
+      <link href="/css/dst-custom.css?v=12" rel="stylesheet" precedence="theme" />
     </>
   );
 
@@ -194,7 +194,7 @@ export default function LayoutShell({ children }) {
                       <div className="footer-single-widget">
                         <div className="widget-head widget-logo">
                           <a href="/" className="footer-logo">
-                            <img src="/images/newlogo.png" alt="Hustle Mentality" className="dst-logo-img dst-logo-img-footer" />
+                            <img src="/images/logo-darktheme.png" alt="Hustle Mentality" className="dst-logo-img dst-logo-img-footer" />
                           </a>
                         </div>
                         <div className="footer-content">

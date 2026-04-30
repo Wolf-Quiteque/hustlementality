@@ -1,8 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 
 export default function SignupPage() {
+  const { user, loading: authLoading, signup, loginWithGoogle } = useAuth();
+  const router = useRouter();
+  const [googleLoading, setGoogleLoading] = useState(false);
+
+  const handleGoogle = async () => {
+    setGoogleLoading(true);
+    try {
+      await loginWithGoogle();
+    } catch (err) {
+      setGoogleLoading(false);
+    }
+  };
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -12,16 +26,57 @@ export default function SignupPage() {
     confirmPassword: "",
     agreeTerms: false,
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.replace(user.profile?.onboardingComplete ? "/dashboard" : "/onboarding");
+    }
+  }, [user, authLoading, router]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    window.location.href = "/onboarding";
+    setError("");
+
+    // Client-side validation
+    if (form.password !== form.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+    if (form.password.length < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
+    if (!form.agreeTerms) {
+      setError("You must agree to the Terms & Conditions.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await signup({
+        firstName: form.firstName,
+        lastName: form.lastName,
+        email: form.email,
+        phone: form.phone,
+        password: form.password,
+        agreeTerms: form.agreeTerms,
+      });
+    } catch (err) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (authLoading || user) return null;
 
   return (
     <>
@@ -62,42 +117,49 @@ export default function SignupPage() {
                   </p>
                 </div>
 
+                {error && (
+                  <div style={{ background: "rgba(220,53,69,0.1)", color: "#dc3545", padding: "12px 16px", borderRadius: "10px", marginBottom: "20px", fontSize: "14px" }}>
+                    <i className="fa-solid fa-circle-exclamation" style={{ marginRight: "8px" }}></i>
+                    {error}
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit}>
                   <div className="row g-3">
                     <div className="col-6">
                       <div className="form-group">
                         <label>First Name</label>
-                        <input type="text" name="firstName" placeholder="First name" value={form.firstName} onChange={handleChange} required />
+                        <input type="text" name="firstName" placeholder="First name" value={form.firstName} onChange={handleChange} required disabled={loading} />
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="form-group">
                         <label>Last Name</label>
-                        <input type="text" name="lastName" placeholder="Last name" value={form.lastName} onChange={handleChange} required />
+                        <input type="text" name="lastName" placeholder="Last name" value={form.lastName} onChange={handleChange} required disabled={loading} />
                       </div>
                     </div>
                     <div className="col-12">
                       <div className="form-group">
                         <label>Email Address</label>
-                        <input type="email" name="email" placeholder="your@email.com" value={form.email} onChange={handleChange} required />
+                        <input type="email" name="email" placeholder="your@email.com" value={form.email} onChange={handleChange} required disabled={loading} />
                       </div>
                     </div>
                     <div className="col-12">
                       <div className="form-group">
                         <label>Phone Number</label>
-                        <input type="tel" name="phone" placeholder="(555) 000-0000" value={form.phone} onChange={handleChange} />
+                        <input type="tel" name="phone" placeholder="(555) 000-0000" value={form.phone} onChange={handleChange} disabled={loading} />
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="form-group">
                         <label>Password</label>
-                        <input type="password" name="password" placeholder="Create password" value={form.password} onChange={handleChange} required />
+                        <input type="password" name="password" placeholder="Create password" value={form.password} onChange={handleChange} required disabled={loading} />
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="form-group">
                         <label>Confirm</label>
-                        <input type="password" name="confirmPassword" placeholder="Confirm password" value={form.confirmPassword} onChange={handleChange} required />
+                        <input type="password" name="confirmPassword" placeholder="Confirm password" value={form.confirmPassword} onChange={handleChange} required disabled={loading} />
                       </div>
                     </div>
                     <div className="col-12">
@@ -113,10 +175,10 @@ export default function SignupPage() {
                       </label>
                     </div>
                     <div className="col-12 mt-3">
-                      <button type="submit" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }}>
-                        <span className="theme-btn-arrow-left"><i className="fa-solid fa-arrow-right"></i></span>
-                        <span className="theme-btn">Create Account</span>
-                        <span className="theme-btn-arrow-right"><i className="fa-solid fa-arrow-right"></i></span>
+                      <button type="submit" className="theme-btn-main" style={{ width: "100%", justifyContent: "center" }} disabled={loading}>
+                        <span className="theme-btn-arrow-left"><i className={loading ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-arrow-right"}></i></span>
+                        <span className="theme-btn">{loading ? "Creating Account..." : "Create Account"}</span>
+                        <span className="theme-btn-arrow-right"><i className={loading ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-arrow-right"}></i></span>
                       </button>
                     </div>
                   </div>
@@ -126,17 +188,16 @@ export default function SignupPage() {
                   <p style={{ color: "var(--text-color)", fontSize: "14px", marginBottom: "15px" }}>
                     Or sign up with
                   </p>
-                  <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
-                    <button className="hm-social-btn">
-                      <i className="fab fa-google"></i> Google
-                    </button>
-                    <button className="hm-social-btn">
-                      <i className="fab fa-facebook-f"></i> Facebook
-                    </button>
-                    <button className="hm-social-btn">
-                      <i className="fab fa-apple"></i> Apple
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="hm-social-btn"
+                    onClick={handleGoogle}
+                    disabled={loading || googleLoading}
+                    style={{ width: "100%", justifyContent: "center" }}
+                  >
+                    <i className={googleLoading ? "fa-solid fa-spinner fa-spin" : "fab fa-google"}></i>
+                    {googleLoading ? " Connecting..." : " Continue with Google"}
+                  </button>
                 </div>
               </div>
             </div>

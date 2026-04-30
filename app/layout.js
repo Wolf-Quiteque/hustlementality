@@ -1,6 +1,7 @@
 import "./globals.css";
 import Script from "next/script";
 import LayoutShell from "./components/LayoutShell";
+import Providers from "./components/Providers";
 
 export const metadata = {
   title: "Hustle Mentality - Set Sail With Your Tribe",
@@ -40,7 +41,9 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <head></head>
       <body suppressHydrationWarning>
-        <LayoutShell>{children}</LayoutShell>
+        <Providers>
+          <LayoutShell>{children}</LayoutShell>
+        </Providers>
 
         <Script src="/js/jquery.js" strategy="beforeInteractive" />
         <Script src="/js/popper.min.js" strategy="beforeInteractive" />

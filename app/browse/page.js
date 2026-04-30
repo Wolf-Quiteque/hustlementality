@@ -1,113 +1,121 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppNav from "../components/AppNav";
+import ProtectedRoute from "../components/ProtectedRoute";
+import { useAuth } from "../context/AuthContext";
+import api from "../lib/client-api";
 
-const travelers = [
-  {
-    id: 1,
-    name: "Olivia Thompson",
-    age: 28,
-    city: "Tallahassee, FL",
-    bio: "First cruise ever! Super excited. I can't wait to see the Bahamas. Just learned a new line dance, where's the DJ!!! Looking for a cabin buddy who loves to have fun and explore new places.",
-    img: "photo-1531746020798-e6953c6e8e04",
-    interests: ["Dancing", "Nightlife", "Photography", "Foodie"],
-    style: "Life of the Party",
-    match: 88,
-  },
-  {
-    id: 2,
-    name: "Madison Rivera",
-    age: 26,
-    city: "Houston, TX",
-    bio: "I love the ocean, plan on sitting on the deck and tanning all day. Love the restaurants on the boat. Who wants some girl time? Looking for a chill cabin partner who enjoys good food and relaxation.",
-    img: "photo-1494790108377-be9c29b29330",
-    interests: ["Relaxation", "Foodie", "Yoga", "Shopping"],
-    style: "Chill & Relax",
-    match: 75,
-  },
-  {
-    id: 3,
-    name: "Jasmine Chen",
-    age: 29,
-    city: "Charlotte, NC",
-    bio: "Yoga instructor by day, adventure seeker by night. Can't wait for sunrise yoga on the deck and snorkeling in crystal-clear waters. Let's make memories!",
-    img: "photo-1573497019940-1c28c88b4f3e",
-    interests: ["Yoga", "Adventure", "Water Sports", "Photography"],
-    style: "Adventure Seeker",
-    match: 85,
-  },
-  {
-    id: 4,
-    name: "Brittany James",
-    age: 30,
-    city: "Detroit, MI",
-    bio: "Entrepreneur and event planner. I throw the best parties — and this cruise is about to be one of them. Looking for a cabin buddy with big energy and good vibes.",
-    img: "photo-1438761681033-6461ffad8d80",
-    interests: ["Networking", "Nightlife", "Entrepreneurship", "Dancing"],
-    style: "Social Butterfly",
-    match: 82,
-  },
-  {
-    id: 5,
-    name: "Keisha Williams",
-    age: 25,
-    city: "New York, NY",
-    bio: "Solo traveler exploring the world one trip at a time. Love immersing myself in new cultures, trying local food, and meeting people from all walks of life.",
-    img: "photo-1524504388940-b1c1722653e1",
-    interests: ["Culture", "Foodie", "Photography", "Adventure"],
-    style: "Adventure Seeker",
-    match: 79,
-  },
-  {
-    id: 6,
-    name: "Darius Mitchell",
-    age: 33,
-    city: "Chicago, IL",
-    bio: "Fitness enthusiast and foodie — yes both. Looking forward to the gym on the ship and the buffet right after. Let's get active and eat well!",
-    img: "photo-1560250097-0b93528c311a",
-    interests: ["Fitness", "Foodie", "Adventure", "Music"],
-    style: "Adventure Seeker",
-    match: 90,
-  },
-];
+const DEFAULT_AVATAR = "/images/default-avatar.png";
 
-export default function BrowsePage() {
+const styleLabels = { party: "Life of the Party", chill: "Chill & Relax", adventure: "Adventure Seeker", social: "Social Butterfly" };
+
+function BrowseContent() {
+  const { user } = useAuth();
+  const [profiles, setProfiles] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState([]);
   const [passed, setPassed] = useState([]);
-  const [action, setAction] = useState(null); // "liked" or "passed" for animation
+  const [action, setAction] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [cruiseId, setCruiseId] = useState(null);
+  const [matchPopup, setMatchPopup] = useState(null);
 
-  const current = travelers[currentIndex];
-  const isFinished = currentIndex >= travelers.length;
+  useEffect(() => {
+    api.get("/cruises")
+      .then((cruises) => {
+        const list = Array.isArray(cruises) ? cruises : [];
+        if (list.length > 0) {
+          const cId = list[0].id;
+          setCruiseId(cId);
+          return api.get(`/matching/browse?cruiseId=${cId}`);
+        }
+        return [];
+      })
+      .then((data) => setProfiles(Array.isArray(data) ? data : []))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
 
-  const handleLike = () => {
-    setAction("liked");
-    setLiked((prev) => [...prev, current]);
+  const current = profiles[currentIndex];
+  const isFinished = !loading && currentIndex >= profiles.length;
+
+  const doSwipe = async (swipeAction) => {
+    if (!current || !cruiseId) return;
+    const label = swipeAction === "like" ? "liked" : "passed";
+    setAction(label);
+
+    try {
+      const result = await api.post("/matching/swipe", {
+        swipedUserId: current.userId || current.id,
+        cruiseId,
+        action: swipeAction,
+      });
+      if (swipeAction === "like") setLiked((prev) => [...prev, current]);
+      else setPassed((prev) => [...prev, current]);
+
+      if (result?.isMatch) {
+        setMatchPopup(current);
+      }
+    } catch {
+      // Swipe failed — move on anyway
+      if (swipeAction === "like") setLiked((prev) => [...prev, current]);
+      else setPassed((prev) => [...prev, current]);
+    }
+
     setTimeout(() => {
       setAction(null);
       setCurrentIndex((i) => i + 1);
     }, 400);
   };
 
-  const handlePass = () => {
-    setAction("passed");
-    setPassed((prev) => [...prev, current]);
-    setTimeout(() => {
-      setAction(null);
-      setCurrentIndex((i) => i + 1);
-    }, 400);
-  };
+  const handleLike = () => doSwipe("like");
+  const handlePass = () => doSwipe("pass");
 
-  const resetBrowse = () => {
-    setCurrentIndex(0);
-    setLiked([]);
-    setPassed([]);
-  };
+  if (loading) {
+    return (
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "40vh" }}>
+        <i className="fa-solid fa-spinner fa-spin fa-2x" style={{ color: "var(--theme-color3)" }}></i>
+      </div>
+    );
+  }
+
+  const name = current ? `${current.firstName || ""} ${current.lastName || ""}`.trim() : "";
+  const avatar = current?.avatarUrl || DEFAULT_AVATAR;
+  const age = current?.age;
+  const city = current?.city;
+  const bio = current?.bio;
+  const interests = current?.interests || [];
+  const style = current?.travelStyle;
+  const matchScore = current?.matchScore || current?.match || 0;
 
   return (
     <>
-      <AppNav />
+      {/* Match popup */}
+      {matchPopup && (
+        <div style={{
+          position: "fixed", inset: 0, zIndex: 9999, background: "rgba(0,0,0,0.8)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }} onClick={() => setMatchPopup(null)}>
+          <div style={{ textAlign: "center", color: "#fff", padding: "40px" }} onClick={(e) => e.stopPropagation()}>
+            <i className="fa-solid fa-heart fa-4x" style={{ color: "var(--theme-color1)", marginBottom: "20px" }}></i>
+            <h2 style={{ fontSize: "36px", marginBottom: "10px" }}>It&apos;s a Match!</h2>
+            <p style={{ fontSize: "18px", marginBottom: "30px" }}>
+              You and {matchPopup.firstName} both liked each other!
+            </p>
+            <div style={{ display: "flex", gap: "15px", justifyContent: "center" }}>
+              <a href="/chat" className="theme-btn-main">
+                <span className="theme-btn-arrow-left"><i className="fa-solid fa-arrow-right"></i></span>
+                <span className="theme-btn">Send a Message</span>
+                <span className="theme-btn-arrow-right"><i className="fa-solid fa-arrow-right"></i></span>
+              </a>
+              <button onClick={() => setMatchPopup(null)} className="hm-btn-outline" style={{ color: "#fff", borderColor: "#fff" }}>
+                Keep Browsing
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <section className="section-padding" style={{ background: "var(--hm-app-page-bg, #f5f7fa)", minHeight: "100vh" }}>
         <div className="container">
@@ -119,38 +127,45 @@ export default function BrowsePage() {
                 </h2>
                 <p style={{ color: "var(--text-color)", fontSize: "15px" }}>
                   {isFinished
-                    ? `You've browsed all travelers!`
-                    : `${travelers.length - currentIndex} travelers to discover`}
+                    ? "You've browsed all travelers!"
+                    : `${profiles.length - currentIndex} travelers to discover`}
                 </p>
               </div>
 
-              {!isFinished ? (
+              {!isFinished && current ? (
                 <>
                   <div className={`hm-browse-card ${action === "liked" ? "hm-swipe-right" : action === "passed" ? "hm-swipe-left" : ""}`}>
                     <div className="hm-browse-img-wrap">
                       <img
-                        src={`https://images.unsplash.com/${current.img}?w=600&q=80`}
-                        alt={current.name}
+                        src={avatar}
+                        alt={name}
                         className="hm-browse-img"
+                        onError={(e) => { e.target.src = DEFAULT_AVATAR; }}
                       />
-                      <div className="hm-browse-match-badge">{current.match}% Match</div>
+                      <div className="hm-browse-match-badge">{matchScore}% Match</div>
                       {action === "liked" && <div className="hm-swipe-label hm-swipe-like">LIKED</div>}
                       {action === "passed" && <div className="hm-swipe-label hm-swipe-pass">PASS</div>}
                     </div>
                     <div className="hm-browse-info">
-                      <h3>{current.name}, {current.age}</h3>
-                      <p className="hm-browse-location">
-                        <i className="fa-solid fa-location-dot"></i> {current.city}
-                      </p>
-                      <span className="hm-browse-style">
-                        <i className="fa-solid fa-compass"></i> {current.style}
-                      </span>
-                      <p className="hm-browse-bio">{current.bio}</p>
-                      <div className="hm-buddy-tags">
-                        {current.interests.map((int) => (
-                          <span key={int} className="hm-tag">{int}</span>
-                        ))}
-                      </div>
+                      <h3>{name}{age ? `, ${age}` : ""}</h3>
+                      {city && (
+                        <p className="hm-browse-location">
+                          <i className="fa-solid fa-location-dot"></i> {city}
+                        </p>
+                      )}
+                      {style && (
+                        <span className="hm-browse-style">
+                          <i className="fa-solid fa-compass"></i> {styleLabels[style] || style}
+                        </span>
+                      )}
+                      {bio && <p className="hm-browse-bio">{bio}</p>}
+                      {interests.length > 0 && (
+                        <div className="hm-buddy-tags">
+                          {interests.map((int) => (
+                            <span key={int} className="hm-tag">{int}</span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -158,7 +173,7 @@ export default function BrowsePage() {
                     <button className="hm-browse-btn hm-browse-pass" onClick={handlePass}>
                       <i className="fa-solid fa-xmark"></i>
                     </button>
-                    <button className="hm-browse-btn hm-browse-super" onClick={handleLike}>
+                    <button className="hm-browse-btn hm-browse-super" onClick={() => doSwipe("super")}>
                       <i className="fa-solid fa-star"></i>
                     </button>
                     <button className="hm-browse-btn hm-browse-like" onClick={handleLike}>
@@ -169,21 +184,24 @@ export default function BrowsePage() {
               ) : (
                 <div className="hm-browse-card" style={{ textAlign: "center", padding: "60px 30px" }}>
                   <i className="fa-solid fa-check-circle fa-4x" style={{ color: "var(--theme-color3)", marginBottom: "20px" }}></i>
-                  <h3 style={{ marginBottom: "10px" }}>All Caught Up!</h3>
+                  <h3 style={{ marginBottom: "10px" }}>
+                    {profiles.length === 0 ? "No Travelers Yet" : "All Caught Up!"}
+                  </h3>
                   <p style={{ color: "var(--text-color)", marginBottom: "5px" }}>
-                    You liked <strong>{liked.length}</strong> travelers
+                    {profiles.length === 0
+                      ? "Be one of the first to sign up! More travelers coming soon."
+                      : `You liked ${liked.length} travelers`}
                   </p>
-                  <p style={{ color: "var(--text-color)", marginBottom: "25px" }}>
-                    Check your <a href="/matches" style={{ color: "var(--theme-color3)", fontWeight: 600 }}>Matches</a> to see who liked you back.
-                  </p>
-                  <button onClick={resetBrowse} className="hm-btn-outline">
-                    <i className="fa-solid fa-rotate"></i> Browse Again
-                  </button>
+                  {liked.length > 0 && (
+                    <p style={{ color: "var(--text-color)", marginBottom: "25px" }}>
+                      Check your <a href="/matches" style={{ color: "var(--theme-color3)", fontWeight: 600 }}>Matches</a> to see who liked you back.
+                    </p>
+                  )}
                 </div>
               )}
 
               {/* Browse stats */}
-              {!isFinished && (
+              {!isFinished && current && (
                 <div style={{ display: "flex", justifyContent: "center", gap: "30px", marginTop: "20px" }}>
                   <div style={{ textAlign: "center", fontSize: "14px", color: "var(--text-color)" }}>
                     <span style={{ fontWeight: 700, color: "#28a745", fontSize: "18px" }}>{liked.length}</span>
@@ -195,7 +213,7 @@ export default function BrowsePage() {
                   </div>
                   <div style={{ textAlign: "center", fontSize: "14px", color: "var(--text-color)" }}>
                     <span style={{ fontWeight: 700, color: "var(--theme-color3)", fontSize: "18px" }}>
-                      {travelers.length - currentIndex}
+                      {profiles.length - currentIndex}
                     </span>
                     <br />Remaining
                   </div>
@@ -206,5 +224,14 @@ export default function BrowsePage() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function BrowsePage() {
+  return (
+    <ProtectedRoute>
+      <AppNav />
+      <BrowseContent />
+    </ProtectedRoute>
   );
 }
